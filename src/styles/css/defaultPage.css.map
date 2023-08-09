@@ -1,1 +1,1 @@
-{"version":3,"sources":["defaultPage.scss","defaultPage.css"],"names":[],"mappings":"AAAA;EACI,WAAA;EACA,YAAA;EACA,oBAAA;KAAA,iBAAA;ACCJ","file":"defaultPage.css"}
+{"version":3,"sources":["../scss/defaultPage.scss","defaultPage.css"],"names":[],"mappings":"AAAA;EACI,WAAA;EACA,YAAA;EACA,oBAAA;KAAA,iBAAA;ACCJ","file":"defaultPage.css"}

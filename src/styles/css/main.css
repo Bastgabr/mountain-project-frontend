@@ -38,19 +38,64 @@
   cursor: pointer;
 }
 
+.explore-map {
+  height: -moz-fit-content;
+  height: fit-content;
+  position: relative;
+  width: 100%;
+}
+
+.explore-map-text {
+  max-width: 550px;
+  top: 70px;
+  left: 100px;
+  position: absolute;
+  flex: auto;
+  font-family: Tahoma, Verdana, sans-serif;
+  z-index: 1;
+}
+
+.explore-map-text h1 {
+  font-size: 60px;
+}
+
+.explore-map-content {
+  right: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+.iframe {
+  width: 100%;
+  height: 450px;
+  border: 0px;
+  pointer-events: none;
+}
+
+.explore-map-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Adjust the width as needed */
+  height: 100%;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
+}
+
 body {
   margin: 0;
 }
 
 .content {
   overflow: auto;
-  position: relative;
   height: calc(100vh - 65px);
   background: white;
 }
 
 .first-page-image-container {
   height: 500px;
+  position: relative;
 }
 
 .first-page-image {
@@ -60,53 +105,14 @@ body {
      object-fit: cover;
 }
 
-.explore-map-text {
-  max-width: 550px;
-  margin-top: 70px;
-  margin-left: 100px;
-  display: inline-block;
+.image-text {
   position: absolute;
-  flex: auto;
+  max-width: 35%;
+  bottom: 30px;
+  right: 60px;
+  text-align: right;
+  color: white;
   font-family: Tahoma, Verdana, sans-serif;
-}
-
-.explore-map-text h1 {
-  font-size: 60px;
-}
-
-.explore-map-view {
-  float: right;
-  margin-bottom: 70px;
-}
-
-.fade-left {
-  position: relative;
-  display: inline-block;
-}
-
-.fade-left::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 70%; /* Adjust the width as needed */
-  height: 100%;
-  background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
-}
-
-.fade-right {
-  position: relative;
-  display: inline-block; /* or block, depending on your layout */
-}
-
-.fade-right::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0; /* Changed from 'left' to 'right' */
-  width: 70%; /* Adjust the width as needed */
-  height: 100%;
-  background: linear-gradient(to right, rgba(255, 255, 255, 0), white); /* Adjust the colors as needed */
 }
 
 html, body {
