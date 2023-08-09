@@ -17,33 +17,50 @@
 
 .nav-menu {
   display: flex;
-  list-style-type: none;
   position: absolute;
-  align-content: baseline;
   top: 10px;
   left: 50px;
+  color: #AAA;
+  text-align: center;
+  font-family: Raleway;
 }
-.nav-menu li {
-  margin-left: 20px;
-  margin-right: 20px;
-  padding: 6px 0;
-}
-.nav-menu li a {
-  --fill-color: rgb(69, 149, 214);
+
+.nav-menu a {
+  color: #FFF;
+  padding: 10px 10px;
+  margin: 0px 10px;
+  font: 20px Raleway;
   position: relative;
-  font: 700 1.75rem Verdana, sans-serif;
   text-decoration: none;
-  text-transform: uppercase;
-  -webkit-text-stroke: 0.8px var(--fill-color);
-  background: linear-gradient(var(--fill-color) 0 100%) left/0 no-repeat;
-  color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
-  transition: 0.25s linear;
-  background-size: 0%;
+  z-index: 0;
+  cursor: pointer;
 }
-.nav-menu li a:hover {
-  background-size: 100%;
+
+div.brackets-animation a:before,
+div.brackets-animation a:after {
+  position: absolute;
+  opacity: 0;
+  font-size: 35px;
+  top: 0px;
+  transition: all 0.3s;
+}
+
+div.brackets-animation a:before {
+  content: "(";
+  left: 0px;
+  transform: translateX(10px);
+}
+
+div.brackets-animation a:after {
+  content: ")";
+  right: 0px;
+  transform: translateX(-10px);
+}
+
+div.brackets-animation a:hover:before,
+div.brackets-animation a:hover:after {
+  opacity: 1;
+  transform: translateX(0px);
 }
 
 .explore-map {
@@ -57,9 +74,9 @@
   max-width: 550px;
   top: 70px;
   left: 100px;
+  font-weight: 500;
   position: absolute;
   flex: auto;
-  font-family: Tahoma, Verdana, sans-serif;
   z-index: 1;
 }
 
@@ -120,10 +137,10 @@ body {
   right: 60px;
   text-align: right;
   color: white;
-  font-family: Tahoma, Verdana, sans-serif;
 }
 
 html, body {
   min-height: 100%;
   height: 100%;
+  font-family: Raleway;
 }/*# sourceMappingURL=main.css.map */

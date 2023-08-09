@@ -11,31 +11,52 @@
 
 .nav-menu {
   display: flex;
-  list-style-type: none;
   position: absolute;
-  align-content: baseline;
   top: 10px;
   left: 50px;
-  li {
-    margin-left: 20px;
-    margin-right: 20px;
-    padding: 6px 0;
-    a {
-      --fill-color: rgb(69, 149, 214);
-      position: relative;
-      font: 700 1.75rem Verdana, sans-serif;
-      text-decoration: none;
-      text-transform: uppercase;
-      -webkit-text-stroke: 0.8px var(--fill-color);
-      background: linear-gradient(var(--fill-color) 0 100%) left / 0 no-repeat;
-      color: transparent;
-      background-clip: text;
-      -webkit-background-clip: text;
-      transition: 0.25s linear;
-      background-size: 0%;
-      &:hover {
-        background-size: 100%;
-      }
-    }
-  }
+  color: #AAA;
+  text-align: center;
+  font-family: Raleway;
+}
+
+.nav-menu a{
+  color: #FFF;
+  padding: 10px 10px;
+  margin: 0px 10px;
+  font: 20px Raleway;
+  position: relative;
+  text-decoration: none;
+  z-index: 0;
+  cursor: pointer;
+}
+
+div.brackets-animation a:before,
+div.brackets-animation a:after
+{
+  position: absolute;
+  opacity: 0;
+  font-size: 35px;
+  top: 0px;
+  transition: all 0.3s;
+}
+
+div.brackets-animation a:before
+{
+    content: '(';
+    left: 0px;
+    transform: translateX(10px);
+}
+
+div.brackets-animation a:after
+{
+    content: ')';
+    right: 0px;
+    transform: translateX(-10px);
+}
+
+div.brackets-animation  a:hover:before,
+div.brackets-animation  a:hover:after
+{
+    opacity: 1;
+    transform: translateX(0px);
 }
