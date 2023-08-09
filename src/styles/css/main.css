@@ -13,19 +13,22 @@
   z-index: 2;
   position: relative;
 }
-.navbar .navbar-icon {
+
+.navbar-icon {
   width: 100px;
   height: 100%;
   background-color: grey;
   display: inline-block;
 }
-.navbar .navbar-item-container {
+
+.navbar-item-container {
   position: absolute;
   bottom: 0;
   margin-left: 50px;
   display: inline-block;
 }
-.navbar .navbar-item-container .navbar-item {
+
+.navbar-item {
   font-family: Tahoma, Verdana, sans-serif;
   margin-left: 80px;
   margin-bottom: 8px;

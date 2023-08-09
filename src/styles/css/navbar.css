@@ -1,0 +1,32 @@
+.navbar {
+  background-color: black;
+  height: 65px;
+  display: flex;
+  box-shadow: 0px 0px 40px -2px rgb(0, 0, 0);
+  z-index: 2;
+  position: relative;
+}
+
+.navbar-icon {
+  width: 100px;
+  height: 100%;
+  background-color: grey;
+  display: inline-block;
+}
+
+.navbar-item-container {
+  position: absolute;
+  bottom: 0;
+  margin-left: 50px;
+  display: inline-block;
+}
+
+.navbar-item {
+  font-family: Tahoma, Verdana, sans-serif;
+  margin-left: 80px;
+  margin-bottom: 8px;
+  font-size: large;
+  display: inline-block;
+  color: white;
+  cursor: pointer;
+}/*# sourceMappingURL=navbar.css.map */
