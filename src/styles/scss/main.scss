@@ -1,11 +1,16 @@
 @import "defaultPage.scss";
 @import "navbar.scss";
 @import "homePage/exploreTheMap";
+@import "animations/animations";
 
 body{
   margin: 0
 }
 
+//Disable selection
+::selection {
+  background: transparent;
+}
 
 .content{
   overflow: auto;

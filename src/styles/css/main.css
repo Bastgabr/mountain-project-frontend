@@ -98,6 +98,10 @@ div.brackets-animation a:hover:after {
   pointer-events: none;
 }
 
+.hide-before::before {
+  display: none;
+}
+
 .explore-map-content::before {
   content: "";
   position: absolute;
@@ -108,8 +112,25 @@ div.brackets-animation a:hover:after {
   background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
 }
 
+.scale-up-div-content div.scale-up-hover:hover {
+  transition-duration: 1500ms;
+  transform: scale(1.1);
+}
+.scale-up-div-content div.scale-up-hover:not(hover) {
+  transition-duration: 1000ms;
+  transform: scale(1);
+}
+
 body {
   margin: 0;
+}
+
+::-moz-selection {
+  background: transparent;
+}
+
+::selection {
+  background: transparent;
 }
 
 .content {
