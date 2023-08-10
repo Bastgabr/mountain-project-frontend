@@ -2,6 +2,7 @@
 @import "navbar.scss";
 @import "homePage/exploreTheMap";
 @import "animations/animations";
+@import "aboutPage/aboutPage.scss";
 
 body{
   margin: 0
@@ -15,7 +16,7 @@ body{
 .content{
   overflow: auto;
   height: calc(100vh - 65px);
-  background: white
+  background: white;
 }
 
 .first-page-image-container{

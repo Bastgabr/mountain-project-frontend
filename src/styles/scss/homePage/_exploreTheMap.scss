@@ -6,23 +6,26 @@
 }
 
 .explore-map-text{
-  max-width: 550px;
-  top: 70px;
-  left: 100px;
+  width: 950px;
+  height: 100%;
+  
   font-weight: 500;
   position: absolute;
   flex: auto;
   z-index: 1;
-
-
+  background: linear-gradient(to left, rgba(255, 255, 255, 0), white 80%); 
 }
 
 
-
-
 .explore-map-text h1{
+  margin-top: 70px;
+  margin-left: 100px;
   font-size: 60px;
-  
+}
+
+.explore-map-text p{
+  max-width: 550px;
+  margin-left: 100px;
 }
 
 
@@ -30,7 +33,6 @@
   right: 0px;
   top: 0px;
   width:100%; height:100%;
-
 }
 
 .iframe{
@@ -38,18 +40,11 @@
   height:650px;
   border: 0px;
   pointer-events: none; // Disable interaction with iframe
+
+  transition: height 0.15s ease-in-out;
 }
 
 .hide-before::before {
   display: none;
 }
 
-.explore-map-content::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%; 
-  height: 100%;
-  background: linear-gradient(to left, rgba(255, 255, 255, 0), white); 
-}

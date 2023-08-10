@@ -1,3 +1,4 @@
+@import "../scss/variables/variables";
 @import url("https://fonts.googleapis.com/css?family=Raleway:400,400i,700");
 
 .navbar{
@@ -17,6 +18,8 @@
   color: #AAA;
   text-align: center;
   font-family: Raleway;
+
+  transition: transform $translate-transition-duration ease-in-out
 }
 
 .nav-menu a{

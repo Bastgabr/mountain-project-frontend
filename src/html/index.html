@@ -8,15 +8,14 @@
     <link rel="icon" href="https://static.vecteezy.com/system/resources/previews/007/345/757/original/mountain-logo-icon-design-template-free-vector.jpg">
   </head>
   <body>
-      <div class="navbar">
-        <div class="nav-menu brackets-animation">
-          <a>Home</a>
-          <a>Maps</a>
-          <a>82x4000</a>
+      <div id="navbar" class="navbar">
+        <div id="navbar-menu" class="nav-menu brackets-animation">
+          <a id="home-button">Home</a>
+          <a id="maps-button">Maps</a>
+          <a id="82x400-button">82x4000</a>
           <a id="about-button">About</a>
         </div>
       </div>
-    </div>
     <div id="content" class="content">
       <div id="trient-image" class="first-page-image-container scale-up-div-content">
         <image src="../images/plateautrient.jpg" class="first-page-image"></image>
@@ -27,8 +26,8 @@
             Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis aliquet, sem sit amet elementum aliquam, augue quam scelerisque diam, quis tempor augue ligula ac ante. </p>
         </div>
       </div>
-      <div id="explore-map-section"class="explore-map scale-up-div-content">
-        <div id="explore-map-text" class="explore-map-text scale-up-hover">
+      <div id="explore-map-section"class="explore-map">
+        <div id="explore-map-text" class="explore-map-text">
             <h1>Explore the map</h1>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia arcu vel egestas ullamcorper. Vivamus quis venenatis sapien. 
@@ -37,12 +36,11 @@
               Donec ac pellentesque turpis. </p>
         </div>
         <div id="map-view-container" class="explore-map-content">
-          <iframe src='https://map.geo.admin.ch/embed.html?lang=en&topic=ech&bgLayer=ch.swisstopo.pixelkarte-farbe&layers=ch.swisstopo.zeitreihen,ch.bfs.gebaeude_wohnungs_register,ch.bav.haltestellen-oev,ch.swisstopo.swisstlm3d-wanderwege,ch.astra.wanderland-sperrungen_umleitungen,KML%7C%7Chttps:%2F%2Fpublic.geo.admin.ch%2Fapi%2Fkml%2Ffiles%2FmjeWytN0Ry-HpoD_a_sQIg,ch.swisstopo.pixelkarte-farbe-pk25.noscale&layers_opacity=1,1,1,0.8,0.8,1,1&layers_visibility=false,false,false,false,false,true,true&layers_timestamp=18641231,,,,,,&E=2568727.53&N=1093792.80&zoom=6'   frameborder='0' class="iframe" ></iframe>
+          <iframe src="https://map.geo.admin.ch/embed.html?lang=en&topic=ech&bgLayer=ch.swisstopo.pixelkarte-farbe&layers=ch.swisstopo.zeitreihen,ch.bfs.gebaeude_wohnungs_register,ch.bav.haltestellen-oev,ch.astra.wanderland-sperrungen_umleitungen,KML%7C%7Chttps:%2F%2Fpublic.geo.admin.ch%2Fapi%2Fkml%2Ffiles%2FmjeWytN0Ry-HpoD_a_sQIg,ch.swisstopo.pixelkarte-farbe-pk25.noscale&layers_opacity=1,1,1,0.8,0.8,1,1&layers_visibility=false,false,false,false,false,true,true&layers_timestamp=18641231,,,,,,&E=2568727.53&N=1093792.80&zoom=6"  frameborder="0" class="iframe" ></iframe>
         </div>
       </div>
       <div id="blank" style="height: 600px; width: 100%; background-color: white;">
       </div>
-    </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script type="module" src="../ts/main.js">
       debugger;
