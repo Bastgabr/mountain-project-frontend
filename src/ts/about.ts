@@ -6,3 +6,10 @@ document.addEventListener('DOMContentLoaded', function () {
     window.location.href = 'index.html';
   });
 });
+
+$("#submit-button").on('click', function(){
+  //Check the entries 
+
+  alert("Ok");
+
+});

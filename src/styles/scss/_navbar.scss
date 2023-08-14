@@ -3,7 +3,7 @@
 
 .navbar{
   background-color: #1A1E23;
-  height: 65px;
+  height: $navbar-height;
   display: flex;
   box-shadow: 0px 0px 40px -2px rgba(0,0,0,3);
   z-index: 2;
@@ -18,7 +18,6 @@
   color: #AAA;
   text-align: center;
   font-family: Raleway;
-
   transition: transform $translate-transition-duration ease-in-out
 }
 
@@ -33,8 +32,8 @@
   cursor: pointer;
 }
 
-div.brackets-animation a:before,
-div.brackets-animation a:after
+div.brackets-animation :before,
+div.brackets-animation :after
 {
   position: absolute;
   opacity: 0;
@@ -43,23 +42,27 @@ div.brackets-animation a:after
   transition: all 0.3s;
 }
 
-div.brackets-animation a:before
+div.brackets-animation :before
 {
     content: '(';
+    color: $highlight-color;
     left: 0px;
     transform: translateX(10px);
 }
 
-div.brackets-animation a:after
+div.brackets-animation :after
 {
     content: ')';
+    color: $highlight-color;
     right: 0px;
     transform: translateX(-10px);
 }
 
-div.brackets-animation  a:hover:before,
-div.brackets-animation  a:hover:after
+div.brackets-animation :hover:before,
+div.brackets-animation :hover:after
 {
     opacity: 1;
     transform: translateX(0px);
 }
+
+

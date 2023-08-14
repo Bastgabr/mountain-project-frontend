@@ -37,8 +37,8 @@
   cursor: pointer;
 }
 
-div.brackets-animation a:before,
-div.brackets-animation a:after {
+div.brackets-animation :before,
+div.brackets-animation :after {
   position: absolute;
   opacity: 0;
   font-size: 35px;
@@ -46,20 +46,22 @@ div.brackets-animation a:after {
   transition: all 0.3s;
 }
 
-div.brackets-animation a:before {
+div.brackets-animation :before {
   content: "(";
+  color: rgb(255, 217, 0);
   left: 0px;
   transform: translateX(10px);
 }
 
-div.brackets-animation a:after {
+div.brackets-animation :after {
   content: ")";
+  color: rgb(255, 217, 0);
   right: 0px;
   transform: translateX(-10px);
 }
 
-div.brackets-animation a:hover:before,
-div.brackets-animation a:hover:after {
+div.brackets-animation :hover:before,
+div.brackets-animation :hover:after {
   opacity: 1;
   transform: translateX(0px);
 }
@@ -120,16 +122,174 @@ div.brackets-animation a:hover:after {
   transform: scale(1);
 }
 
+.contact-section {
+  background-color: #1A1E23;
+  height: 600px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.contact-section__title {
+  color: white;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.contact-section__content {
+  display: flex;
+  justify-content: center;
+  max-height: 100%;
+}
+
+.contact-section__form {
+  display: inline-block;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 100%;
+  max-width: 100;
+  margin-left: 100px;
+  margin-right: 100px;
+  box-sizing: border-box;
+  font-family: Raleway;
+  color: white;
+  font-size: medium;
+}
+
+.contact-section__formdiv.input:not(:focus):invalid {
+  border: 2px solid #b20a37;
+  color: #b20a37;
+}
+
+.input {
+  box-sizing: border-box;
+  border: 2px solid white;
+  border-radius: 25px;
+  background-color: #1A1E23;
+  outline: none;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+  padding: 0.5rem 1rem;
+  color: white;
+  font-size: medium;
+  font-family: Raleway;
+  transition: border 400ms linear;
+  transition: height ease-in-out;
+  transition: color 400ms linear;
+}
+.input:focus {
+  border: 2px solid rgb(255, 217, 0);
+}
+
+.email:not(:focus):invalid {
+  border: 2px solid #b20a37;
+  color: #b20a37;
+}
+
+textarea.input {
+  margin-block-end: 1em;
+  resize: vertical;
+  min-height: 150px;
+}
+textarea.input ::-moz-selection {
+  background: local;
+}
+textarea.input ::selection {
+  background: local;
+}
+
+.input-caption {
+  margin-block-end: 0;
+  margin-bottom: 10px;
+}
+
+.submit-button {
+  cursor: pointer;
+  background-color: rgb(255, 217, 0);
+  padding: 0.5rem 2.4rem;
+  border-radius: 25px;
+  color: #1A1E23;
+  text-align: center;
+  float: right;
+}
+.submit-button:hover {
+  background-color: rgb(255, 217, 0);
+  color: white;
+}
+
+.contact-section__networks {
+  width: 100%;
+  height: 400px;
+  max-width: 100;
+  margin-left: 30px;
+  margin-right: 30px;
+  font-family: Raleway;
+  color: white;
+}
+
+.vertical-bar {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  outline: 1px solid rgb(255, 217, 0);
+  background-color: rgb(255, 217, 0);
+}
+
+.contact-section__networks span {
+  margin-left: 65px;
+  margin-bottom: 20px;
+  font-family: Raleway;
+  font-size: medium;
+  font-weight: 100;
+  color: white;
+}
+
+.contact-section__networks .email-text a {
+  color: white;
+  text-decoration: none;
+}
+
+.main-information-lift {
+  justify-content: space-around;
+  align-items: center;
+}
+
+.main-information-lift div {
+  margin: 40px;
+}
+
+.social-media-list {
+  margin-top: 60px;
+  justify-content: space-around;
+}
+.social-media-list i {
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+}
+.social-media-list i:hover {
+  transform: scale(1.3);
+  color: rgb(255, 217, 0);
+}
+
+.horizontal-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.vertical-content {
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: white;
+}
+
 body {
   margin: 0;
-}
-
-::-moz-selection {
-  background: transparent;
-}
-
-::selection {
-  background: transparent;
+  caret-color: rgb(255, 217, 0);
 }
 
 .content {

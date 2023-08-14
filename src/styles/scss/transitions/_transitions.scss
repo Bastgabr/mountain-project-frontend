@@ -1,0 +1,11 @@
+//Hover div content 
+.scale-up-div-content{
+  div.scale-up-hover:hover{
+    transition-duration: 1500ms;
+    transform: scale(1.10);
+  }
+  div.scale-up-hover:not(hover){
+    transition-duration: 1000ms;
+    transform: scale(1);
+  }
+}
