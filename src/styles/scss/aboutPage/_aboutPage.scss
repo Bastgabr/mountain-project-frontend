@@ -1,20 +1,39 @@
 @import "../variables/variables";
 
-.contact-section{
+.about{
   background-color: $contact-form-color;
-  height: 600px;
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  height: fit-content;
+  padding-top: 40px;
 }
 
-.contact-section__title{
-  color: $text-color;
-  text-align: center;
-  display: flex;
-  justify-content: center;
+
+.section{
+  min-height: 300px;
+  height: fit-content;
+
+  .title{
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 80px;
+    color: $text-color;
+
+    div.brackets-animation{
+      display: flex;
+      position: absolute;
+      top: 10px;
+      left: 30px;
+      align-content: center;
+      text-align: center;
+
+      h1{
+        margin-left: 18px;
+        margin-right: 18px;
+      }
+    }
+  }
 }
+
 
 
 .contact-section__content{
@@ -23,50 +42,65 @@
   max-height: 100%;
 }
 
+.form-section{
+
+  p.form-section__caption{
+    margin-bottom: 12px;
+  }
+  textarea.form-section__input,
+  input.form-section__input{
+    margin-bottom: 12px;
+    box-sizing: border-box;
+    border: 2px solid $text-color;
+    border-radius: 25px;
+    background-color: $contact-form-color;
+    outline: none;
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+    padding: .5rem 1.0rem;
+    color: $text-color;
+    font-size: medium;
+    font-family: Raleway;
+    transition: border $default-transition-timing linear;
+    transition: height ease-in-out;
+    transition: color $default-transition-timing linear;
+    &:focus{
+      border: 2px solid $highlight-color;
+    }
+
+  }
+  input.form-section__input{
+    &:not(:focus):invalid{
+      border: 2px solid #b20a37;
+      color: #b20a37;
+    }
+  }
+
+  textarea.form-section__input{
+    margin-block-end: 1em;
+    resize: vertical;
+    ::selection{
+      background: local;
+    }
+    min-height: 150px;
+  }
+}
+
+
+
+
 .contact-section__form{
   display: inline-block;
   height: fit-content;
   width: 100%;
   max-width: 100;
-  margin-left: 100px;
-  margin-right: 100px;
-
-  box-sizing: border-box;
-  font-family: Raleway;
-  color: white;
-  font-size: medium;
-}
-
-.contact-section__form{
-
-  &div.input:not(:focus):invalid{
-    border: 2px solid #b20a37;
-    color: #b20a37;
-  }
+  margin-left: 3%;
+  margin-right: 3%;
 
 }
 
 
-.input{
-  box-sizing: border-box;
-  border: 2px solid $text-color;
-  border-radius: 25px;
-  background-color: $contact-form-color;
-  outline: none;
-  width: 100%;
-  max-width: 100%;
-  position: relative;
-  padding: .5rem 1.0rem;
-  color: $text-color;
-  font-size: medium;
-  font-family: Raleway;
-  transition: border 400ms linear;
-  transition: height ease-in-out;
-  transition: color 400ms linear;
-  &:focus{
-    border: 2px solid $highlight-color;
-  }
-}
 .email{
   &:not(:focus):invalid{
     border: 2px solid #b20a37;
@@ -74,19 +108,7 @@
   }
 }
 
-textarea.input{
-  margin-block-end: 1em;
-  resize: vertical;
-  ::selection{
-    background: local;
-  }
-  min-height: 150px;
-}
 
-.input-caption{
-  margin-block-end: 0;
-  margin-bottom: 10px;
-}
 
 .submit-button{
   cursor: pointer;

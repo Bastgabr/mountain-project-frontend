@@ -1,0 +1,14 @@
+@keyframes text-apparition{
+  from{
+    transform: translateX(-300px);
+  }
+
+  to{
+    transform: translateX(0);
+  }
+
+}
+
+.apparition-start{
+  animation: text-apparition  400ms;
+}

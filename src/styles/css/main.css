@@ -113,6 +113,18 @@ div.brackets-animation :hover:after {
   display: none;
 }
 
+@keyframes text-apparition {
+  from {
+    transform: translateX(-300px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+.apparition-start {
+  animation: text-apparition 400ms;
+}
+
 .scale-up-div-content div.scale-up-hover:hover {
   transition-duration: 1500ms;
   transform: scale(1.1);
@@ -122,20 +134,36 @@ div.brackets-animation :hover:after {
   transform: scale(1);
 }
 
-.contact-section {
+.about {
   background-color: #1A1E23;
-  height: 600px;
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding-top: 40px;
 }
 
-.contact-section__title {
-  color: white;
-  text-align: center;
+.section {
+  min-height: 300px;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.section .title {
+  position: relative;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  height: 80px;
+  color: white;
+}
+.section .title div.brackets-animation {
+  display: flex;
+  position: absolute;
+  top: 10px;
+  left: 30px;
+  align-content: center;
+  text-align: center;
+}
+.section .title div.brackets-animation h1 {
+  margin-left: 18px;
+  margin-right: 18px;
 }
 
 .contact-section__content {
@@ -144,26 +172,12 @@ div.brackets-animation :hover:after {
   max-height: 100%;
 }
 
-.contact-section__form {
-  display: inline-block;
-  height: -moz-fit-content;
-  height: fit-content;
-  width: 100%;
-  max-width: 100;
-  margin-left: 100px;
-  margin-right: 100px;
-  box-sizing: border-box;
-  font-family: Raleway;
-  color: white;
-  font-size: medium;
+.form-section p.form-section__caption {
+  margin-bottom: 12px;
 }
-
-.contact-section__formdiv.input:not(:focus):invalid {
-  border: 2px solid #b20a37;
-  color: #b20a37;
-}
-
-.input {
+.form-section textarea.form-section__input,
+.form-section input.form-section__input {
+  margin-bottom: 12px;
   box-sizing: border-box;
   border: 2px solid white;
   border-radius: 25px;
@@ -180,30 +194,39 @@ div.brackets-animation :hover:after {
   transition: height ease-in-out;
   transition: color 400ms linear;
 }
-.input:focus {
+.form-section textarea.form-section__input:focus,
+.form-section input.form-section__input:focus {
   border: 2px solid rgb(255, 217, 0);
+}
+.form-section input.form-section__input:not(:focus):invalid {
+  border: 2px solid #b20a37;
+  color: #b20a37;
+}
+.form-section textarea.form-section__input {
+  margin-block-end: 1em;
+  resize: vertical;
+  min-height: 150px;
+}
+.form-section textarea.form-section__input ::-moz-selection {
+  background: local;
+}
+.form-section textarea.form-section__input ::selection {
+  background: local;
+}
+
+.contact-section__form {
+  display: inline-block;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 100%;
+  max-width: 100;
+  margin-left: 3%;
+  margin-right: 3%;
 }
 
 .email:not(:focus):invalid {
   border: 2px solid #b20a37;
   color: #b20a37;
-}
-
-textarea.input {
-  margin-block-end: 1em;
-  resize: vertical;
-  min-height: 150px;
-}
-textarea.input ::-moz-selection {
-  background: local;
-}
-textarea.input ::selection {
-  background: local;
-}
-
-.input-caption {
-  margin-block-end: 0;
-  margin-bottom: 10px;
 }
 
 .submit-button {
@@ -285,6 +308,13 @@ textarea.input ::selection {
 
 a {
   color: white;
+}
+
+h1, h2, h3, h4, p {
+  color: white;
+  margin: 0;
+  padding: 0;
+  font-family: Raleway;
 }
 
 body {
