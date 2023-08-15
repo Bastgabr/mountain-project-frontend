@@ -136,12 +136,12 @@ div.brackets-animation :hover:after {
 
 .about {
   background-color: #1A1E23;
-  height: -moz-fit-content;
-  height: fit-content;
+  height: 100vh;
   padding-top: 40px;
 }
 
 .section {
+  background-color: #1A1E23;
   min-height: 300px;
   height: -moz-fit-content;
   height: fit-content;
@@ -190,9 +190,7 @@ div.brackets-animation :hover:after {
   color: white;
   font-size: medium;
   font-family: Raleway;
-  transition: border 400ms linear;
-  transition: height ease-in-out;
-  transition: color 400ms linear;
+  transition: border 400ms linear, height ease-in-out, color 400ms linear;
 }
 .form-section textarea.form-section__input:focus,
 .form-section input.form-section__input:focus {
@@ -224,15 +222,11 @@ div.brackets-animation :hover:after {
   margin-right: 3%;
 }
 
-.email:not(:focus):invalid {
-  border: 2px solid #b20a37;
-  color: #b20a37;
-}
-
 .submit-button {
   cursor: pointer;
   background-color: rgb(255, 217, 0);
   padding: 0.5rem 2.4rem;
+  margin-bottom: 30px;
   border-radius: 25px;
   color: #1A1E23;
   text-align: center;

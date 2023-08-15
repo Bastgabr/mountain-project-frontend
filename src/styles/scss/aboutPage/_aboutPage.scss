@@ -2,12 +2,13 @@
 
 .about{
   background-color: $contact-form-color;
-  height: fit-content;
+  height: 100vh;
   padding-top: 40px;
 }
 
 
 .section{
+  background-color: $contact-form-color;
   min-height: 300px;
   height: fit-content;
 
@@ -62,9 +63,7 @@
     color: $text-color;
     font-size: medium;
     font-family: Raleway;
-    transition: border $default-transition-timing linear;
-    transition: height ease-in-out;
-    transition: color $default-transition-timing linear;
+    transition: border $default-transition-timing linear, height ease-in-out, color $default-transition-timing linear;
     &:focus{
       border: 2px solid $highlight-color;
     }
@@ -88,8 +87,6 @@
 }
 
 
-
-
 .contact-section__form{
   display: inline-block;
   height: fit-content;
@@ -101,20 +98,13 @@
 }
 
 
-.email{
-  &:not(:focus):invalid{
-    border: 2px solid #b20a37;
-    color: #b20a37;
-  }
-}
-
 
 
 .submit-button{
   cursor: pointer;
-
   background-color: $highlight-color;
   padding: .5rem 2.4rem;
+  margin-bottom: 30px;
   border-radius: 25px;
   color: $dark-text-color;
   text-align: center;
