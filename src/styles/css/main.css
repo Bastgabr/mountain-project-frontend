@@ -260,21 +260,19 @@ div.brackets-animation :hover:after {
   font-family: Raleway;
   font-size: medium;
   font-weight: 100;
+  white-space: nowrap;
   color: white;
 }
 
-.contact-section__networks .email-text a {
-  color: white;
-  text-decoration: none;
-}
-
-.main-information-lift {
+.main-information-list {
   justify-content: space-around;
-  align-items: center;
+  align-items: left;
 }
 
-.main-information-lift div {
+.main-information-list div {
   margin: 40px;
+  display: flex;
+  justify-content: left;
 }
 
 .social-media-list {
@@ -302,6 +300,7 @@ div.brackets-animation :hover:after {
 
 a {
   color: white;
+  text-decoration: none;
 }
 
 h1, h2, h3, h4, p {

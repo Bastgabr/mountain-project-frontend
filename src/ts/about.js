@@ -9,8 +9,8 @@ $("#submit-button").on('click', function () {
     //Check the entries 
     alert("Ok");
 });
-$("#name-input").on("focusout", function () {
-    let inputField = $("#name-input");
+$("input.form-section__input").on("focusout", function () {
+    let inputField = $(this);
     if (inputField.val() == "") {
         inputField.css('border');
         inputField.css({
@@ -25,8 +25,8 @@ $("#name-input").on("focusout", function () {
         });
     }
 });
-$("#name-input").on("focusin", function () {
-    let inputField = $("#name-input");
+$("input.form-section__input").on("focusin", function () {
+    let inputField = $(this);
     inputField.css({
         border: '',
         color: '',
