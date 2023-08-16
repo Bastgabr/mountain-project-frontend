@@ -125,6 +125,14 @@ div.brackets-animation :hover:after {
   animation: text-apparition 400ms;
 }
 
+@keyframes carousel-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-1500px);
+  }
+}
 .scale-up-div-content div.scale-up-hover:hover {
   transition-duration: 1500ms;
   transform: scale(1.1);
@@ -164,6 +172,57 @@ div.brackets-animation :hover:after {
 .section .title div.brackets-animation h1 {
   margin-left: 18px;
   margin-right: 18px;
+}
+
+.technologies-section__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.slider {
+  height: 120px;
+  overflow: hidden;
+  position: relative;
+  background-color: rgb(255, 217, 0);
+}
+.slider::before, .slider::after {
+  background: linear-gradient(to right, rgb(255, 217, 0) 0%, rgba(255, 255, 255, 0) 100%);
+  content: "";
+  height: 120px;
+  position: absolute;
+  width: 200px;
+  z-index: 2;
+}
+.slider::after {
+  right: 0;
+  top: 0;
+  transform: rotateZ(180deg);
+}
+.slider::before {
+  left: 0;
+  top: 0;
+}
+.slider .slider-track {
+  animation: carousel-scroll 40s linear infinite;
+  display: flex;
+  width: 3000px;
+}
+.slider .slider-track .slide {
+  height: 100px;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+}
+.slider .slider-track .slide img {
+  -o-object-fit: contain;
+     object-fit: contain;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.slider .slider-track .slide .slide-title {
+  text-align: center;
+  justify-content: center;
 }
 
 .contact-section__content {
@@ -214,8 +273,6 @@ div.brackets-animation :hover:after {
 
 .contact-section__form {
   display: inline-block;
-  height: -moz-fit-content;
-  height: fit-content;
   width: 100%;
   max-width: 100;
   margin-left: 3%;
@@ -238,9 +295,8 @@ div.brackets-animation :hover:after {
 }
 
 .contact-section__networks {
+  margin-top: 40px;
   width: 100%;
-  height: -moz-fit-content;
-  height: fit-content;
   margin-left: 30px;
   margin-right: 30px;
   font-family: Raleway;
@@ -249,7 +305,7 @@ div.brackets-animation :hover:after {
 
 .vertical-bar {
   margin-top: 50px;
-  margin-bottom: 50px;
+  margin-bottom: 100px;
   outline: 1px solid rgb(255, 217, 0);
   background-color: rgb(255, 217, 0);
 }
@@ -274,7 +330,12 @@ div.brackets-animation :hover:after {
   margin-top: 27px;
   height: 30px;
   display: flex;
-  justify-content: left;
+  flex-direction: row;
+  justify-content: center;
+}
+.main-information-list div i {
+  max-width: 170px;
+  margin-right: 50px;
 }
 
 .social-media-list {
@@ -300,6 +361,27 @@ div.brackets-animation :hover:after {
   flex-direction: column;
 }
 
+@media (max-width: 900px) {
+  .contact-section__content {
+    flex-direction: column;
+  }
+  .contact-section__form {
+    width: auto;
+  }
+  .contact-section__form textarea.form-section__input,
+  .contact-section__form input.form-section__input {
+    width: "";
+  }
+  .contact-section__networks {
+    width: auto;
+    margin-bottom: 40px;
+    margin-top: 0px;
+  }
+  .vertical-bar {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+}
 a {
   color: white;
   text-decoration: none;
