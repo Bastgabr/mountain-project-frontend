@@ -44,20 +44,20 @@
   justify-content: center;
 }
 
-@mixin yellow-gradient {
-	background: linear-gradient(to right,  $highlight-color 0%,rgba(255,255,255,0) 100%);
+@mixin border-gradient {
+	background: linear-gradient(to right,  $carousel-technologies-color 0%,rgba(255,255,255,0) 100%);
 }
 
 .slider{
   height: calc($carousel-technologies-height + $carousel-technologies-margin*2);
   overflow:hidden;
 	position: relative;
-  background-color: $highlight-color;
+  background-color: $carousel-technologies-color;
 
 
   &::before,
 	&::after {
-		@include yellow-gradient;
+		@include border-gradient;
 		content: "";
 		height: calc($carousel-technologies-height + $carousel-technologies-margin*2);
 		position: absolute;

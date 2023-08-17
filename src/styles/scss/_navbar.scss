@@ -32,6 +32,7 @@
   cursor: pointer;
 }
 
+
 div.brackets-animation :before,
 div.brackets-animation :after
 {
@@ -65,4 +66,44 @@ div.brackets-animation :hover:after
     transform: translateX(0px);
 }
 
+
+.langage-select-menu{
+  position: absolute;
+  right: 20px;
+  bottom: 50px;
+  background: $navbar-color;
+  border: 2px solid $highlight-color;
+  border-radius: 25px;
+  transform: translate(0%,100%);
+
+  .langage-option{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: $navbar-lang-size + 10px;
+    width: 40px;
+
+    img{
+      border: 0.1px solid $navbar-color;
+      border-radius: 25px;
+      height: $navbar-lang-size;
+      width: $navbar-lang-size;
+    }
+
+
+    &:hover{
+      background: $highlight-color;
+    }
+  }
+
+  .top{
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+  }
+
+  .bottom{
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+  }
+}
 

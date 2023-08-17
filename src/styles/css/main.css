@@ -66,6 +66,40 @@ div.brackets-animation :hover:after {
   transform: translateX(0px);
 }
 
+.langage-select-menu {
+  position: absolute;
+  right: 20px;
+  bottom: 50px;
+  background: #1A1E23;
+  border: 2px solid rgb(255, 217, 0);
+  border-radius: 25px;
+  transform: translate(0%, 100%);
+}
+.langage-select-menu .langage-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 35px;
+  width: 40px;
+}
+.langage-select-menu .langage-option img {
+  border: 0.1px solid #1A1E23;
+  border-radius: 25px;
+  height: 25px;
+  width: 25px;
+}
+.langage-select-menu .langage-option:hover {
+  background: rgb(255, 217, 0);
+}
+.langage-select-menu .top {
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+.langage-select-menu .bottom {
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
 .explore-map {
   height: -moz-fit-content;
   height: fit-content;
@@ -184,10 +218,10 @@ div.brackets-animation :hover:after {
   height: 120px;
   overflow: hidden;
   position: relative;
-  background-color: rgb(255, 217, 0);
+  background-color: white;
 }
 .slider::before, .slider::after {
-  background: linear-gradient(to right, rgb(255, 217, 0) 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(to right, white 0%, rgba(255, 255, 255, 0) 100%);
   content: "";
   height: 120px;
   position: absolute;

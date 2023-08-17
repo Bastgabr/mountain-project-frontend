@@ -14,6 +14,7 @@ $("#submit-button").on('click', function(){
 
 });
 
+
 $("input.form-section__input").on("focusout", function(){
   let inputField = $(this);
   if(inputField.val() == ""){
@@ -38,3 +39,5 @@ $("input.form-section__input").on("focusin", function(){
     color: '',
   });
 })
+
+
