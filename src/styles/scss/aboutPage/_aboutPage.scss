@@ -1,15 +1,16 @@
 @import "../variables/variables";
 
 .about{
-  background-color: $contact-form-color;
-  height: 100vh;
-  padding-top: 40px;
+  background-color: $about-background-color;
+  height: calc(100% - ($navbar-height));
+  overflow: auto;
 }
 
 
 .section{
-  background-color: $contact-form-color;
-  min-height: 300px;
+  padding-top: 40px ;
+  background-color: $about-page-section-color;
+  
   height: fit-content;
   
   .title{
@@ -183,7 +184,7 @@
 .contact-section__networks{
   margin-top: 40px;
   width: 100%;
-  margin-left: 30px;
+
   margin-right: 30px;
   font-family: Raleway;
   color: white;
@@ -197,14 +198,19 @@
 }
 
 
-.contact-section__networks span{
-  margin-left: 65px;
-  margin-bottom: 20px;
-  font-family: Raleway;
-  font-size: medium;
-  font-weight: 100;
-  white-space: nowrap;
-  color: $text-color;
+.contact-section__networks {
+  a{
+    margin-left: 65px;
+    margin-bottom: 20px;
+    font-family: Raleway;
+    font-size: medium;
+    font-weight: 100;
+    white-space: nowrap;
+    color: $text-color;
+    &:hover{
+      color: $highlight-color;
+    }
+  }
 }
 
 
@@ -227,6 +233,7 @@
     margin-right: 50px;
   }
 }
+
 
 
 .social-media-list{
@@ -277,5 +284,7 @@
   .vertical-bar{
     margin-left: 50px;
     margin-right: 50px;
+    margin-top: 25px;
+    margin-bottom: 50px;
   }
 }

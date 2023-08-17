@@ -1,3 +1,9 @@
+
+$dark-color: #1A1E23;
+$light-color-1: rgb(255, 217, 0);
+
+
+
 //Colors
 $highlight-color: rgb(255, 217, 0);
 $highlight-color-hover: rgb(255, 217, 0);
@@ -20,3 +26,9 @@ $carousel-technologies-image-width: 250px;
 $carousel-technologies-number-image: 6;
 $carousel-technologies-height:100px;
 $carousel-technologies-margin:10px;
+
+
+//About page definition
+$about-background-color: $dark-color;
+$about-page-section-color: $dark-color;
+$technologies-section-color: $dark-color;
