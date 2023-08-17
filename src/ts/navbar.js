@@ -4,6 +4,18 @@ const enLangImg = "../images/US.png";
 const frLangCode = "fr";
 const deLangCode = "de";
 const enLangCode = "en";
+$("#home-button").on("click", function () {
+    window.location.href = 'index.html';
+});
+$("#maps-button").on("click", function () {
+    window.location.href = 'maps.html';
+});
+$("#summits-button").on("click", function () {
+    window.location.href = 'summits.html';
+});
+$("#about-button").on("click", function () {
+    window.location.href = 'about.html';
+});
 // Append the language selector to the navigation bar
 $('#navbar').append(`
 <div id="langage-select-menu" class="langage-select-menu">

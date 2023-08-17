@@ -1,15 +1,3 @@
-
-
-$("#navbar-menu").on("click",'#about-button', function () {
-  window.location.href = 'about.html';
-});
-
-// HOME BUTTON Click 
-$("#navbar-menu").on("click","#home-button", function () {
-  //Scroll up
-  $("#content").animate({ scrollTop: 0 }, "smooth");  
-});
-
 // RETURN BUTTON Click
 $("#navbar-menu").on("click","#return-button", function () {
     //Scroll up
