@@ -83,8 +83,11 @@ function UpdateLangageMenu(selectedLang) {
         }
     }
     $('#lang-0-img').attr('src', lang0img);
-    $('#lang-1-img').attr('src', lang2img);
-    $('#lang-2-img').attr('src', lang1img);
+    $('#lang-1-img').attr('src', lang1img);
+    $('#lang-2-img').attr('src', lang2img);
+    $('#lang-0-img').attr('alt', SrcToLangCode(lang0img).toLocaleUpperCase());
+    $('#lang-1-img').attr('alt', SrcToLangCode(lang1img).toLocaleUpperCase());
+    $('#lang-2-img').attr('alt', SrcToLangCode(lang2img).toLocaleUpperCase());
 }
 /**
  * Convert the given language code into src image path

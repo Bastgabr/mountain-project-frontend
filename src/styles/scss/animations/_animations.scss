@@ -1,6 +1,6 @@
 @keyframes text-apparition{
   from{
-    transform: translateX(-300px);
+    transform: translateY(-300px);
   }
 
   to{
@@ -16,4 +16,11 @@
 @keyframes carousel-scroll {
 	0% { transform: translateX(0); }
 	100% { transform: translateX(calc(-250px * 6))}
+}
+
+
+@keyframes bounce {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-50px); }
+  100% { transform: translateY(0); }
 }

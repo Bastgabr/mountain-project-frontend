@@ -9,6 +9,7 @@
 .navbar {
   background-color: #1A1E23;
   height: 65px;
+  width: 100vw;
   display: flex;
   box-shadow: 0px 0px 40px -2px rgb(0, 0, 0);
   z-index: 2;
@@ -17,9 +18,11 @@
 
 .nav-menu {
   display: flex;
-  position: absolute;
-  top: 10px;
-  left: 50px;
+  padding-left: 300px;
+  padding-right: 300px;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100vw;
   color: #AAA;
   text-align: center;
   font-family: Raleway;
@@ -149,7 +152,7 @@ div.brackets-animation :hover:after {
 
 @keyframes text-apparition {
   from {
-    transform: translateX(-300px);
+    transform: translateY(-300px);
   }
   to {
     transform: translateX(0);
@@ -167,6 +170,17 @@ div.brackets-animation :hover:after {
     transform: translateX(-1500px);
   }
 }
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-50px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
 .scale-up-div-content div.scale-up-hover:hover {
   transition-duration: 1500ms;
   transform: scale(1.1);
@@ -180,32 +194,6 @@ div.brackets-animation :hover:after {
   background-color: #1A1E23;
   height: calc(100% - 65px);
   overflow: auto;
-}
-
-.section {
-  padding-top: 40px;
-  background-color: #1A1E23;
-  height: -moz-fit-content;
-  height: fit-content;
-}
-.section .title {
-  position: relative;
-  display: flex;
-  align-items: center;
-  height: 80px;
-  color: white;
-}
-.section .title div.brackets-animation {
-  display: flex;
-  position: absolute;
-  top: 10px;
-  left: 30px;
-  align-content: center;
-  text-align: center;
-}
-.section .title div.brackets-animation h1 {
-  margin-left: 18px;
-  margin-right: 18px;
 }
 
 .technologies-section__content {
@@ -420,6 +408,46 @@ div.brackets-animation :hover:after {
     margin-bottom: 50px;
   }
 }
+.summits {
+  background-color: #1A1E23;
+  height: calc(100% - 65px);
+  overflow: auto;
+}
+
+.introduction-section__content {
+  height: 500px;
+  overflow: hidden;
+}
+
+.introduction-section__gallery {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  max-width: 2400px;
+  height: 100%;
+  width: 120%;
+  overflow: hidden;
+  position: relative;
+  left: -60px;
+}
+.introduction-section__gallery .gallery-item {
+  width: 100%;
+  height: 100%;
+  border: solid 5px #1A1E23;
+  transform: skewX(-11deg);
+  overflow: hidden;
+}
+.introduction-section__gallery .gallery-item video {
+  opacity: 0.33;
+  position: absolute;
+  left: -40px;
+  transform: skewX(11deg);
+  transition: all 200ms ease-in-out;
+}
+.introduction-section__gallery .gallery-item video:hover {
+  opacity: 0.6;
+}
+
 a {
   color: white;
   text-decoration: none;
@@ -443,9 +471,41 @@ body {
   background: white;
 }
 
-.first-page-image-container {
-  height: 500px;
+.centered {
+  display: flex;
+  justify-content: center;
+}
+
+.section {
+  padding-top: 40px;
+  background-color: #1A1E23;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.section .title {
   position: relative;
+  display: flex;
+  align-items: center;
+  height: 80px;
+  color: white;
+}
+.section .title div.brackets-animation {
+  display: flex;
+  position: absolute;
+  top: 10px;
+  left: 30px;
+  align-content: center;
+  text-align: center;
+}
+.section .title div.brackets-animation h1 {
+  margin-left: 18px;
+  margin-right: 18px;
+}
+
+.first-page-image-container {
+  height: calc(100vh - 65px);
+  position: relative;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0), white 80%);
 }
 
 .first-page-image {
@@ -453,6 +513,47 @@ body {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.arrow {
+  border: solid #1A1E23;
+  border-width: 0 4px 4px 0;
+  display: inline-block;
+  padding: 3px;
+  height: 10px;
+  width: 10px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+.arrow-container {
+  position: absolute;
+  left: 50%;
+  top: 300px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation-duration: 2s;
+  animation-delay: 200ms;
+  animation-iteration-count: infinite;
+}
+.arrow-container:not(:hover) {
+  animation-name: bounce;
+  animation-timing-function: ease-in-out;
+}
+
+.main-title {
+  color: #1A1E23;
+  font-size: 10em;
+  letter-spacing: -0.4rem;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 50%;
+  top: 150px;
+  transform: translate(-50%, -50%);
 }
 
 .image-text {

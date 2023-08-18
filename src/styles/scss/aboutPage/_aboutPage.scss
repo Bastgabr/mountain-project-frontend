@@ -6,38 +6,6 @@
   overflow: auto;
 }
 
-
-.section{
-  padding-top: 40px ;
-  background-color: $about-page-section-color;
-  
-  height: fit-content;
-  
-  .title{
-    position: relative;
-    display: flex;
-    align-items: center;
-    height: 80px;
-    color: $text-color;
-
-    div.brackets-animation{
-      display: flex;
-      position: absolute;
-      top: 10px;
-      left: 30px;
-      align-content: center;
-      text-align: center;
-
-      h1{
-        margin-left: 18px;
-        margin-right: 18px;
-      }
-    }
-  }
-}
-
-
-
 .technologies-section__content{
   display: flex;
   flex-direction: column;

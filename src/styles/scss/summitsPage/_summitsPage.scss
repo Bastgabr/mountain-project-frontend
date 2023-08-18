@@ -1,0 +1,50 @@
+@import "../variables/variables";
+
+
+.summits{
+  background-color: $about-background-color;
+  height: calc(100% - ($navbar-height));
+  overflow: auto;
+}
+
+
+.introduction-section__content{
+  height: 500px;
+  overflow: hidden;
+}
+
+
+.introduction-section__gallery{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  max-width: 2400px;
+  height: 100%;
+  width: 120%;
+  overflow: hidden;
+  position: relative;
+  left: -60px;
+  
+
+  .gallery-item{
+    width: 100%;
+    height: 100%;
+
+    border: solid 5px $navbar-color;
+    transform: skewX(-11deg);
+    overflow: hidden;
+    //transform: rotateX(11deg);
+    video{
+      opacity: 0.33;
+      position: absolute;
+      left: -40px;
+      transform: skewX(11deg);
+      transition: all 200ms ease-in-out;
+      &:hover{
+        opacity: .6;
+      }
+    }
+  }
+  
+}
+
