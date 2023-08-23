@@ -256,3 +256,25 @@
     margin-bottom: 50px;
   }
 }
+
+
+@media (max-width: 500px){
+  .form-section__caption{
+    font-size: 13px;
+  }
+  .main-information-list  a{
+    font-size: 13px;
+  }
+  .social-media-list{
+    justify-content: flex-end;
+  }
+  .submit-button{
+    font-size: 13px;
+    padding: 0.5rem 2.0rem;
+  }
+
+  .slider::before, 
+  .slider::after {
+    width: 75px;
+  }
+}

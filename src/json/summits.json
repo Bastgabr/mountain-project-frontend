@@ -1,0 +1,38 @@
+[
+  {
+    "ranking": 1,
+    "elevation": "4,810 m",
+    "name":"Bishorn",
+    "lat": 46.117778,
+    "long": 7.714722,
+    "location": "Wallis, Switzerland",
+    "countryCode": "CH",
+    "summitted": true,
+    "summitDate": "02/03/2020",
+    "attempts": 1
+  },
+  {
+    "ranking": 2,
+    "elevation": "4,810 m",
+    "name":"Mont blanc",
+    "lat": 46.117778,
+    "long": 7.714722,
+    "location": "Wallis, Switzerland",
+    "countryCode": "IT",
+    "summitted": true,
+    "summitDate": "02/03/2020",
+    "attempts": 1
+  },
+  {
+    "ranking": 3,
+    "elevation": "4,810 m",
+    "name":"Mont blanc du tacul",
+    "lat": 46.117778,
+    "long": 7.714722,
+    "location": "Wallis, Switzerland",
+    "countryCode": "FR, IT",
+    "summitted": true,
+    "summitDate": "02/03/2020",
+    "attempts": 2
+  }
+]

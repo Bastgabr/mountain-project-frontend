@@ -39,12 +39,176 @@
       position: absolute;
       left: -40px;
       transform: skewX(11deg);
-      transition: all 200ms ease-in-out;
+      transition: opacity 200ms ease-in;
       &:hover{
         opacity: .6;
       }
     }
   }
-  
 }
 
+.peaks-section__content{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  //padding-left: 50px;
+  //padding-right: 50px;
+}
+
+.summit-card{
+  //height: $summit-card-height;
+  min-width: 500px;
+  outline: solid 1px $navbar-color;
+  margin-left: $summit-card-maring-horizontal;
+  margin-right: $summit-card-maring-vertical;
+  margin-bottom: 100px;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: #363b41;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 5px 5px 5px $highlight-color-shadow;
+  .map{
+    position: relative;
+    height: $summit-card-height * 0.5;
+    //width: 20%; //square map tile
+  }
+
+  .date-tag{
+    position: absolute;
+    right: 30px;
+    top: 180px;
+    float: right;
+    z-index: 3;
+    height: 40px;
+    width: 40px;
+    padding: 4px;
+    padding-top: -2;
+    background-color: $highlight-color;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 12px;
+    outline: solid 1px $navbar-color;
+    box-shadow: 5px 5px 5px $highlight-color-shadow;
+    p{
+      font-size: 12px;
+      color: $navbar-color;
+      font-weight: bolder;
+    }
+  }
+
+  .card-content{
+    //height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    .card-title{
+      margin-top: 20px;
+      height: 50px;
+    }
+    .card-info{
+      //height: 100%;
+      .card-infoline{
+        margin-left: 10px;
+        display: flex;
+        flex-direction: row;
+        .tag{
+          min-width: 200px;
+        }
+        .value{
+          word-wrap: normal;
+          max-width: 150px;
+        }
+      }
+    }
+  }
+
+  .card-flag-container{
+    position: absolute;
+    opacity: 1;//.33;
+    height: 200px;
+    width: 200px;
+    background-color: #e74c3c;
+    right: -100px;
+    bottom: -100px;
+    transform: rotate(45deg);
+    overflow: hidden;
+
+    .card-flag{
+      height: 100%;
+      width:  100%;
+      position: relative;
+      transform: rotate(-45deg);
+      img{
+        height: 100%;
+        width:  100%;
+        position: relative;
+      }
+    }
+
+    .ch img{
+      content: url("../../images/swiss.png");
+      transform: scale(0.7);
+      top: -50px;
+      left: -50px;
+
+    }
+    .ch.it img{
+      content: url();
+    }
+    
+    .fr.it img{
+      content: url();
+    }
+
+    .it img{
+      content: url("../../images/italian.png");
+      transform: scale(0.9);
+      top: -60px;
+      left: -60px;
+    }
+    .fr img{
+      content: url("../../images/french.png");
+      transform: scale(0.9);
+      top: -50px;
+      left: -60px;
+    }
+
+  }
+}
+
+
+
+
+//Responsiveness
+@media (max-width: 800px) {
+  
+  .introduction-section__content{
+    height: 300px;
+  }
+
+  .gallery-item video{
+    width: 300px;
+    height: 350px;
+  }
+
+  .gallery-item.extra-1{
+    display: none;
+  }
+}
+
+//Hide some more videos to reduce 
+@media(max-width: 500px){
+  .gallery-item.extra-2{
+    display: none;
+  }
+}
+
+@media(max-width: 400px){
+  .introduction-section__gallery{
+    left: -35px;
+  }
+}

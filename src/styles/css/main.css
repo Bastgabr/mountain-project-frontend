@@ -18,8 +18,8 @@
 
 .nav-menu {
   display: flex;
-  padding-left: 300px;
-  padding-right: 300px;
+  padding-left: 10%;
+  padding-right: calc(10% + 62px);
   justify-content: space-evenly;
   align-items: center;
   width: 100vw;
@@ -103,6 +103,58 @@ div.brackets-animation :hover:after {
   border-bottom-right-radius: 25px;
 }
 
+@media (max-width: 900px) {
+  .navbar {
+    height: 45px;
+  }
+  .nav-menu a {
+    font: 17px Raleway;
+  }
+  div.brackets-animation :before,
+  div.brackets-animation :after {
+    font-size: 17px;
+    top: 5px;
+  }
+  .langage-select-menu {
+    bottom: 40px;
+  }
+  .langage-select-menu .langage-option {
+    width: 30px;
+    height: 30px;
+  }
+  .langage-select-menu .langage-option img {
+    width: 15px;
+    height: 15px;
+  }
+}
+@media (max-width: 500px) {
+  .navbar {
+    height: 35px;
+  }
+  .nav-menu {
+    padding-left: 0;
+    padding-right: 50px;
+  }
+  .nav-menu a {
+    font: 13px Raleway;
+  }
+  div.brackets-animation :before,
+  div.brackets-animation :after {
+    font-size: 17px;
+    top: 5px;
+  }
+  .langage-select-menu {
+    bottom: 30px;
+  }
+  .langage-select-menu .langage-option {
+    width: 20px;
+    height: 20px;
+  }
+  .langage-select-menu .langage-option img {
+    width: 10px;
+    height: 10px;
+  }
+}
 .explore-map {
   height: -moz-fit-content;
   height: fit-content;
@@ -408,6 +460,25 @@ div.brackets-animation :hover:after {
     margin-bottom: 50px;
   }
 }
+@media (max-width: 500px) {
+  .form-section__caption {
+    font-size: 13px;
+  }
+  .main-information-list a {
+    font-size: 13px;
+  }
+  .social-media-list {
+    justify-content: flex-end;
+  }
+  .submit-button {
+    font-size: 13px;
+    padding: 0.5rem 2rem;
+  }
+  .slider::before,
+  .slider::after {
+    width: 75px;
+  }
+}
 .summits {
   background-color: #1A1E23;
   height: calc(100% - 65px);
@@ -442,12 +513,150 @@ div.brackets-animation :hover:after {
   position: absolute;
   left: -40px;
   transform: skewX(11deg);
-  transition: all 200ms ease-in-out;
+  transition: opacity 200ms ease-in;
 }
 .introduction-section__gallery .gallery-item video:hover {
   opacity: 0.6;
 }
 
+.peaks-section__content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.summit-card {
+  min-width: 500px;
+  outline: solid 1px #1A1E23;
+  margin-left: 25px;
+  margin-right: 100px;
+  margin-bottom: 100px;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: #363b41;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 5px 5px 5px rgba(199, 169, 0, 0.623);
+}
+.summit-card .map {
+  position: relative;
+  height: 154.5px;
+}
+.summit-card .date-tag {
+  position: absolute;
+  right: 30px;
+  top: 180px;
+  float: right;
+  z-index: 3;
+  height: 40px;
+  width: 40px;
+  padding: 4px;
+  padding-top: -2;
+  background-color: rgb(255, 217, 0);
+  border-radius: 50%;
+  text-align: center;
+  line-height: 12px;
+  outline: solid 1px #1A1E23;
+  box-shadow: 5px 5px 5px rgba(199, 169, 0, 0.623);
+}
+.summit-card .date-tag p {
+  font-size: 12px;
+  color: #1A1E23;
+  font-weight: bolder;
+}
+.summit-card .card-content {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+.summit-card .card-content .card-title {
+  margin-top: 20px;
+  height: 50px;
+}
+.summit-card .card-content .card-info .card-infoline {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: row;
+}
+.summit-card .card-content .card-info .card-infoline .tag {
+  min-width: 200px;
+}
+.summit-card .card-content .card-info .card-infoline .value {
+  word-wrap: normal;
+  max-width: 150px;
+}
+.summit-card .card-flag-container {
+  position: absolute;
+  opacity: 1;
+  height: 200px;
+  width: 200px;
+  background-color: #e74c3c;
+  right: -100px;
+  bottom: -100px;
+  transform: rotate(45deg);
+  overflow: hidden;
+}
+.summit-card .card-flag-container .card-flag {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  transform: rotate(-45deg);
+}
+.summit-card .card-flag-container .card-flag img {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+.summit-card .card-flag-container .ch img {
+  content: url("../../images/swiss.png");
+  transform: scale(0.7);
+  top: -50px;
+  left: -50px;
+}
+.summit-card .card-flag-container .ch.it img {
+  content: url();
+}
+.summit-card .card-flag-container .fr.it img {
+  content: url();
+}
+.summit-card .card-flag-container .it img {
+  content: url("../../images/italian.png");
+  transform: scale(0.9);
+  top: -60px;
+  left: -60px;
+}
+.summit-card .card-flag-container .fr img {
+  content: url("../../images/french.png");
+  transform: scale(0.9);
+  top: -50px;
+  left: -60px;
+}
+
+@media (max-width: 800px) {
+  .introduction-section__content {
+    height: 300px;
+  }
+  .gallery-item video {
+    width: 300px;
+    height: 350px;
+  }
+  .gallery-item.extra-1 {
+    display: none;
+  }
+}
+@media (max-width: 500px) {
+  .gallery-item.extra-2 {
+    display: none;
+  }
+}
+@media (max-width: 400px) {
+  .introduction-section__gallery {
+    left: -35px;
+  }
+}
 a {
   color: white;
   text-decoration: none;
@@ -466,9 +675,10 @@ body {
 }
 
 .content {
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   height: calc(100vh - 65px);
-  background: white;
+  background: #1A1E23;
 }
 
 .centered {
@@ -569,4 +779,60 @@ html, body {
   min-height: 100%;
   height: 100%;
   font-family: Raleway;
+}
+
+@media (max-width: 900px) {
+  .content {
+    height: calc(100vh - 45px);
+  }
+  .first-page-image-container {
+    height: calc(100vh - 45px);
+  }
+  .main-title {
+    font-size: 6em;
+    top: 125px;
+  }
+  .arrow-container {
+    top: 200px;
+  }
+}
+@media (max-width: 500px) {
+  .content {
+    height: calc(100vh - 35px);
+  }
+  .first-page-image-container {
+    height: calc(100vh - 35px);
+  }
+  .main-title {
+    font-size: 4em;
+    top: 100px;
+  }
+  .arrow-container {
+    height: 60px;
+  }
+  .arrow {
+    height: 5px;
+    width: 5px;
+    border-width: 0 2px 2px 0;
+  }
+  .section {
+    padding-top: 15px;
+  }
+  .section .title {
+    height: 40px;
+    color: white;
+  }
+  .section .title div.brackets-animation :before,
+  .section .title div.brackets-animation :after {
+    font-size: 17px;
+    top: 0px;
+  }
+  .section .title div.brackets-animation {
+    left: 10px;
+  }
+  .section .title div.brackets-animation h1 {
+    font-size: 16px;
+    margin-left: 9px;
+    margin-right: 9px;
+  }
 }/*# sourceMappingURL=main.css.map */

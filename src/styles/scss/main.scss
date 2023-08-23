@@ -15,9 +15,10 @@ body{
 }
 
 .content{
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   height: calc(100vh - $navbar-height);
-  background: white;
+  background: $navbar-color;
 }
 
 .centered{
@@ -30,8 +31,6 @@ body{
   background-color: $about-page-section-color;
   height: fit-content;
   
-
-
   .title{
     position: relative;
     display: flex;
@@ -55,10 +54,6 @@ body{
   }
 }
 
-
-
-
-
 .first-page-image-container{
   height: calc(100vh - $navbar-height);
   position: relative;
@@ -80,8 +75,6 @@ body{
   width: 10px;
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
-
-
 }
 
 .arrow-container{
@@ -122,7 +115,6 @@ body{
   max-width: 35%;
   bottom: 30px;
   right: 60px;
-
   text-align: right;
   color: $text-color;
 }
@@ -134,3 +126,74 @@ html, body {
   font-family: Raleway;
 }
 
+
+
+@media(max-width: 900px){
+
+  .content{
+    height: calc(100vh - $navbar-height__900px);
+  }
+
+  .first-page-image-container{
+    height: calc(100vh - $navbar-height__900px);
+  }
+
+  .main-title{
+    font-size: 6em;
+    top: 125px;
+  }
+  .arrow-container{
+    top: 200px;
+  }
+}
+
+@media(max-width: 500px){
+
+  .content{
+    height: calc(100vh - $navbar-height__500px);
+  }
+
+  .first-page-image-container{
+    height: calc(100vh - $navbar-height__500px);
+  }
+
+  .main-title{
+    font-size: 4em;
+    top: 100px;
+  }
+
+  .arrow-container{
+    height: 60px;
+  }
+
+  .arrow{
+    height: 5px;
+    width: 5px;
+    border-width: 0 2px 2px 0;
+  }
+
+  .section{
+    padding-top: 15px ;
+    
+    .title{
+      height: 40px;
+      color: $text-color;
+
+      div.brackets-animation :before,
+      div.brackets-animation :after
+      {
+        font-size: 17px;
+        top: 0px;
+      }
+  
+      div.brackets-animation{
+        left: 10px;
+        h1{
+          font-size: 16px;
+          margin-left: 9px;
+          margin-right: 9px;
+        }
+      }
+    }
+  }
+}

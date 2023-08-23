@@ -13,8 +13,8 @@
 
 .nav-menu {
   display: flex;
-  padding-left: 300px;
-  padding-right: 300px;
+  padding-left: 10%;
+  padding-right: calc(10% + 62px);
   justify-content: space-evenly;
   align-items: center;
   width: 100vw;
@@ -110,3 +110,68 @@ div.brackets-animation :hover:after
   }
 }
 
+@media(max-width: 900px){
+  .navbar{
+    height: $navbar-height__900px;
+  }
+
+  .nav-menu a{
+    font: 17px Raleway;
+  }
+
+  div.brackets-animation :before,
+  div.brackets-animation :after
+  {
+
+    font-size: $navbar-font-size__900px;
+    top: 5px;
+  }
+
+  .langage-select-menu{
+    bottom: 40px;
+
+    .langage-option{
+      width: 30px;
+      height: 30px;
+      img{
+        width: 15px;
+        height: 15px;
+      }
+    }
+  }
+}
+
+@media(max-width: 500px){
+  .navbar{
+    height: $navbar-height__500px;
+  }
+
+  .nav-menu{
+    padding-left: 0;
+    padding-right: 50px;
+  }
+
+  .nav-menu a{
+    font: $navbar-font-size__500px Raleway;
+  }
+
+  div.brackets-animation :before,
+  div.brackets-animation :after
+  {
+    font-size: 17px;
+    top: 5px;
+  }
+
+  .langage-select-menu{
+    bottom: 30px;
+
+    .langage-option{
+      width: 20px;
+      height: 20px;
+      img{
+        width: 10px;
+        height: 10px;
+      }
+    }
+  }
+}

@@ -7,6 +7,7 @@ $light-color-1: rgb(255, 217, 0);
 //Colors
 $highlight-color: rgb(255, 217, 0);
 $highlight-color-hover: rgb(255, 217, 0);
+$highlight-color-shadow: rgba(199, 169, 0, 0.623);
 $invisible-color: transparent;
 $navbar-color: #1A1E23;
 $contact-form-color:#1A1E23;
@@ -15,6 +16,12 @@ $dark-text-color: #1A1E23;
 
 //Height
 $navbar-height:65px;
+$navbar-height__900px: 45px;
+$navbar-height__500px: 35px;
+$navbar-font-size__900px: 17px;
+$navbar-font-size__500px: 13px;
+
+
 $navbar-lang-size:25px;
 
 
@@ -34,3 +41,7 @@ $carousel-technologies-margin:10px;
 $about-background-color: $dark-color;
 $about-page-section-color: $dark-color;
 $technologies-section-color: $dark-color;
+
+$summit-card-height:309px;
+$summit-card-maring-horizontal:25px;
+$summit-card-maring-vertical:100px;

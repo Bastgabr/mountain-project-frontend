@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mountain Projects</title>
   <link rel="stylesheet" href="../styles/css/main.css" />
+  <link href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" rel="stylesheet"/>
   <link rel="icon"
     href="https://static.vecteezy.com/system/resources/previews/007/345/757/original/mountain-logo-icon-design-template-free-vector.jpg">
 </head>
@@ -19,7 +20,7 @@
       <a id="about-button">About</a>
     </div>
   </div>
-  <div id="content" class="summits">
+  <div id="content" class="content">
     <div id="introduction-section" class="section">
       <div id="introduction-section__title" class="title centered">
         <div class="brackets-animation">
@@ -28,15 +29,15 @@
       </div>
       <div id="introduction-section__content" class="introduction-section__content">
         <div id="introduction-section__gallery" class="introduction-section__gallery">
-          <div class="gallery-item">
+          <div class="gallery-item extra-2">
             <video src="../videos/wind.mp4" style="object-fit: cover;" width="550px" height="600px" autoplay loop
               muted></video>
           </div>
-          <div class="gallery-item">
+          <div class="gallery-item extra-1">
             <video src="../videos/timelapse.mp4" style="object-fit: cover;" width="550px" height="600px" autoplay loop
               muted></video>
           </div>
-          <div class="gallery-item">
+          <div class="gallery-item extra-1">
             <video src="../videos/walk.mp4" style="object-fit: cover;" width="550px" height="600px" autoplay loop
               muted></video>
           </div>
@@ -48,11 +49,11 @@
             <video src="../videos/cliff.mp4" style="object-fit: cover;" width="550px" height="600px" autoplay loop
               muted></video>
           </div>
-          <div class="gallery-item">
+          <div class="gallery-item ">
             <video src="../videos/climbdown.mp4" style="object-fit: cover;" width="550px" height="600px" autoplay loop
               muted></video>
           </div>
-          <div class="gallery-item">
+          <div class="gallery-item extra-1">
             <video src="../videos/climbuprocks.mp4" style="object-fit: cover;" width="550px" height="600px" autoplay loop
               muted></video>
           </div>
@@ -65,15 +66,117 @@
           <h1>Latest summits</h1>
         </div>
       </div>
+      <div id="latest-section__content" class="peaks-section__content">
+          <div id="summit-card-0" class="summit-card">
+            <div id="summit-card-0-map" class="map"></div>
+            <div id="summit-card-0-date" class="date-tag">
+                <p>2<br>Mar.<br>2019</p>
+              </div>
+            <div id="summit-card-0-content" class="card-content">
+              <h1 id="summit-card-0-title" class="card-title">Bishorn</h1>
+              <div id="summit-card-0-info" class="card-info">
+                <div id="summit-card-0-elevation" class="card-infoline">
+                  <p class="tag">Elevation</p>
+                  <p class="value">4013m</p>
+                </div>
+                <div id="summit-card-0-date" class="card-infoline">
+                  <p class="tag">Date</p>
+                  <p class="value"> 29.1.1023</p>
+                </div>
+                <div id="summit-card-0-attemps" class="card-infoline">
+                  <p class="tag">Number of attempts</p>
+                  <p class="value">1</p>
+                </div>
+                <div id="summit-card-0-location" class="card-infoline">
+                  <p class="tag">Location</p>
+                  <p class="value">Wallis Switzerland</p>
+                </div>
+              </div>
+            </div>
+            <div id="summmit-card-0-flag-container" class="card-flag-container">
+              <div id="summmit-card-0-flag" class="card-flag it ch">
+                <img>
+              </div>
+            </div>
+          </div>
+
+          <div id="summit-card-1" class="summit-card">
+            <div id="summit-card-1-map" class="map"></div>
+            <div id="summit-card-1-date" class="date-tag">
+                <p>2<br>Mar.<br>2019</p>
+              </div>
+            <div id="summit-card-1-content" class="card-content">
+              <h1 id="summit-card-1-title" class="card-title">Mont Blanc du Tacul</h1>
+              <div id="summit-card-1-info" class="card-info">
+                <div id="summit-card-1-elevation" class="card-infoline">
+                  <p class="tag">Elevation</p>
+                  <p class="value">4248m</p>
+                </div>
+                <div id="summit-card-1-date" class="card-infoline">
+                  <p class="tag">Date</p>
+                  <p class="value"> 29.1.1023</p>
+                </div>
+                <div id="summit-card-1-attemps" class="card-infoline">
+                  <p class="tag">Number of attempts</p>
+                  <p class="value">1</p>
+                </div>
+                <div id="summit-card-1-location" class="card-infoline">
+                  <p class="tag">Location</p>
+                  <p class="value">Massif  du mt. Blanc, France </p>
+                </div>
+              </div>
+            </div>
+            <div id="summmit-card-1-flag-container" class="card-flag-container">
+              <div id="summmit-card-1-flag" class="card-flag fr">
+                <img>
+              </div>
+            </div>
+          </div>
+
+          <div id="summit-card-2" class="summit-card">
+            <div id="summit-card-2-map" class="map"></div>
+            <div id="summit-card-2-date" class="date-tag">
+                <p>2<br>Mar.<br>2019</p>
+              </div>
+            <div id="summit-card-2-content" class="card-content">
+              <h1 id="summit-card-2-title" class="card-title">Bishorn</h1>
+              <div id="summit-card-2-info" class="card-info">
+                <div id="summit-card-2-elevation" class="card-infoline">
+                  <p class="tag">Elevation</p>
+                  <p class="value">4248m</p>
+                </div>
+                <div id="summit-card-2-date" class="card-infoline">
+                  <p class="tag">Date</p>
+                  <p class="value"> 29.1.1023</p>
+                </div>
+                <div id="summit-card-2-attemps" class="card-infoline">
+                  <p class="tag">Number of attempts</p>
+                  <p class="value">1</p>
+                </div>
+                <div id="summit-card-2-location" class="card-infoline">
+                  <p class="tag">Location</p>
+                  <p class="value">Wallis Switzerland</p>
+                </div>
+              </div>
+            </div>
+            <div id="summmit-card-2-flag-container" class="card-flag-container">
+              <div id="summmit-card-2-flag" class="card-flag it">
+                <img>
+              </div>
+            </div>
+          </div>
+      </div>
     </div>
-    <div id="latest-section" class="section">
-      <div id="latest-section__title" class="title">
+    <div id="peaks-section" class="section">
+      <div id="peaks__title" class="title">
         <div class="brackets-animation">
           <h1>82 x 4000 List</h1>
         </div>
       </div>
+      <div id="peaks-section__content" class="peaks-section__content"></div>
     </div>
   </div>
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
   <script src="https://kit.fontawesome.com/e5c2287582.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script type="module" src="../ts/navbar.js"></script>
