@@ -58,7 +58,7 @@
 
 .summit-card{
   //height: $summit-card-height;
-  min-width: 500px;
+  min-width: 550px;
   outline: solid 1px $navbar-color;
   margin-left: $summit-card-maring-horizontal;
   margin-right: $summit-card-maring-vertical;
@@ -108,6 +108,7 @@
     .card-title{
       margin-top: 20px;
       height: 50px;
+      max-width: 100%;
     }
     .card-info{
       //height: 100%;
@@ -120,7 +121,7 @@
         }
         .value{
           word-wrap: normal;
-          max-width: 150px;
+          max-width: 200px;
         }
       }
     }

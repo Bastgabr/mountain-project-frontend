@@ -1,75 +1,17 @@
 window.onload = function () {
+    coordinatesDictionary = new Map();
+    //Retrieve the JSON file containing all summits info
     fetch('../json/summits.json')
         .then((response) => response.json())
         .then((json) => {
         console.log(json);
         Create82PeaksCards(json);
     });
-    // Create Leaflet map on map element.
-    var map = L.map('summit-card-0-map', { zoomControl: false });
-    // Add OSM tile layer to the Leaflet map.
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
-    // Target's GPS coordinates.
-    var target = L.latLng(46.117778, 7.714722);
-    var pinIcon = L.icon({
-        iconUrl: 'https://i.imgur.com/a/8gOHL89',
-        iconSize: [38, 95],
-    });
-    // Set map's center to target with zoom 14.
-    map.setView(target, 8);
-    // Place a marker on the same location.
-    L.marker(target).addTo(map);
-    map.dragging.disable();
-    map.touchZoom.disable();
-    map.doubleClickZoom.disable();
-    map.scrollWheelZoom.disable();
-    map.boxZoom.disable();
-    map.keyboard.disable();
-    if (map.tap)
-        map.tap.disable();
-    var map = L.map('summit-card-1-map', { zoomControl: false });
-    // Add OSM tile layer to the Leaflet map.
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
-    // Target's GPS coordinates.
-    var target = L.latLng(45.85715489181197, 6.887518646033523);
-    var pinIcon = L.icon({
-        iconUrl: 'https://i.imgur.com/a/8gOHL89',
-        iconSize: [38, 95],
-    });
-    // Set map's center to target with zoom 14.
-    map.setView(target, 8);
-    // Place a marker on the same location.
-    L.marker(target).addTo(map);
-    map.dragging.disable();
-    map.touchZoom.disable();
-    map.doubleClickZoom.disable();
-    map.scrollWheelZoom.disable();
-    map.boxZoom.disable();
-    map.keyboard.disable();
-    if (map.tap)
-        map.tap.disable();
-    var map = L.map('summit-card-2-map', { zoomControl: false });
-    // Add OSM tile layer to the Leaflet map.
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
-    // Target's GPS coordinates.
-    var target = L.latLng(46.117778, 7.714722);
-    var pinIcon = L.icon({
-        iconUrl: 'https://i.imgur.com/a/8gOHL89',
-        iconSize: [38, 95],
-    });
-    // Set map's center to target with zoom 14.
-    map.setView(target, 8);
-    // Place a marker on the same location.
-    L.marker(target).addTo(map);
-    map.dragging.disable();
-    map.touchZoom.disable();
-    map.doubleClickZoom.disable();
-    map.scrollWheelZoom.disable();
-    map.boxZoom.disable();
-    map.keyboard.disable();
-    if (map.tap)
-        map.tap.disable();
 };
+/**
+ * Create a card for every 82 items located in the JSON file
+ * @param json string content of the JSON file
+ */
 function Create82PeaksCards(json) {
     // Deserialize the JSON data into an array of SummitInfo objects
     const summitInfoArray = json.map((item) => {
@@ -107,7 +49,7 @@ function CreateCard(summitInfo) {
           <p class="tag">Elevation</p>
           <p class="value">` + summitInfo.elevation + `</p>
         </div>
-        <div id="summit-card-` + summitInfo.ranking + `-date" class="card-infoline">
+        <div id="summit-card-` + summitInfo.ranking + `-dateline" class="card-infoline">
           <p class="tag">Date</p>
           <p class="value">` + summitInfo.summitDate.toLocaleDateString() + `</p>
         </div>
@@ -128,12 +70,56 @@ function CreateCard(summitInfo) {
     </div>
   </div>
   `);
-    var entryStr = summitInfo.lat + "," + summitInfo.long;
-    coordinatesDictionary["summit-card-" + summitInfo.ranking + "-map"] = entryStr;
+    //Hide the date label if not summitted
+    if (!summitInfo.summitted) {
+        $("#summit-card-" + summitInfo.ranking + "-date").hide();
+        $("#summit-card-" + summitInfo.ranking + "-dateline").hide();
+    }
+    var entryStr = convertToLat(summitInfo.lat) + "," + convertToLong(summitInfo.long);
+    coordinatesDictionary.set("summit-card-" + summitInfo.ranking + "-map", entryStr);
+    //coordinatesDictionary["summit-card-"+ summitInfo.ranking +"-map"] = entryStr
 }
+//"6°51′52″E"
+function dmsToDecimal(degrees, minutes, seconds, direction) {
+    let decimalDegrees = degrees + (minutes / 60) + (seconds / 3600);
+    if (direction === "S" || direction === "W") {
+        decimalDegrees = -decimalDegrees;
+    }
+    return decimalDegrees;
+}
+function convertToLat(latDMS) {
+    // Parse the latitude DMS string into degrees, minutes, seconds, and direction
+    const matches = latDMS.match(/(\d+)°(\d+)′(\d+)″([NSEW])/);
+    if (matches) {
+        const degrees = parseInt(matches[1], 10);
+        const minutes = parseInt(matches[2], 10);
+        const seconds = parseInt(matches[3], 10);
+        const direction = matches[4];
+        return dmsToDecimal(degrees, minutes, seconds, direction);
+    }
+    else {
+        throw new Error("Invalid latitude DMS format");
+    }
+}
+function convertToLong(longDMS) {
+    // Parse the longitude DMS string into degrees, minutes, seconds, and direction
+    const matches = longDMS.match(/(\d+)°(\d+)′(\d+)″([NSEW])/);
+    if (matches) {
+        const degrees = parseInt(matches[1], 10);
+        const minutes = parseInt(matches[2], 10);
+        const seconds = parseInt(matches[3], 10);
+        const direction = matches[4];
+        return dmsToDecimal(degrees, minutes, seconds, direction);
+    }
+    else {
+        throw new Error("Invalid longitude DMS format");
+    }
+}
+/**
+ * Iterate over all cards an initialize their maps
+ */
 function LoadCardsMaps() {
-    Object.keys(coordinatesDictionary).forEach(key => {
-        let value = coordinatesDictionary[key];
+    coordinatesDictionary.forEach((value, key) => {
         let spl = value.split(",");
         let lat = spl[0];
         let long = spl[1];
@@ -160,7 +146,7 @@ function LoadCardMap(mapKey, lat, long) {
     if (map.tap)
         map.tap.disable();
 }
-var coordinatesDictionary;
+var coordinatesDictionary = new Map();
 /**
  * Converts the given date to an HTML formatted date for the card badge
  * @param date date
@@ -190,8 +176,8 @@ class SummitInfo {
         this.ranking = null;
         this.name = null;
         this.elevation = null;
-        this.lat = 0;
-        this.long = 0;
+        this.lat = null;
+        this.long = null;
         this.location = null;
         this.countryCode = null;
         this.summitted = false;

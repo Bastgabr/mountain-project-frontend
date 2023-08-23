@@ -527,7 +527,7 @@ div.brackets-animation :hover:after {
 }
 
 .summit-card {
-  min-width: 500px;
+  min-width: 550px;
   outline: solid 1px #1A1E23;
   margin-left: 25px;
   margin-right: 100px;
@@ -575,6 +575,7 @@ div.brackets-animation :hover:after {
 .summit-card .card-content .card-title {
   margin-top: 20px;
   height: 50px;
+  max-width: 100%;
 }
 .summit-card .card-content .card-info .card-infoline {
   margin-left: 10px;
@@ -586,7 +587,7 @@ div.brackets-animation :hover:after {
 }
 .summit-card .card-content .card-info .card-infoline .value {
   word-wrap: normal;
-  max-width: 150px;
+  max-width: 200px;
 }
 .summit-card .card-flag-container {
   position: absolute;
