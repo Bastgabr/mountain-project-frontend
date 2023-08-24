@@ -1,16 +1,65 @@
 @import "../variables/variables";
 
 
-.summits{
-  background-color: $about-background-color;
-  height: calc(100% - ($navbar-height));
-  overflow: auto;
+/* Loading screen styles */
+.loading-screen {
+  position: fixed;
+  top: $navbar-height;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - $navbar-height);
+  background-color: $navbar-color;
+  display: flex;
+  visibility: visible;
+  justify-content: center;
+  align-items: center;
+  z-index: 49; //On top of all elements except navbar
+  transition: opacity 0.5s ease-out, visibility  0.5s;
+  opacity: 1; 
+}
+
+.loading-spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top: 4px solid $highlight-color;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 
 .introduction-section__content{
   height: 500px;
   overflow: hidden;
+  position: relative;
+}
+
+.introduction-section__title{
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 130px;
+  margin-left: 20%;
+  margin-right: 20%;
+  p{
+    display: flex;
+    text-align: center;
+    font-size: 20px;
+  }
+  h1{
+    display: flex;
+    margin-bottom: 15px;
+    font-size: 40px;
+  }
 }
 
 
@@ -41,7 +90,7 @@
       transform: skewX(11deg);
       transition: opacity 200ms ease-in;
       &:hover{
-        opacity: .6;
+        opacity: .7;
       }
     }
   }
@@ -52,8 +101,6 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  //padding-left: 50px;
-  //padding-right: 50px;
 }
 
 .summit-card{
@@ -69,19 +116,30 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  opacity: 0.80;
   box-shadow: 5px 5px 5px $highlight-color-shadow;
+
+  transition: transform 200ms ease-in, opacity 200ms ease-in, box-shadow 200ms ease-in;
+
+  &:hover{
+    transform: scale(1.05);
+    opacity: 1;
+    box-shadow: 10px 10px 5px $highlight-color-shadow;
+  }
+
   .map{
     position: relative;
     height: $summit-card-height * 0.5;
+    z-index: 0;
     //width: 20%; //square map tile
   }
 
   .date-tag{
     position: absolute;
     right: 30px;
-    top: 180px;
+    top: 30px;
     float: right;
-    z-index: 3;
+    z-index: 1;
     height: 40px;
     width: 40px;
     padding: 4px;
@@ -99,8 +157,8 @@
     }
   }
 
+
   .card-content{
-    //height: 100%;
     display: flex;
     flex-direction: column;
     margin-left: 20px;
@@ -111,7 +169,6 @@
       max-width: 100%;
     }
     .card-info{
-      //height: 100%;
       .card-infoline{
         margin-left: 10px;
         display: flex;
@@ -129,7 +186,7 @@
 
   .card-flag-container{
     position: absolute;
-    opacity: 1;//.33;
+    opacity: 1;
     height: 200px;
     width: 200px;
     background-color: #e74c3c;
@@ -158,11 +215,17 @@
 
     }
     .ch.it img{
-      content: url();
+      content: url("../../images/swiss.png");
+      transform: scale(0.7);
+      top: -50px;
+      left: -50px;
     }
     
     .fr.it img{
-      content: url();
+      content: url("../../images/french.png");
+      transform: scale(0.9);
+      top: -50px;
+      left: -60px;
     }
 
     .it img{
@@ -181,7 +244,29 @@
   }
 }
 
+.summited{
+  opacity: 1;
+}
 
+
+.latest-section__selector{
+  display: flex;
+  margin-left: 50px;
+  select{
+    margin-left: 8px;
+    margin-right: 8px;
+    background: $navbar-color;
+    color: $highlight-color;
+    border: solid 0px;
+    font-family: Raleway;
+    font-size: 16px;
+    option{
+      color: $text-color;
+    }
+  }
+
+  margin-bottom: 30px;
+}
 
 
 //Responsiveness

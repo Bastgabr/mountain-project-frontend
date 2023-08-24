@@ -1,16 +1,46 @@
 
-window.onload = function() {
+var summitInfoArray: SummitInfo[];
 
-  coordinatesDictionary = new Map();
+window.onload = function() {
 
   //Retrieve the JSON file containing all summits info
     fetch('../json/summits.json')
     .then((response) => response.json())
     .then((json) => {
-      console.log(json);
-
     Create82PeaksCards(json);
+    ShowLatestSummits(1);
+    $('#loading-screen').css(
+      {"opacity":"0",
+      "visibility":"hidden",
+      });
   });
+}
+
+$('#latest-section__select').on('change', function() {
+  var selectedIndex = <number>$(this).find(":selected").val(); 
+  ShowLatestSummits(selectedIndex);
+});
+
+
+function ShowLatestSummits(summitsCount:number){
+  var achievedSummit = summitInfoArray.filter(item => item.summitted);
+
+  //Sort by latest date
+  achievedSummit.sort((a, b) => {
+    if (a.summitDate > b.summitDate) {
+      return -1;
+    } else if (a.summitDate < b.summitDate) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+
+  var selectedSummits : SummitInfo[];
+  $('#latest-section__content').html('');
+  for(var i = 0; i < summitsCount; i++){
+    CreateCard(achievedSummit[i].ranking, achievedSummit[i],'#latest-section__content');
+  }
 }
 
 /**
@@ -20,78 +50,86 @@ window.onload = function() {
 function Create82PeaksCards(json){
 
   // Deserialize the JSON data into an array of SummitInfo objects
-const summitInfoArray: SummitInfo[] = json.map((item) => {
-  const summitInfo = new SummitInfo();
-  summitInfo.ranking = item.ranking;
-  summitInfo.elevation = item.elevation;
-  summitInfo.name = item.name;
-  summitInfo.lat = item.lat;
-  summitInfo.long = item.long;
-  summitInfo.location = item.location;
-  summitInfo.countryCode = item.countryCode;
-  summitInfo.summitted = item.summitted;
-  summitInfo.summitDate = new Date(item.summitDate);
-  summitInfo.attempts = item.attempts;
-  return summitInfo;
-});
+  if(summitInfoArray == undefined || summitInfoArray.length != 82)
+    summitInfoArray = json.map((item) => {
+      const summitInfo = new SummitInfo();
+      summitInfo.ranking = item.ranking;
+      summitInfo.elevation = item.elevation;
+      summitInfo.name = item.name;
+      summitInfo.lat = item.lat;
+      summitInfo.long = item.long;
+      summitInfo.location = item.location;
+      summitInfo.countryCode = item.countryCode;
+      summitInfo.summitted = item.summitted;
+      summitInfo.summitDate = new Date(item.summitDate);
+      summitInfo.attempts = item.attempts;
+      return summitInfo;
+    });
 
-  let summitInfo = new SummitInfo();
-  summitInfo.location = "Hello world";
   for(var i = 0; i< summitInfoArray.length;i++){
-    CreateCard(summitInfoArray[i]);
+    CreateCard(summitInfoArray[i].ranking, summitInfoArray[i], '#peaks-section__content');
   }
-
-  LoadCardsMaps();
 }
 
-function CreateCard(summitInfo: SummitInfo){
-  $('#peaks-section__content').append(`          
-  <div id="summit-card-`+ summitInfo.ranking +`" class="summit-card">
-  <div id="summit-card-`+ summitInfo.ranking +`-map" class="map"></div>
-  <div id="summit-card-`+ summitInfo.ranking +`-date" class="date-tag">
+/**
+ * Create a summit info card
+ * @param summitInfo 
+ */
+function CreateCard(index: number, summitInfo: SummitInfo, parentDivId: string){
+  $(parentDivId).append(`          
+  <div id="summit-card-`+ index +`" class="summit-card">
+  <div id="summit-card-`+ index +`-map" class="map"></div>
+  <div id="summit-card-`+ index +`-date" class="date-tag">
   `+ ToHtmlFormattedDate(summitInfo.summitDate) +`
     </div>
-    <div id="summit-card-`+ summitInfo.ranking +`-content" class="card-content">
-      <h1 id="summit-card-`+ summitInfo.ranking +`-title" class="card-title">`+ summitInfo.name +`</h1>
-      <div id="summit-card-`+ summitInfo.ranking +`-info" class="card-info">
-        <div id="summit-card-`+ summitInfo.ranking +`-elevation" class="card-infoline">
-          <p class="tag">Elevation</p>
-          <p class="value">`+ summitInfo.elevation +`</p>
+    <div id="summit-card-`+ index +`-content" class="card-content">
+      <h1 id="summit-card-`+ index +`-title" class="card-title">`+ summitInfo.name +`</h1>
+      <div id="summit-card-`+ index +`-info" class="card-info">
+        <div id="summit-card-`+ index +`-rank" class="card-infoline">
+          <p class="tag">Rank</p>
+          <p class="value">`+ summitInfo.ranking +`/82</p>
         </div>
-        <div id="summit-card-`+ summitInfo.ranking +`-dateline" class="card-infoline">
+        <div id="summit-card-`+ index +`-elevation" class="card-infoline">
+          <p class="tag">Elevation</p>
+          <p class="value">`+ summitInfo.elevation +` m</p>
+        </div>
+        <div id="summit-card-`+ index +`-dateline" class="card-infoline">
           <p class="tag">Date</p>
           <p class="value">`+ summitInfo.summitDate.toLocaleDateString() +`</p>
         </div>
-        <div id="summit-card-`+ summitInfo.ranking +`-attemps" class="card-infoline">
+        <div id="summit-card-`+ index +`-attemps" class="card-infoline">
           <p class="tag">Number of attempts</p>
           <p class="value">`+ summitInfo.attempts +`</p>
         </div>
-        <div id="summit-card-`+ summitInfo.ranking +`-location" class="card-infoline">
+        <div id="summit-card-`+ index +`-location" class="card-infoline">
           <p class="tag">Location</p>
           <p class="value">` + summitInfo.location +`</p>
         </div>
+        <div id="summit-card-`+ index +`-country" class="card-infoline">
+        </div>
       </div>
     </div>
-    <div id="summmit-card-`+ summitInfo.ranking +`-flag-container" class="card-flag-container">
-      <div id="summmit-card-`+ summitInfo.ranking +`-flag" class="card-flag `+ ToCSSFlagClass(summitInfo.countryCode) +`">
+    <div id="summmit-card-`+ index +`-flag-container" class="card-flag-container">
+      <div id="summmit-card-`+ index +`-flag" class="card-flag `+ ToCSSFlagClass(summitInfo.countryCode) +`">
         <img>
       </div>
     </div>
   </div>
   `);
-
+  AddCountryToCard(summitInfo.countryCode, '#summit-card-'+ index +'-country');
   //Hide the date label if not summitted
   if(!summitInfo.summitted){
-    $("#summit-card-"+ summitInfo.ranking +"-date").hide();
-    $("#summit-card-"+ summitInfo.ranking +"-dateline").hide();
+    $("#summit-card-"+ index +"-date").hide();
+    $("#summit-card-"+ index +"-dateline").hide();
+    
+  }
+  else{
+    $("#summit-card-"+ index).addClass("summited");
   }
 
-  var entryStr = convertToLat(summitInfo.lat) + "," + convertToLong(summitInfo.long);
 
-  coordinatesDictionary.set("summit-card-"+ summitInfo.ranking +"-map",entryStr);
-  //coordinatesDictionary["summit-card-"+ summitInfo.ranking +"-map"] = entryStr
+  LoadCardMap("summit-card-"+ index +"-map",convertToLat(summitInfo.lat ), convertToLong(summitInfo.long));
 }
-//"6°51′52″E"
 
 function dmsToDecimal(degrees: number, minutes: number, seconds: number, direction: string): number {
   let decimalDegrees = degrees + (minutes / 60) + (seconds / 3600);
@@ -135,16 +173,50 @@ function convertToLong(longDMS: string): number {
   }
 }
 
+
+function SortBy(){
+  //var result = $('div').sort(function (a, b) {
+  //
+  //  var contentA =parseInt( $(a).data('sort'));
+  //  var contentB =parseInt( $(b).data('sort'));
+  //  return (contentA < contentB) ? -1 : (contentA > contentB) ? 1 : 0;
+  //});
+  //
+  //$('#peaks-section__content').html(result);
+}
+
 /**
- * Iterate over all cards an initialize their maps
+ * adds the country to the given parentDiv
+ * @param countyCode list of country codes csv (,)
+ * @param parentDiv Jquery name of the parent div
  */
-function LoadCardsMaps(){
-  coordinatesDictionary.forEach((value: string, key: string) => {
-    let spl = value.split(",");
-    let lat = spl[0];
-    let long = spl[1];
-    LoadCardMap(key,Number.parseInt(lat), Number.parseInt(long));
-  });
+function AddCountryToCard(countyCode:string, parentDiv: string){
+
+  let codes = countyCode.split(',');
+  if(codes.length == 1){
+    $(parentDiv).append(`
+    <p class="tag">Coutry</p>
+    <p class="value">` + CountryCodeToCountryName(codes[0]) +`</p>
+    `);
+  }
+  else{
+    $(parentDiv).append(`
+    <p class="tag">Coutries</p>
+    <p class="value">` + CountryCodeToCountryName(codes[0]) + ` & ` 
+    + CountryCodeToCountryName(codes[1]) +`</p>`);
+  }
+}
+
+/**
+ * 
+ * @param countryCode country code (containing only one code)
+ * @returns the full name of the country
+ */
+function CountryCodeToCountryName(countryCode:string){
+  let trimmedCode = countryCode.trim().toLowerCase();
+  if(trimmedCode === 'ch') return 'Switzerland'
+  if(trimmedCode === 'fr') return 'France'
+  if(trimmedCode === 'it') return 'Italy'
 }
 
 function LoadCardMap(mapKey:string, lat: number, long: number){
@@ -157,8 +229,7 @@ function LoadCardMap(mapKey:string, lat: number, long: number){
   // Target's GPS coordinates.
   var target = L.latLng(lat, long);
 
-  // Set map's center to target with zoom 14.
-  map.setView(target, 8);
+  map.setView(target, 9);
 
   // Place a marker on the same location.
   L.marker(target).addTo(map);
@@ -172,7 +243,7 @@ function LoadCardMap(mapKey:string, lat: number, long: number){
 }
 
 
-var coordinatesDictionary = new Map();
+
 
 /**
  * Converts the given date to an HTML formatted date for the card badge

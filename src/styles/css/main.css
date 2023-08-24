@@ -12,7 +12,7 @@
   width: 100vw;
   display: flex;
   box-shadow: 0px 0px 40px -2px rgb(0, 0, 0);
-  z-index: 2;
+  z-index: 50;
   position: relative;
 }
 
@@ -479,15 +479,67 @@ div.brackets-animation :hover:after {
     width: 75px;
   }
 }
-.summits {
+/* Loading screen styles */
+.loading-screen {
+  position: fixed;
+  top: 65px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 65px);
   background-color: #1A1E23;
-  height: calc(100% - 65px);
-  overflow: auto;
+  display: flex;
+  visibility: visible;
+  justify-content: center;
+  align-items: center;
+  z-index: 49;
+  transition: opacity 0.5s ease-out, visibility 0.5s;
+  opacity: 1;
 }
 
+.loading-spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top: 4px solid rgb(255, 217, 0);
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .introduction-section__content {
   height: 500px;
   overflow: hidden;
+  position: relative;
+}
+
+.introduction-section__title {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 130px;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+.introduction-section__title p {
+  display: flex;
+  text-align: center;
+  font-size: 20px;
+}
+.introduction-section__title h1 {
+  display: flex;
+  margin-bottom: 15px;
+  font-size: 40px;
 }
 
 .introduction-section__gallery {
@@ -516,7 +568,7 @@ div.brackets-animation :hover:after {
   transition: opacity 200ms ease-in;
 }
 .introduction-section__gallery .gallery-item video:hover {
-  opacity: 0.6;
+  opacity: 0.7;
 }
 
 .peaks-section__content {
@@ -538,18 +590,26 @@ div.brackets-animation :hover:after {
   display: flex;
   flex-direction: column;
   position: relative;
+  opacity: 0.8;
   box-shadow: 5px 5px 5px rgba(199, 169, 0, 0.623);
+  transition: transform 200ms ease-in, opacity 200ms ease-in, box-shadow 200ms ease-in;
+}
+.summit-card:hover {
+  transform: scale(1.05);
+  opacity: 1;
+  box-shadow: 10px 10px 5px rgba(199, 169, 0, 0.623);
 }
 .summit-card .map {
   position: relative;
   height: 154.5px;
+  z-index: 0;
 }
 .summit-card .date-tag {
   position: absolute;
   right: 30px;
-  top: 180px;
+  top: 30px;
   float: right;
-  z-index: 3;
+  z-index: 1;
   height: 40px;
   width: 40px;
   padding: 4px;
@@ -618,10 +678,16 @@ div.brackets-animation :hover:after {
   left: -50px;
 }
 .summit-card .card-flag-container .ch.it img {
-  content: url();
+  content: url("../../images/swiss.png");
+  transform: scale(0.7);
+  top: -50px;
+  left: -50px;
 }
 .summit-card .card-flag-container .fr.it img {
-  content: url();
+  content: url("../../images/french.png");
+  transform: scale(0.9);
+  top: -50px;
+  left: -60px;
 }
 .summit-card .card-flag-container .it img {
   content: url("../../images/italian.png");
@@ -634,6 +700,28 @@ div.brackets-animation :hover:after {
   transform: scale(0.9);
   top: -50px;
   left: -60px;
+}
+
+.summited {
+  opacity: 1;
+}
+
+.latest-section__selector {
+  display: flex;
+  margin-left: 50px;
+  margin-bottom: 30px;
+}
+.latest-section__selector select {
+  margin-left: 8px;
+  margin-right: 8px;
+  background: #1A1E23;
+  color: rgb(255, 217, 0);
+  border: solid 0px;
+  font-family: Raleway;
+  font-size: 16px;
+}
+.latest-section__selector select option {
+  color: white;
 }
 
 @media (max-width: 800px) {
