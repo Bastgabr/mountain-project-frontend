@@ -28,3 +28,20 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+
+@media(max-width: 900px){
+  .loading-screen{
+    top: $navbar-height__900px;
+    height: calc(100vh - $navbar-height__900px);
+  }
+  
+}
+
+@media(max-width: 500px){
+  .loading-screen{
+    top: $navbar-height__500px;
+    height: calc(100vh - $navbar-height__500px);
+  }
+
+}

@@ -29,7 +29,6 @@
   }
 }
 
-
 .introduction-section__gallery{
   display: flex;
   align-items: center;
@@ -67,16 +66,17 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
+
 
 .summit-card{
   //height: $summit-card-height;
-  min-width: 550px;
+  min-width: 700px;
   outline: solid 1px $navbar-color;
   margin-left: $summit-card-maring-horizontal;
-  margin-right: $summit-card-maring-vertical;
-  margin-bottom: 100px;
+  margin-right: $summit-card-maring-horizontal;
+  margin-bottom: $summit-card-maring-vertical;
   border-radius: 4px;
   overflow: hidden;
   background-color: #363b41;
@@ -84,21 +84,21 @@
   flex-direction: column;
   position: relative;
   opacity: 0.80;
-  box-shadow: 5px 5px 5px $highlight-color-shadow;
+  border-bottom: solid 3px $highlight-color;
+  //box-shadow: 5px 5px 5px $highlight-color-shadow;
 
   transition: transform 200ms ease-in, opacity 200ms ease-in, box-shadow 200ms ease-in;
 
   &:hover{
     transform: scale(1.05);
     opacity: 1;
-    box-shadow: 10px 10px 5px $highlight-color-shadow;
+    box-shadow: 0 5px 5px $highlight-color-shadow;
   }
 
   .map{
     position: relative;
     height: $summit-card-height * 0.5;
     z-index: 0;
-    //width: 20%; //square map tile
   }
 
   .date-tag{
@@ -141,11 +141,11 @@
         display: flex;
         flex-direction: row;
         .tag{
-          min-width: 200px;
+          width: 50%;
         }
         .value{
           word-wrap: normal;
-          max-width: 200px;
+          width: 50%;
         }
       }
     }
@@ -179,7 +179,6 @@
       transform: scale(0.7);
       top: -50px;
       left: -50px;
-
     }
     .ch.it img{
       content: url("../../images/swiss.png");
@@ -200,14 +199,13 @@
       transform: scale(0.9);
       top: -60px;
       left: -60px;
-    }
+      }
     .fr img{
       content: url("../../images/french.png");
       transform: scale(0.9);
       top: -50px;
       left: -60px;
     }
-
   }
 }
 
@@ -216,28 +214,47 @@
 }
 
 
-.latest-section__selector{
+.summit-selector{
   display: flex;
+  height: 35px;
+  flex-direction: row;
   margin-left: 50px;
+  margin-bottom: 30px;
   select{
     margin-left: 8px;
     margin-right: 8px;
     background: $navbar-color;
     color: $highlight-color;
     border: solid 0px;
+    border-radius: 25px;
     font-family: Raleway;
     font-size: 16px;
     option{
       color: $text-color;
     }
   }
-
-  margin-bottom: 30px;
+  p{
+    display: flex;
+    align-items: center;
+  }
 }
 
 
+.peaks-section__selector{
+  position: relative;
+  select{
+    margin-right: 15px;
+  }
+}
+
+.button-reset-filter{
+  visibility: hidden;
+}
+
+
+
 //Responsiveness
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   
   .introduction-section__content{
     height: 300px;
@@ -251,6 +268,57 @@
   .gallery-item.extra-1{
     display: none;
   }
+
+  .introduction-section__title{
+    margin-top: 50px;
+    p{
+      font-size: 16px;
+    }
+    h1{
+      font-size: 32px;
+    }
+  }
+
+  .summit-card .card-flag-container{
+    transform: rotate(45deg) scale(0.8);
+  }
+
+  .summit-card .card-content {
+    h1.card-title{
+      font-size: 25px;
+      height: 45px;
+    } 
+
+    .card-info{
+      font-size: 16px;
+    }
+  }
+
+  .summit-card{
+    min-width: auto;
+    width: 100%;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
+@media(max-width: 600px){
+  .summit-card .card-flag-container{
+    transform: rotate(45deg) scale(0.6);
+  }
+  .summit-card .card-content {
+    h1.card-title{
+      font-size: 17px;
+      height: 30px;
+    } 
+    .card-info{
+      font-size: 14px;
+
+      .card-infoline p.tag{
+        min-width: 140px;
+      }
+    }
+  }
 }
 
 //Hide some more videos to reduce 
@@ -258,10 +326,39 @@
   .gallery-item.extra-2{
     display: none;
   }
+  .introduction-section__title{
+    margin-top: 30px;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  .summit-card .card-flag-container{
+    transform: rotate(45deg) scale(0.5);
+  }
+
+  .summit-card .card-content {
+    h1.card-title{
+      font-size: 16px;
+      height: 30px;
+    } 
+    .card-info{
+      font-size: 13px;
+
+      .card-infoline p.tag{
+        min-width: 140px;
+      }
+    }
+  }
 }
 
 @media(max-width: 400px){
   .introduction-section__gallery{
     left: -35px;
   }
+  .introduction-section__title{
+    margin-top: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+
 }
+

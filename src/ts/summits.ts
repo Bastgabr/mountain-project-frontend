@@ -9,6 +9,7 @@ window.onload = function() {
     .then((json) => {
     Create82PeaksCards(json);
     ShowLatestSummits(1);
+    //Hide loading screen
     $('#loading-screen').css(
       {"opacity":"0",
       "visibility":"hidden",
@@ -22,11 +23,115 @@ $('#latest-section__select').on('change', function() {
 });
 
 
+$('#peaks-section__selector select').on('change', function() {
+  //Retrieve selector values
+  var selectorValue :number = Number($('#peaks-section__show-select').find(":selected").val());
+  var orderValue :number =  Number($('#peaks-section__order-select').find(":selected").val());
+  
+  HandleResetFilterVisibility(selectorValue,orderValue);
+  
+  var summitsToDisplay : SummitInfo[];
+  switch(<PeakSelection>selectorValue){
+    case PeakSelection.All:{
+      summitsToDisplay = summitInfoArray;
+      break;
+    }
+    case PeakSelection.NonSummitted:{
+      summitsToDisplay = summitInfoArray.filter(item => !item.summitted);
+      break;
+    }
+    case PeakSelection.Summitted:{
+      summitsToDisplay = summitInfoArray.filter(item => item.summitted);
+      break;
+    }
+  }
+
+  switch(<PeakOrdering>orderValue){
+    case PeakOrdering.HeightDesc:{
+      summitsToDisplay = OrderSummitsByHeightDesc(summitsToDisplay);
+      break;
+    }
+    case PeakOrdering.HeightAsc:{
+      summitsToDisplay = OrderSummitsByHeightAsc(summitsToDisplay);
+      break;
+    }
+    case PeakOrdering.DateDesc:{
+      summitsToDisplay = OrderSummitsByDateDesc(summitsToDisplay);
+      break;
+    }
+    case PeakOrdering.DateAsc:{
+      summitsToDisplay = OrderSummitsByDateAsc(summitsToDisplay);
+      break;
+    }
+  }
+  $('#peaks-section__content').html('');
+  for(var i = 0; i< summitsToDisplay.length;i++){
+    CreateCard(summitsToDisplay[i].ranking, summitsToDisplay[i], '#peaks-section__content');
+  }
+
+});
+
+
+function HandleResetFilterVisibility(selectorValue:number,orderValue:number){
+  if(selectorValue != 0 || orderValue != 0){
+    $('#button-reset-filter').css({"visibility":"visible"});
+  }
+  else{
+    $('#button-reset-filter').css({"visibility":"hidden"});
+  }
+}
+
+$('#button-reset-filter').on('click', function() {    
+  // Reset the selected index programmatically
+  $('#peaks-section__show-select').prop('selectedIndex', 0);
+  $('#peaks-section__order-select').prop('selectedIndex', 0);
+  $('#button-reset-filter').css({"visibility":"hidden"});
+  $('#peaks-section__content').html('');
+  for(var i = 0; i< summitInfoArray.length;i++){
+    CreateCard(summitInfoArray[i].ranking, summitInfoArray[i], '#peaks-section__content');
+  }
+});
+
+
 function ShowLatestSummits(summitsCount:number){
   var achievedSummit = summitInfoArray.filter(item => item.summitted);
 
   //Sort by latest date
-  achievedSummit.sort((a, b) => {
+  achievedSummit = OrderSummitsByDateDesc(achievedSummit);
+
+  var selectedSummits : SummitInfo[];
+  $('#latest-section__content').html('');
+  for(var i = 0; i < summitsCount; i++){
+    CreateCard(achievedSummit[i].ranking+100, achievedSummit[i],'#latest-section__content');
+  }
+}
+
+function OrderSummitsByHeightDesc(summits : SummitInfo[]) : SummitInfo[]{
+  return summits.sort((a, b) => {
+    if (a.elevation > b.elevation) {
+      return -1;
+    } else if (a.elevation < b.elevation) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+}
+
+function OrderSummitsByHeightAsc(summits : SummitInfo[]) : SummitInfo[]{
+  return summits.sort((a, b) => {
+    if (a.elevation < b.elevation) {
+      return -1;
+    } else if (a.elevation > b.elevation) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+}
+
+function OrderSummitsByDateDesc(summits : SummitInfo[]) : SummitInfo[]{
+  return summits.sort((a, b) => {
     if (a.summitDate > b.summitDate) {
       return -1;
     } else if (a.summitDate < b.summitDate) {
@@ -35,12 +140,18 @@ function ShowLatestSummits(summitsCount:number){
       return 0;
     }
   });
+}
 
-  var selectedSummits : SummitInfo[];
-  $('#latest-section__content').html('');
-  for(var i = 0; i < summitsCount; i++){
-    CreateCard(achievedSummit[i].ranking, achievedSummit[i],'#latest-section__content');
-  }
+function OrderSummitsByDateAsc(summits : SummitInfo[]) : SummitInfo[]{
+  return summits.sort((a, b) => {
+    if (a.summitDate < b.summitDate) {
+      return -1;
+    } else if (a.summitDate > b.summitDate) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
 }
 
 /**
@@ -126,7 +237,6 @@ function CreateCard(index: number, summitInfo: SummitInfo, parentDivId: string){
   else{
     $("#summit-card-"+ index).addClass("summited");
   }
-
 
   LoadCardMap("summit-card-"+ index +"-map",convertToLat(summitInfo.lat ), convertToLong(summitInfo.long));
 }
@@ -219,6 +329,13 @@ function CountryCodeToCountryName(countryCode:string){
   if(trimmedCode === 'it') return 'Italy'
 }
 
+/**
+ * Load the map for the given div map container.
+ * place a pin at the given latitude and longitude
+ * @param mapKey map container
+ * @param lat latitude in DMS 
+ * @param long longitude in DMS
+ */
 function LoadCardMap(mapKey:string, lat: number, long: number){
   // Create Leaflet map on map element.
   var map = L.map(mapKey, { zoomControl: false });
@@ -241,8 +358,6 @@ function LoadCardMap(mapKey:string, lat: number, long: number){
   map.keyboard.disable();
   if (map.tap) map.tap.disable();
 }
-
-
 
 
 /**
@@ -285,4 +400,17 @@ class SummitInfo{
   public summitted:boolean = false;
   public summitDate:Date = null;
   public attempts:number = 0;
+}
+
+enum PeakSelection{
+  All = 0,
+  NonSummitted = 1,
+  Summitted = 2
+}
+
+enum PeakOrdering{
+  HeightDesc = 0,
+  HeightAsc = 1,
+  DateDesc = 2,
+  DateAsc = 3,
 }

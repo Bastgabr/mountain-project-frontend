@@ -113,7 +113,7 @@ div.brackets-animation :hover:after {
   div.brackets-animation :before,
   div.brackets-animation :after {
     font-size: 17px;
-    top: 5px;
+    top: 10px;
   }
   .langage-select-menu {
     bottom: 40px;
@@ -141,7 +141,7 @@ div.brackets-animation :hover:after {
   div.brackets-animation :before,
   div.brackets-animation :after {
     font-size: 17px;
-    top: 5px;
+    top: 7px;
   }
   .langage-select-menu {
     bottom: 30px;
@@ -541,15 +541,15 @@ div.brackets-animation :hover:after {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
 .summit-card {
-  min-width: 550px;
+  min-width: 700px;
   outline: solid 1px #1A1E23;
-  margin-left: 25px;
-  margin-right: 100px;
-  margin-bottom: 100px;
+  margin-left: 7px;
+  margin-right: 7px;
+  margin-bottom: 50px;
   border-radius: 4px;
   overflow: hidden;
   background-color: #363b41;
@@ -557,13 +557,13 @@ div.brackets-animation :hover:after {
   flex-direction: column;
   position: relative;
   opacity: 0.8;
-  box-shadow: 5px 5px 5px rgba(199, 169, 0, 0.623);
+  border-bottom: solid 3px rgb(255, 217, 0);
   transition: transform 200ms ease-in, opacity 200ms ease-in, box-shadow 200ms ease-in;
 }
 .summit-card:hover {
   transform: scale(1.05);
   opacity: 1;
-  box-shadow: 10px 10px 5px rgba(199, 169, 0, 0.623);
+  box-shadow: 0 5px 5px rgba(199, 169, 0, 0.623);
 }
 .summit-card .map {
   position: relative;
@@ -609,11 +609,11 @@ div.brackets-animation :hover:after {
   flex-direction: row;
 }
 .summit-card .card-content .card-info .card-infoline .tag {
-  min-width: 200px;
+  width: 50%;
 }
 .summit-card .card-content .card-info .card-infoline .value {
   word-wrap: normal;
-  max-width: 200px;
+  width: 50%;
 }
 .summit-card .card-flag-container {
   position: absolute;
@@ -672,25 +672,43 @@ div.brackets-animation :hover:after {
   opacity: 1;
 }
 
-.latest-section__selector {
+.summit-selector {
   display: flex;
+  height: 35px;
+  flex-direction: row;
   margin-left: 50px;
   margin-bottom: 30px;
 }
-.latest-section__selector select {
+.summit-selector select {
   margin-left: 8px;
   margin-right: 8px;
   background: #1A1E23;
   color: rgb(255, 217, 0);
   border: solid 0px;
+  border-radius: 25px;
   font-family: Raleway;
   font-size: 16px;
 }
-.latest-section__selector select option {
+.summit-selector select option {
   color: white;
 }
+.summit-selector p {
+  display: flex;
+  align-items: center;
+}
 
-@media (max-width: 800px) {
+.peaks-section__selector {
+  position: relative;
+}
+.peaks-section__selector select {
+  margin-right: 15px;
+}
+
+.button-reset-filter {
+  visibility: hidden;
+}
+
+@media (max-width: 900px) {
   .introduction-section__content {
     height: 300px;
   }
@@ -701,15 +719,78 @@ div.brackets-animation :hover:after {
   .gallery-item.extra-1 {
     display: none;
   }
+  .introduction-section__title {
+    margin-top: 50px;
+  }
+  .introduction-section__title p {
+    font-size: 16px;
+  }
+  .introduction-section__title h1 {
+    font-size: 32px;
+  }
+  .summit-card .card-flag-container {
+    transform: rotate(45deg) scale(0.8);
+  }
+  .summit-card .card-content h1.card-title {
+    font-size: 25px;
+    height: 45px;
+  }
+  .summit-card .card-content .card-info {
+    font-size: 16px;
+  }
+  .summit-card {
+    min-width: auto;
+    width: 100%;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+@media (max-width: 600px) {
+  .summit-card .card-flag-container {
+    transform: rotate(45deg) scale(0.6);
+  }
+  .summit-card .card-content h1.card-title {
+    font-size: 17px;
+    height: 30px;
+  }
+  .summit-card .card-content .card-info {
+    font-size: 14px;
+  }
+  .summit-card .card-content .card-info .card-infoline p.tag {
+    min-width: 140px;
+  }
 }
 @media (max-width: 500px) {
   .gallery-item.extra-2 {
     display: none;
   }
+  .introduction-section__title {
+    margin-top: 30px;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  .summit-card .card-flag-container {
+    transform: rotate(45deg) scale(0.5);
+  }
+  .summit-card .card-content h1.card-title {
+    font-size: 16px;
+    height: 30px;
+  }
+  .summit-card .card-content .card-info {
+    font-size: 13px;
+  }
+  .summit-card .card-content .card-info .card-infoline p.tag {
+    min-width: 140px;
+  }
 }
 @media (max-width: 400px) {
   .introduction-section__gallery {
     left: -35px;
+  }
+  .introduction-section__title {
+    margin-top: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
   }
 }
 a {
@@ -756,6 +837,18 @@ h1, h2, h3, h4, p {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+@media (max-width: 900px) {
+  .loading-screen {
+    top: 45px;
+    height: calc(100vh - 45px);
+  }
+}
+@media (max-width: 500px) {
+  .loading-screen {
+    top: 35px;
+    height: calc(100vh - 35px);
   }
 }
 body {
@@ -868,6 +961,21 @@ html, body {
   min-height: 100%;
   height: 100%;
   font-family: Raleway;
+}
+
+.button {
+  cursor: pointer;
+  background-color: rgb(255, 217, 0);
+  padding: 0.5rem 2.4rem;
+  border-radius: 25px;
+  color: #1A1E23;
+  text-align: center;
+  float: right;
+}
+
+.button:hover {
+  background-color: rgb(255, 217, 0);
+  color: white;
 }
 
 @media (max-width: 900px) {
