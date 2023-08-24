@@ -1,24 +1,28 @@
 // RETURN BUTTON Click
 $("#navbar-menu").on("click","#return-button", function () {
     //Scroll up
-    $("#content").animate({ scrollTop: 0 }, "smooth");
-    $('#content').css({ "overflow": "auto" });
-    
-      ToggleExploreMapText();
-      $(".iframe").css({ "pointer-events": "none" });
-      RestoreMapHeight();
-      ChangeNavBarMenuItems(`
-      <a id="home-button">Home</a>
-      <a id="maps-button">Maps</a>
-      <a id="82x400-button">82x4000</a>
-      <a id="about-button">About</a>
-    `);
-    
+  $("#content").animate({ scrollTop: 0 }, "smooth");
+  $('#content').css({ "overflow": "auto" });
+  
+    ToggleExploreMapText();
+    $(".iframe").css({ "pointer-events": "none" });
+    RestoreMapHeight();
+    ChangeNavBarMenuItems(`
+    <a id="home-button">Home</a>
+    <a id="maps-button">Maps</a>
+    <a id="82x400-button">82x4000</a>
+    <a id="about-button">About</a>
+  `);
 });
 
-$("#navbar-menu").on("click","#find-4000-button", function () {
-  alert("Héhéhéhéhé");
-});
+
+window.onload = function() {
+  $('#loading-screen').css(
+    {"opacity":"0",
+    "visibility":"hidden",
+    });
+};
+
 
 
 

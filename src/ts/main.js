@@ -7,15 +7,17 @@ $("#navbar-menu").on("click", "#return-button", function () {
     $(".iframe").css({ "pointer-events": "none" });
     RestoreMapHeight();
     ChangeNavBarMenuItems(`
-      <a id="home-button">Home</a>
-      <a id="maps-button">Maps</a>
-      <a id="82x400-button">82x4000</a>
-      <a id="about-button">About</a>
-    `);
+    <a id="home-button">Home</a>
+    <a id="maps-button">Maps</a>
+    <a id="82x400-button">82x4000</a>
+    <a id="about-button">About</a>
+  `);
 });
-$("#navbar-menu").on("click", "#find-4000-button", function () {
-    alert("Héhéhéhéhé");
-});
+window.onload = function () {
+    $('#loading-screen').css({ "opacity": "0",
+        "visibility": "hidden",
+    });
+};
 $("#explore-map-section").on("click", function () {
     //Scroll to focus element
     ScrollContentToElement("explore-map-section");
