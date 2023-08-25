@@ -62,17 +62,17 @@ $('#peaks-section__selector select').on('change', function () {
 });
 function HandleResetFilterVisibility(selectorValue, orderValue) {
     if (selectorValue != 0 || orderValue != 0) {
-        $('#button-reset-filter').css({ "visibility": "visible" });
+        $('#button-reset-filter').css({ "display": "flex" });
     }
     else {
-        $('#button-reset-filter').css({ "visibility": "hidden" });
+        $('#button-reset-filter').css({ "display": "none" });
     }
 }
 $('#button-reset-filter').on('click', function () {
     // Reset the selected index programmatically
     $('#peaks-section__show-select').prop('selectedIndex', 0);
     $('#peaks-section__order-select').prop('selectedIndex', 0);
-    $('#button-reset-filter').css({ "visibility": "hidden" });
+    $('#button-reset-filter').css({ "display": "none" });
     $('#peaks-section__content').html('');
     for (var i = 0; i < summitInfoArray.length; i++) {
         CreateCard(summitInfoArray[i].ranking, summitInfoArray[i], '#peaks-section__content');

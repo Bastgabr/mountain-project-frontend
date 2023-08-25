@@ -52,7 +52,7 @@
     video{
       opacity: 0.33;
       position: absolute;
-      left: -40px;
+      left: -50px;
       transform: skewX(11deg);
       transition: opacity 200ms ease-in;
       &:hover{
@@ -253,11 +253,11 @@
       margin-right: 15px;
     }
   }
+  .button-reset-filter{
+    display: none;
+  }  
 }
 
-.button-reset-filter{
-  visibility: hidden;
-}
 
 
 
@@ -268,10 +268,15 @@
     height: 300px;
   }
 
-  .gallery-item video{
-    width: 300px;
-    height: 350px;
+  .introduction-section__gallery{
+    .gallery-item{
+      video{
+        width: 350px;
+        height: 300px;
+      }
+    } 
   }
+
 
   .gallery-item.extra-1{
     display: none;

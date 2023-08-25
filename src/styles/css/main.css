@@ -529,7 +529,7 @@ div.brackets-animation :hover:after {
 .introduction-section__gallery .gallery-item video {
   opacity: 0.33;
   position: absolute;
-  left: -40px;
+  left: -50px;
   transform: skewX(11deg);
   transition: opacity 200ms ease-in;
 }
@@ -710,18 +710,17 @@ div.brackets-animation :hover:after {
 .peaks-section__selector div select {
   margin-right: 15px;
 }
-
-.button-reset-filter {
-  visibility: hidden;
+.peaks-section__selector .button-reset-filter {
+  display: none;
 }
 
 @media (max-width: 900px) {
   .introduction-section__content {
     height: 300px;
   }
-  .gallery-item video {
-    width: 300px;
-    height: 350px;
+  .introduction-section__gallery .gallery-item video {
+    width: 350px;
+    height: 300px;
   }
   .gallery-item.extra-1 {
     display: none;
