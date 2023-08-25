@@ -556,13 +556,12 @@ div.brackets-animation :hover:after {
   display: flex;
   flex-direction: column;
   position: relative;
-  opacity: 0.8;
   border-bottom: solid 3px rgb(255, 217, 0);
+  transform: scale(0.95);
   transition: transform 200ms ease-in, opacity 200ms ease-in, box-shadow 200ms ease-in;
 }
 .summit-card:hover {
-  transform: scale(1.05);
-  opacity: 1;
+  transform: scale(1);
   box-shadow: 0 5px 5px rgba(199, 169, 0, 0.623);
 }
 .summit-card .map {
@@ -687,6 +686,7 @@ div.brackets-animation :hover:after {
   border-radius: 25px;
   font-family: Raleway;
   font-size: 16px;
+  outline: none;
 }
 .summit-selector select option {
   color: white;
@@ -777,6 +777,13 @@ div.brackets-animation :hover:after {
   }
   .summit-card .card-flag-container {
     transform: rotate(45deg) scale(0.5);
+  }
+  .summit-selector {
+    margin-left: 20px;
+    font-size: 13px;
+  }
+  .summit-selector select {
+    font-size: 13px;
   }
   .summit-card .card-content h1.card-title {
     font-size: 16px;

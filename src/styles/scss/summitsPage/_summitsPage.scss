@@ -83,15 +83,14 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  opacity: 0.80;
   border-bottom: solid 3px $highlight-color;
   //box-shadow: 5px 5px 5px $highlight-color-shadow;
-
+  transform: scale(0.95);
   transition: transform 200ms ease-in, opacity 200ms ease-in, box-shadow 200ms ease-in;
 
   &:hover{
-    transform: scale(1.05);
-    opacity: 1;
+    transform: scale(1);
+
     box-shadow: 0 5px 5px $highlight-color-shadow;
   }
 
@@ -216,10 +215,10 @@
 
 .summit-selector{
   display: flex;
-
   flex-direction: row;
   margin-left: 50px;
   margin-bottom: 30px;
+
   select{
     margin-left: 8px;
     margin-right: 8px;
@@ -232,6 +231,7 @@
     option{
       color: $text-color;
     }
+    outline: none;
   }
   p{
     display: flex;
@@ -257,8 +257,6 @@
     display: none;
   }  
 }
-
-
 
 
 //Responsiveness
@@ -346,6 +344,14 @@
   }
   .summit-card .card-flag-container{
     transform: rotate(45deg) scale(0.5);
+  }
+
+  .summit-selector{
+    margin-left: 20px;
+    font-size: 13px;
+    select{
+      font-size: 13px;
+    }
   }
 
   .summit-card .card-content {
