@@ -71,7 +71,6 @@
 
 
 .summit-card{
-  //height: $summit-card-height;
   min-width: 700px;
   outline: solid 1px $navbar-color;
   margin-left: $summit-card-maring-horizontal;
@@ -84,13 +83,10 @@
   flex-direction: column;
   position: relative;
   border-bottom: solid 3px $highlight-color;
-  //box-shadow: 5px 5px 5px $highlight-color-shadow;
-  transform: scale(0.95);
-  transition: transform 200ms ease-in, opacity 200ms ease-in, box-shadow 200ms ease-in;
+  transition: transform 100ms ease-in, box-shadow 200ms ease-in;
 
   &:hover{
-    transform: scale(1);
-
+    transform: translateY(-7px);
     box-shadow: 0 5px 5px $highlight-color-shadow;
   }
 
