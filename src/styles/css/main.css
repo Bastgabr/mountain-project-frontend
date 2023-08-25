@@ -801,9 +801,12 @@ div.brackets-animation :hover:after {
     left: -35px;
   }
   .introduction-section__title {
-    margin-top: 20px;
+    margin-top: 50px;
     margin-left: 10%;
     margin-right: 10%;
+  }
+  .introduction-section__title p {
+    font-size: 13px;
   }
   .summit-card .card-content h1.card-title {
     font-size: 16px;
