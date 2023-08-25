@@ -7,33 +7,51 @@
   height: calc(100vh - $navbar-height);
   background-color: $navbar-color;
   display: flex;
+  flex-direction: column;
   visibility: visible;
   justify-content: center;
   align-items: center;
   z-index: 49; //On top of all elements except navbar
   transition: opacity 0.5s ease-out, visibility  0.5s;
   opacity: 1; 
+  color: $highlight-color;
 }
 
-.loading-spinner {
-  border: 4px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  border-top: 4px solid $highlight-color;
-  width: 50px;
-  height: 50px;
-  animation: spin 1s linear infinite;
+.loading-screen-text{
+  margin-left: 15px;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+.loading-picture-container{
+  img{
+    color: $highlight-color;
+    margin: 30px;
+  }
+
+  div{
+    position: absolute;
+    height:180px;
+    width:180px;
+    z-index: 51;
+    //background-color: red;
+    background-color: $navbar-color;
+    animation: show 1.3s linear infinite;
+  }
 }
 
+@keyframes show{
+  0% { transform: translateX(0px)}
+  100% { transform: translateX(250px)}
+}
 
 @media(max-width: 900px){
   .loading-screen{
     top: $navbar-height__900px;
     height: calc(100vh - $navbar-height__900px);
+  }
+  .loading-picture-container{
+    img{
+      transform: scale(0.8);
+    }
   }
   
 }
@@ -42,6 +60,8 @@
   .loading-screen{
     top: $navbar-height__500px;
     height: calc(100vh - $navbar-height__500px);
+    div{
+      transform: scale(0.6);
+    }
   }
-
 }
