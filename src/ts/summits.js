@@ -136,6 +136,9 @@ function OrderSummitsByHeightAsc(summits) {
  */
 function OrderSummitsByDateDesc(summits) {
     return summits.sort((a, b) => {
+        if (a.summitted && !b.summitted) {
+            return -1;
+        }
         if (a.summitDate > b.summitDate) {
             return -1;
         }
@@ -154,6 +157,9 @@ function OrderSummitsByDateDesc(summits) {
  */
 function OrderSummitsByDateAsc(summits) {
     return summits.sort((a, b) => {
+        if (a.summitted && !b.summitted) {
+            return -1;
+        }
         if (a.summitDate < b.summitDate) {
             return -1;
         }
