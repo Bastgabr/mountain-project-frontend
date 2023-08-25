@@ -52,7 +52,7 @@
     video{
       opacity: 0.33;
       position: absolute;
-      left: -40px;
+      left: -50px;
       transform: skewX(11deg);
       transition: opacity 200ms ease-in;
       &:hover{
@@ -71,7 +71,6 @@
 
 
 .summit-card{
-  //height: $summit-card-height;
   min-width: 700px;
   outline: solid 1px $navbar-color;
   margin-left: $summit-card-maring-horizontal;
@@ -83,15 +82,11 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  opacity: 0.80;
   border-bottom: solid 3px $highlight-color;
-  //box-shadow: 5px 5px 5px $highlight-color-shadow;
-
-  transition: transform 200ms ease-in, opacity 200ms ease-in, box-shadow 200ms ease-in;
+  transition: transform 100ms ease-in, box-shadow 100ms ease-in;
 
   &:hover{
-    transform: scale(1.05);
-    opacity: 1;
+    transform: translateY(-7px);
     box-shadow: 0 5px 5px $highlight-color-shadow;
   }
 
@@ -216,10 +211,10 @@
 
 .summit-selector{
   display: flex;
-
   flex-direction: row;
   margin-left: 50px;
   margin-bottom: 30px;
+
   select{
     margin-left: 8px;
     margin-right: 8px;
@@ -232,6 +227,7 @@
     option{
       color: $text-color;
     }
+    outline: none;
   }
   p{
     display: flex;
@@ -253,12 +249,10 @@
       margin-right: 15px;
     }
   }
+  .button-reset-filter{
+    display: none;
+  }  
 }
-
-.button-reset-filter{
-  visibility: hidden;
-}
-
 
 
 //Responsiveness
@@ -268,10 +262,15 @@
     height: 300px;
   }
 
-  .gallery-item video{
-    width: 300px;
-    height: 350px;
+  .introduction-section__gallery{
+    .gallery-item{
+      video{
+        width: 350px;
+        height: 300px;
+      }
+    } 
   }
+
 
   .gallery-item.extra-1{
     display: none;
@@ -343,6 +342,14 @@
     transform: rotate(45deg) scale(0.5);
   }
 
+  .summit-selector{
+    margin-left: 20px;
+    font-size: 13px;
+    select{
+      font-size: 13px;
+    }
+  }
+
   .summit-card .card-content {
     h1.card-title{
       font-size: 16px;
@@ -366,6 +373,20 @@
     margin-top: 20px;
     margin-left: 10%;
     margin-right: 10%;
+  }
+
+  .summit-card .card-content {
+    h1.card-title{
+      font-size: 16px;
+      height: 30px;
+    } 
+    .card-info{
+      font-size: 10px;
+
+      .card-infoline p.tag{
+        min-width: 140px;
+      }
+    }
   }
 
 }

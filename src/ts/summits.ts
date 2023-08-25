@@ -75,10 +75,10 @@ $('#peaks-section__selector select').on('change', function() {
 
 function HandleResetFilterVisibility(selectorValue:number,orderValue:number){
   if(selectorValue != 0 || orderValue != 0){
-    $('#button-reset-filter').css({"visibility":"visible"});
+    $('#button-reset-filter').css({"display":"flex"});
   }
   else{
-    $('#button-reset-filter').css({"visibility":"hidden"});
+    $('#button-reset-filter').css({"display":"none"});
   }
 }
 
@@ -86,14 +86,18 @@ $('#button-reset-filter').on('click', function() {
   // Reset the selected index programmatically
   $('#peaks-section__show-select').prop('selectedIndex', 0);
   $('#peaks-section__order-select').prop('selectedIndex', 0);
-  $('#button-reset-filter').css({"visibility":"hidden"});
+  $('#button-reset-filter').css({"display":"none"});
   $('#peaks-section__content').html('');
   for(var i = 0; i< summitInfoArray.length;i++){
     CreateCard(summitInfoArray[i].ranking, summitInfoArray[i], '#peaks-section__content');
   }
 });
 
-
+/**
+ * Creates the HTML content of the Latest summit section. 
+ * The given number summitsCount will determine the amount of summits to display
+ * @param summitsCount 
+ */
 function ShowLatestSummits(summitsCount:number){
   var achievedSummit = summitInfoArray.filter(item => item.summitted);
 
@@ -107,6 +111,11 @@ function ShowLatestSummits(summitsCount:number){
   }
 }
 
+/**
+ * Orders the given array of summits by descending height
+ * @param summits input array of summits
+ * @returns ordered array of summits
+ */
 function OrderSummitsByHeightDesc(summits : SummitInfo[]) : SummitInfo[]{
   return summits.sort((a, b) => {
     if (a.elevation > b.elevation) {
@@ -119,6 +128,11 @@ function OrderSummitsByHeightDesc(summits : SummitInfo[]) : SummitInfo[]{
   });
 }
 
+/**
+ * Orders the given array of summits by ascending height
+ * @param summits input array of summits
+ * @returns ordered array of summits
+ */
 function OrderSummitsByHeightAsc(summits : SummitInfo[]) : SummitInfo[]{
   return summits.sort((a, b) => {
     if (a.elevation < b.elevation) {
@@ -131,8 +145,16 @@ function OrderSummitsByHeightAsc(summits : SummitInfo[]) : SummitInfo[]{
   });
 }
 
+/**
+ * Orders the given array of summits by descending date
+ * @param summits input array of summits
+ * @returns ordered array of summits
+ */
 function OrderSummitsByDateDesc(summits : SummitInfo[]) : SummitInfo[]{
   return summits.sort((a, b) => {
+    if(a.summitted && !b.summitted){
+      return -1;
+    }
     if (a.summitDate > b.summitDate) {
       return -1;
     } else if (a.summitDate < b.summitDate) {
@@ -143,8 +165,17 @@ function OrderSummitsByDateDesc(summits : SummitInfo[]) : SummitInfo[]{
   });
 }
 
+/**
+ * Orders the given array of summits by ascending date
+ * @param summits input array of summits
+ * @returns ordered array of summits
+ */
 function OrderSummitsByDateAsc(summits : SummitInfo[]) : SummitInfo[]{
   return summits.sort((a, b) => {
+    
+    if(a.summitted && !b.summitted){
+      return -1;
+    }
     if (a.summitDate < b.summitDate) {
       return -1;
     } else if (a.summitDate > b.summitDate) {
@@ -207,7 +238,7 @@ function CreateCard(index: number, summitInfo: SummitInfo, parentDivId: string){
         </div>
         <div id="summit-card-`+ index +`-dateline" class="card-infoline">
           <p class="tag">Date</p>
-          <p class="value">`+ summitInfo.summitDate.toLocaleDateString() +`</p>
+          <p class="value">`+ summitInfo.GetSummitDate() +`</p>
         </div>
         <div id="summit-card-`+ index +`-attemps" class="card-infoline">
           <p class="tag">Number of attempts</p>
@@ -239,61 +270,7 @@ function CreateCard(index: number, summitInfo: SummitInfo, parentDivId: string){
     $("#summit-card-"+ index).addClass("summited");
   }
 
-  LoadCardMap("summit-card-"+ index +"-map",convertToLat(summitInfo.lat ), convertToLong(summitInfo.long));
-}
-
-function dmsToDecimal(degrees: number, minutes: number, seconds: number, direction: string): number {
-  let decimalDegrees = degrees + (minutes / 60) + (seconds / 3600);
-
-  if (direction === "S" || direction === "W") {
-    decimalDegrees = -decimalDegrees;
-  }
-
-  return decimalDegrees;
-}
-
-function convertToLat(latDMS: string): number {
-  // Parse the latitude DMS string into degrees, minutes, seconds, and direction
-  const matches = latDMS.match(/(\d+)°(\d+)′(\d+)″([NSEW])/);
-
-  if (matches) {
-    const degrees = parseInt(matches[1], 10);
-    const minutes = parseInt(matches[2], 10);
-    const seconds = parseInt(matches[3], 10);
-    const direction = matches[4];
-    
-    return dmsToDecimal(degrees, minutes, seconds, direction);
-  } else {
-    throw new Error("Invalid latitude DMS format");
-  }
-}
-
-function convertToLong(longDMS: string): number {
-  // Parse the longitude DMS string into degrees, minutes, seconds, and direction
-  const matches = longDMS.match(/(\d+)°(\d+)′(\d+)″([NSEW])/);
-
-  if (matches) {
-    const degrees = parseInt(matches[1], 10);
-    const minutes = parseInt(matches[2], 10);
-    const seconds = parseInt(matches[3], 10);
-    const direction = matches[4];
-    
-    return dmsToDecimal(degrees, minutes, seconds, direction);
-  } else {
-    throw new Error("Invalid longitude DMS format");
-  }
-}
-
-
-function SortBy(){
-  //var result = $('div').sort(function (a, b) {
-  //
-  //  var contentA =parseInt( $(a).data('sort'));
-  //  var contentB =parseInt( $(b).data('sort'));
-  //  return (contentA < contentB) ? -1 : (contentA > contentB) ? 1 : 0;
-  //});
-  //
-  //$('#peaks-section__content').html(result);
+  LoadCardMap("summit-card-"+ index +"-map", summitInfo.GetFormattedLatitude(), summitInfo.GetFormattedLongitude());
 }
 
 /**
@@ -323,7 +300,7 @@ function AddCountryToCard(countyCode:string, parentDiv: string){
  * @param countryCode country code (containing only one code)
  * @returns the full name of the country
  */
-function CountryCodeToCountryName(countryCode:string){
+function CountryCodeToCountryName(countryCode:string): string {
   let trimmedCode = countryCode.trim().toLowerCase();
   if(trimmedCode === 'ch') return 'Switzerland'
   if(trimmedCode === 'fr') return 'France'
@@ -349,8 +326,13 @@ function LoadCardMap(mapKey:string, lat: number, long: number){
 
   map.setView(target, 9);
 
+  var markerIcon = L.icon({ iconUrl: "../../src/images/yellow-pin.png",
+    iconSize:     [30, 30], // size of the icon
+    iconAnchor:   [15, 30],
+  });
+
   // Place a marker on the same location.
-  L.marker(target).addTo(map);
+  L.marker(target, {icon: markerIcon}).addTo(map);
   map.dragging.disable();
   map.touchZoom.disable();
   map.doubleClickZoom.disable();
@@ -401,6 +383,95 @@ class SummitInfo{
   public summitted:boolean = false;
   public summitDate:Date = null;
   public attempts:number = 0;
+
+  /**
+   * Return date in format dd/mm/yyyy
+   * @returns date as string
+   */
+  public GetSummitDate() : string {
+    return  this.summitDate.getDate() +
+    "/" +
+    (this.summitDate.getMonth() + 1) +
+    "/" +
+    +this.summitDate.getFullYear();
+  } 
+
+  /**
+   * Returns the Latitude in float format
+   * @returns Latitude in float format
+   */
+  public GetFormattedLatitude() : number{
+    return this.ConvertToLat(this.lat);
+  }
+
+  /**
+   * Returns the Longitude in float format 
+   * @returns Longitude in float format
+   */
+  public GetFormattedLongitude() : number{
+    return this.ConvertToLong(this.long);
+  }
+
+  /**
+  * Converts the given DMS coordinates into floating coordinates
+  * @param degrees number of degrees
+  * @param minutes number of minutes
+  * @param seconds number of seconds
+  * @param direction direction letter N S E W
+  * @returns converted coordinate (float)
+  */
+  private DmsToDecimal(degrees: number, minutes: number, seconds: number, direction: string): number {
+    let decimalDegrees = degrees + (minutes / 60) + (seconds / 3600);
+
+    if (direction === "S" || direction === "W") {
+      decimalDegrees = -decimalDegrees;
+    }
+
+    return decimalDegrees;
+  }
+
+  /**
+   * Converts the latitude DMS string into a floating point representation
+   * @param latDMS latitude in DMS format
+   * @returns latitude in float format
+   */
+  private ConvertToLat(latDMS: string): number {
+    // Parse the latitude DMS string into degrees, minutes, seconds, and direction
+    const matches = latDMS.match(/(\d+)°(\d+)′(\d+)″([NSEW])/);
+
+    if (matches) {
+      const degrees = parseInt(matches[1], 10);
+      const minutes = parseInt(matches[2], 10);
+      const seconds = parseInt(matches[3], 10);
+      const direction = matches[4];
+      
+      return this.DmsToDecimal(degrees, minutes, seconds, direction);
+    } else {
+      throw new Error("Invalid latitude DMS format");
+    }
+  }
+
+  /**
+   * Converts the longitude DMS string into a floating point representation
+   * @param longDMS longitude in DMS format
+   * @returns longitude in float format
+   */
+  private ConvertToLong(longDMS: string): number {
+    // Parse the longitude DMS string into degrees, minutes, seconds, and direction
+    const matches = longDMS.match(/(\d+)°(\d+)′(\d+)″([NSEW])/);
+
+    if (matches) {
+      const degrees = parseInt(matches[1], 10);
+      const minutes = parseInt(matches[2], 10);
+      const seconds = parseInt(matches[3], 10);
+      const direction = matches[4];
+      
+      return this.DmsToDecimal(degrees, minutes, seconds, direction);
+    } else {
+      throw new Error("Invalid longitude DMS format");
+    }
+  }
+
 }
 
 enum PeakSelection{

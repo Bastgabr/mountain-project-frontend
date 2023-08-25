@@ -14,7 +14,7 @@
 .nav-menu {
   display: flex;
   padding-left: 10%;
-  padding-right: calc(10% + 62px);
+  margin-right: calc(10% + 62px);
   justify-content: space-evenly;
   align-items: center;
   width: 100vw;
@@ -84,7 +84,7 @@ div.brackets-animation :hover:after
     align-items: center;
     justify-content: center;
     height: $navbar-lang-size + 10px;
-    width: 40px;
+    width: $navbar-lang-size + 10px;
 
     img{
       border: 0.1px solid $navbar-color;
@@ -131,11 +131,11 @@ div.brackets-animation :hover:after
     bottom: 40px;
 
     .langage-option{
-      width: 30px;
-      height: 30px;
+      width: $navbar-lang-size__900px;
+      height: $navbar-lang-size__900px;
       img{
-        width: 15px;
-        height: 15px;
+        width: $navbar-lang-size-img__900px;
+        height: $navbar-lang-size-img__900px;
       }
     }
   }
@@ -148,7 +148,7 @@ div.brackets-animation :hover:after
 
   .nav-menu{
     padding-left: 0;
-    padding-right: 50px;
+    margin-right: 50px;
   }
 
   .nav-menu a{
@@ -164,13 +164,14 @@ div.brackets-animation :hover:after
 
   .langage-select-menu{
     bottom: 30px;
-
+    right:10px;
     .langage-option{
-      width: 20px;
-      height: 20px;
+      width: $navbar-lang-size__500px;
+      height: $navbar-lang-size__500px;
+
       img{
-        width: 10px;
-        height: 10px;
+        width: $navbar-lang-size-img__500px;
+        height: $navbar-lang-size-img__500px;
       }
     }
   }
