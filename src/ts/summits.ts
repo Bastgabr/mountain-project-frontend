@@ -231,7 +231,7 @@ function CreateCard(index: number, summitInfo: SummitInfo, parentDivId: string){
         </div>
         <div id="summit-card-`+ index +`-dateline" class="card-infoline">
           <p class="tag">Date</p>
-          <p class="value">`+ summitInfo.summitDate.toLocaleDateString() +`</p>
+          <p class="value">`+ summitInfo.GetSummitDate() +`</p>
         </div>
         <div id="summit-card-`+ index +`-attemps" class="card-infoline">
           <p class="tag">Number of attempts</p>
@@ -376,6 +376,18 @@ class SummitInfo{
   public summitted:boolean = false;
   public summitDate:Date = null;
   public attempts:number = 0;
+
+  /**
+   * Return date in format dd/mm/yyyy
+   * @returns date as string
+   */
+  public GetSummitDate() : string {
+    return  this.summitDate.getDate() +
+    "/" +
+    (this.summitDate.getMonth() + 1) +
+    "/" +
+    +this.summitDate.getFullYear();
+  } 
 
   /**
    * Returns the Latitude in float format
