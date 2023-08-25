@@ -557,7 +557,7 @@ div.brackets-animation :hover:after {
   flex-direction: column;
   position: relative;
   border-bottom: solid 3px rgb(255, 217, 0);
-  transition: transform 100ms ease-in, box-shadow 200ms ease-in;
+  transition: transform 100ms ease-in, box-shadow 100ms ease-in;
 }
 .summit-card:hover {
   transform: translateY(-7px);
