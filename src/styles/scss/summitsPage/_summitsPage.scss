@@ -216,7 +216,7 @@
 
 .summit-selector{
   display: flex;
-  height: 35px;
+
   flex-direction: row;
   margin-left: 50px;
   margin-bottom: 30px;
@@ -242,8 +242,16 @@
 
 .peaks-section__selector{
   position: relative;
-  select{
-    margin-right: 15px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  div{
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: row;
+    select{
+      margin-right: 15px;
+    }
   }
 }
 

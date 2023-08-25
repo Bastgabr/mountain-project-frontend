@@ -17,6 +17,7 @@ $('#latest-section__select').on('change', function () {
     ShowLatestSummits(selectedIndex);
 });
 $('#peaks-section__selector select').on('change', function () {
+    passive: false;
     //Retrieve selector values
     var selectorValue = Number($('#peaks-section__show-select').find(":selected").val());
     var orderValue = Number($('#peaks-section__order-select').find(":selected").val());

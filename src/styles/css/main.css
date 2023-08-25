@@ -674,7 +674,6 @@ div.brackets-animation :hover:after {
 
 .summit-selector {
   display: flex;
-  height: 35px;
   flex-direction: row;
   margin-left: 50px;
   margin-bottom: 30px;
@@ -699,8 +698,16 @@ div.brackets-animation :hover:after {
 
 .peaks-section__selector {
   position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
-.peaks-section__selector select {
+.peaks-section__selector div {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: row;
+}
+.peaks-section__selector div select {
   margin-right: 15px;
 }
 

@@ -24,6 +24,7 @@ $('#latest-section__select').on('change', function() {
 
 
 $('#peaks-section__selector select').on('change', function() {
+  passive: false 
   //Retrieve selector values
   var selectorValue :number = Number($('#peaks-section__show-select').find(":selected").val());
   var orderValue :number =  Number($('#peaks-section__order-select').find(":selected").val());
