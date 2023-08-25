@@ -19,7 +19,7 @@
 .nav-menu {
   display: flex;
   padding-left: 10%;
-  padding-right: calc(10% + 62px);
+  margin-right: calc(10% + 62px);
   justify-content: space-evenly;
   align-items: center;
   width: 100vw;
@@ -82,14 +82,14 @@ div.brackets-animation :hover:after {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 35px;
-  width: 40px;
+  height: 30px;
+  width: 30px;
 }
 .langage-select-menu .langage-option img {
   border: 0.1px solid #1A1E23;
   border-radius: 25px;
-  height: 25px;
-  width: 25px;
+  height: 20px;
+  width: 20px;
 }
 .langage-select-menu .langage-option:hover {
   background: rgb(255, 217, 0);
@@ -133,7 +133,7 @@ div.brackets-animation :hover:after {
   }
   .nav-menu {
     padding-left: 0;
-    padding-right: 50px;
+    margin-right: 50px;
   }
   .nav-menu a {
     font: 13px Raleway;
@@ -145,6 +145,7 @@ div.brackets-animation :hover:after {
   }
   .langage-select-menu {
     bottom: 30px;
+    right: 10px;
   }
   .langage-select-menu .langage-option {
     width: 20px;
@@ -803,6 +804,16 @@ div.brackets-animation :hover:after {
     margin-top: 20px;
     margin-left: 10%;
     margin-right: 10%;
+  }
+  .summit-card .card-content h1.card-title {
+    font-size: 16px;
+    height: 30px;
+  }
+  .summit-card .card-content .card-info {
+    font-size: 10px;
+  }
+  .summit-card .card-content .card-info .card-infoline p.tag {
+    min-width: 140px;
   }
 }
 a {

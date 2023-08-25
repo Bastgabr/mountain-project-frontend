@@ -375,5 +375,19 @@
     margin-right: 10%;
   }
 
+  .summit-card .card-content {
+    h1.card-title{
+      font-size: 16px;
+      height: 30px;
+    } 
+    .card-info{
+      font-size: 10px;
+
+      .card-infoline p.tag{
+        min-width: 140px;
+      }
+    }
+  }
+
 }
 
