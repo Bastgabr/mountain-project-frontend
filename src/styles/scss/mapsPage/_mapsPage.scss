@@ -1,0 +1,63 @@
+.section.maps-introduction{
+  padding-top: 0; // Reset
+}
+
+.section.maps-introduction 
+.introduction-section__content{
+  display: flex;
+  overflow: hidden;
+  .image-container{
+    height: 100%;
+    width: 100%;
+    img{
+
+      position: relative;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      opacity: 0.5;
+      object-position:  60% 60%;
+    }
+
+  }
+  h1.maps-title{
+    display: flex;
+    position: absolute;
+    z-index: 1;
+    color: white;
+    font-size: 100px;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+}
+
+.section.presentation-section{
+  display: flex;
+  flex-direction: row;
+
+  height: 300px;
+
+  .presentation-left{
+    //height: 100%;
+    width: 35%;
+    background-color: blue;
+  }
+
+  .presentation-right{
+    height: 300px;
+    width: 65%;
+    //background-color: purple;
+  }
+
+
+}
+
+
+.test{
+  display: flex;
+  width: 100vw;
+  height: 1500px;
+  background-color: wheat;
+}
