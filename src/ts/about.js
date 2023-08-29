@@ -1,3 +1,4 @@
+import * as Common from './common.js';
 window.onload = function () {
     //Hide loading screen
     Common.HideLoadingScreen();
