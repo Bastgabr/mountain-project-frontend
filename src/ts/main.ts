@@ -17,10 +17,7 @@ $("#navbar-menu").on("click","#return-button", function () {
 
 
 window.onload = function() {
-  $('#loading-screen').css(
-    {"opacity":"0",
-    "visibility":"hidden",
-    });
+  Common.HideLoadingScreen();
 };
 
 

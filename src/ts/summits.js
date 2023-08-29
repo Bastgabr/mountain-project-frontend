@@ -7,9 +7,7 @@ window.onload = function () {
         Create82PeaksCards(json);
         ShowLatestSummits(1);
         //Hide loading screen
-        $('#loading-screen').css({ "opacity": "0",
-            "visibility": "hidden",
-        });
+        Common.HideLoadingScreen();
     });
 };
 $('#latest-section__select').on('change', function () {
@@ -39,19 +37,19 @@ $('#peaks-section__selector select').on('change', function () {
     }
     switch (orderValue) {
         case PeakOrdering.HeightDesc: {
-            summitsToDisplay = OrderSummitsByHeightDesc(summitsToDisplay);
+            summitsToDisplay = Common.OrderSummitsByHeightDesc(summitsToDisplay);
             break;
         }
         case PeakOrdering.HeightAsc: {
-            summitsToDisplay = OrderSummitsByHeightAsc(summitsToDisplay);
+            summitsToDisplay = Common.OrderSummitsByHeightAsc(summitsToDisplay);
             break;
         }
         case PeakOrdering.DateDesc: {
-            summitsToDisplay = OrderSummitsByDateDesc(summitsToDisplay);
+            summitsToDisplay = Common.OrderSummitsByDateDesc(summitsToDisplay);
             break;
         }
         case PeakOrdering.DateAsc: {
-            summitsToDisplay = OrderSummitsByDateAsc(summitsToDisplay);
+            summitsToDisplay = Common.OrderSummitsByDateAsc(summitsToDisplay);
             break;
         }
     }
@@ -86,7 +84,7 @@ $('#button-reset-filter').on('click', function () {
 function ShowLatestSummits(summitsCount) {
     var achievedSummit = summitInfoArray.filter(item => item.summitted);
     //Sort by latest date
-    achievedSummit = OrderSummitsByDateDesc(achievedSummit);
+    achievedSummit = Common.OrderSummitsByDateDesc(achievedSummit);
     var selectedSummits;
     $('#latest-section__content').html('');
     for (var i = 0; i < summitsCount; i++) {
@@ -94,104 +92,12 @@ function ShowLatestSummits(summitsCount) {
     }
 }
 /**
- * Orders the given array of summits by descending height
- * @param summits input array of summits
- * @returns ordered array of summits
- */
-function OrderSummitsByHeightDesc(summits) {
-    return summits.sort((a, b) => {
-        if (a.elevation > b.elevation) {
-            return -1;
-        }
-        else if (a.elevation < b.elevation) {
-            return 1;
-        }
-        else {
-            return 0;
-        }
-    });
-}
-/**
- * Orders the given array of summits by ascending height
- * @param summits input array of summits
- * @returns ordered array of summits
- */
-function OrderSummitsByHeightAsc(summits) {
-    return summits.sort((a, b) => {
-        if (a.elevation < b.elevation) {
-            return -1;
-        }
-        else if (a.elevation > b.elevation) {
-            return 1;
-        }
-        else {
-            return 0;
-        }
-    });
-}
-/**
- * Orders the given array of summits by descending date
- * @param summits input array of summits
- * @returns ordered array of summits
- */
-function OrderSummitsByDateDesc(summits) {
-    return summits.sort((a, b) => {
-        if (a.summitted && !b.summitted) {
-            return -1;
-        }
-        if (a.summitDate > b.summitDate) {
-            return -1;
-        }
-        else if (a.summitDate < b.summitDate) {
-            return 1;
-        }
-        else {
-            return 0;
-        }
-    });
-}
-/**
- * Orders the given array of summits by ascending date
- * @param summits input array of summits
- * @returns ordered array of summits
- */
-function OrderSummitsByDateAsc(summits) {
-    return summits.sort((a, b) => {
-        if (a.summitted && !b.summitted) {
-            return -1;
-        }
-        if (a.summitDate < b.summitDate) {
-            return -1;
-        }
-        else if (a.summitDate > b.summitDate) {
-            return 1;
-        }
-        else {
-            return 0;
-        }
-    });
-}
-/**
- * Create a card for every 82 items located in the JSON file
+ * Creates a card for every 82 items located in the JSON file
  * @param json string content of the JSON file
  */
 function Create82PeaksCards(json) {
     // Deserialize the JSON data into an array of SummitInfo objects
-    if (summitInfoArray == undefined || summitInfoArray.length != 82)
-        summitInfoArray = json.map((item) => {
-            const summitInfo = new SummitInfo();
-            summitInfo.ranking = item.ranking;
-            summitInfo.elevation = item.elevation;
-            summitInfo.name = item.name;
-            summitInfo.lat = item.lat;
-            summitInfo.long = item.long;
-            summitInfo.location = item.location;
-            summitInfo.countryCode = item.countryCode;
-            summitInfo.summitted = item.summitted;
-            summitInfo.summitDate = new Date(item.summitDate);
-            summitInfo.attempts = item.attempts;
-            return summitInfo;
-        });
+    summitInfoArray = Common.ExtractSummitInfos(json);
     for (var i = 0; i < summitInfoArray.length; i++) {
         CreateCard(summitInfoArray[i].ranking, summitInfoArray[i], '#peaks-section__content');
     }
@@ -262,29 +168,15 @@ function AddCountryToCard(countyCode, parentDiv) {
     if (codes.length == 1) {
         $(parentDiv).append(`
     <p class="tag">Coutry</p>
-    <p class="value">` + CountryCodeToCountryName(codes[0]) + `</p>
+    <p class="value">` + Common.CountryCodeToCountryName(codes[0]) + `</p>
     `);
     }
     else {
         $(parentDiv).append(`
     <p class="tag">Coutries</p>
-    <p class="value">` + CountryCodeToCountryName(codes[0]) + ` & `
-            + CountryCodeToCountryName(codes[1]) + `</p>`);
+    <p class="value">` + Common.CountryCodeToCountryName(codes[0]) + ` & `
+            + Common.CountryCodeToCountryName(codes[1]) + `</p>`);
     }
-}
-/**
- *
- * @param countryCode country code (containing only one code)
- * @returns the full name of the country
- */
-function CountryCodeToCountryName(countryCode) {
-    let trimmedCode = countryCode.trim().toLowerCase();
-    if (trimmedCode === 'ch')
-        return 'Switzerland';
-    if (trimmedCode === 'fr')
-        return 'France';
-    if (trimmedCode === 'it')
-        return 'Italy';
 }
 /**
  * Load the map for the given div map container.
@@ -339,98 +231,6 @@ function ToCSSFlagClass(countryCode) {
         retString += spl[i].toLowerCase() + " ";
     }
     return retString;
-}
-class SummitInfo {
-    constructor() {
-        this.ranking = null;
-        this.name = null;
-        this.elevation = null;
-        this.lat = null;
-        this.long = null;
-        this.location = null;
-        this.countryCode = null;
-        this.summitted = false;
-        this.summitDate = null;
-        this.attempts = 0;
-    }
-    /**
-     * Return date in format dd/mm/yyyy
-     * @returns date as string
-     */
-    GetSummitDate() {
-        return this.summitDate.getDate() +
-            "/" +
-            (this.summitDate.getMonth() + 1) +
-            "/" +
-            +this.summitDate.getFullYear();
-    }
-    /**
-     * Returns the Latitude in float format
-     * @returns Latitude in float format
-     */
-    GetFormattedLatitude() {
-        return this.ConvertToLat(this.lat);
-    }
-    /**
-     * Returns the Longitude in float format
-     * @returns Longitude in float format
-     */
-    GetFormattedLongitude() {
-        return this.ConvertToLong(this.long);
-    }
-    /**
-    * Converts the given DMS coordinates into floating coordinates
-    * @param degrees number of degrees
-    * @param minutes number of minutes
-    * @param seconds number of seconds
-    * @param direction direction letter N S E W
-    * @returns converted coordinate (float)
-    */
-    DmsToDecimal(degrees, minutes, seconds, direction) {
-        let decimalDegrees = degrees + (minutes / 60) + (seconds / 3600);
-        if (direction === "S" || direction === "W") {
-            decimalDegrees = -decimalDegrees;
-        }
-        return decimalDegrees;
-    }
-    /**
-     * Converts the latitude DMS string into a floating point representation
-     * @param latDMS latitude in DMS format
-     * @returns latitude in float format
-     */
-    ConvertToLat(latDMS) {
-        // Parse the latitude DMS string into degrees, minutes, seconds, and direction
-        const matches = latDMS.match(/(\d+)°(\d+)′(\d+)″([NSEW])/);
-        if (matches) {
-            const degrees = parseInt(matches[1], 10);
-            const minutes = parseInt(matches[2], 10);
-            const seconds = parseInt(matches[3], 10);
-            const direction = matches[4];
-            return this.DmsToDecimal(degrees, minutes, seconds, direction);
-        }
-        else {
-            throw new Error("Invalid latitude DMS format");
-        }
-    }
-    /**
-     * Converts the longitude DMS string into a floating point representation
-     * @param longDMS longitude in DMS format
-     * @returns longitude in float format
-     */
-    ConvertToLong(longDMS) {
-        // Parse the longitude DMS string into degrees, minutes, seconds, and direction
-        const matches = longDMS.match(/(\d+)°(\d+)′(\d+)″([NSEW])/);
-        if (matches) {
-            const degrees = parseInt(matches[1], 10);
-            const minutes = parseInt(matches[2], 10);
-            const seconds = parseInt(matches[3], 10);
-            const direction = matches[4];
-            return this.DmsToDecimal(degrees, minutes, seconds, direction);
-        }
-        else {
-            throw new Error("Invalid longitude DMS format");
-        }
-    }
 }
 var PeakSelection;
 (function (PeakSelection) {

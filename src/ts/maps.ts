@@ -1,6 +1,15 @@
+var summitInfoArray: Common.SummitInfo[];
+
 window.onload = function() {
 
-  loadMap("presentation-map", 45, 6);
+  fetch('../json/summits.json')
+    .then((response) => response.json())
+    .then((json) => {
+      summitInfoArray = Common.ExtractSummitInfos(json);
+      LoadGeneralMap("presentation-map", summitInfoArray);
+    });
+
+    
   //Hide loading screen
   $('#loading-screen').css(
     {"opacity":"0",
@@ -10,32 +19,46 @@ window.onload = function() {
 
 
 
-
-
-function loadMap(mapKey:string, lat: number, long: number){
+function LoadGeneralMap(mapKey:string, summitInfo: Common.SummitInfo[]){
   // Create Leaflet map on map element.
   var map = L.map(mapKey, { zoomControl: false });
 
   // Add OSM tile layer to the Leaflet map.
-  L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
+  //L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
+  
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+}).addTo(map);
 
   // Target's GPS coordinates.
-  var target = L.latLng(lat, long);
+  var target = L.latLng(45, 6);
+  map.setView(target, 6);
 
-  map.setView(target, 9);
 
   var markerIcon = L.icon({ iconUrl: "../../src/images/yellow-pin.png",
     iconSize:     [30, 30], // size of the icon
     iconAnchor:   [15, 30],
   });
 
-  // Place a marker on the same location.
-  L.marker(target, {icon: markerIcon}).addTo(map);
-  map.dragging.disable();
-  map.touchZoom.disable();
-  map.doubleClickZoom.disable();
-  map.scrollWheelZoom.disable();
-  map.boxZoom.disable();
-  map.keyboard.disable();
+
+
+
+  var markerGroup = new Array();
+  for(var i = 0; i < summitInfo.length; i++){
+    target = L.latLng(summitInfo[i].GetFormattedLatitude(), summitInfo[i].GetFormattedLongitude());
+    // Place a marker on the same location.
+    var marker = L.marker(target, {icon: markerIcon});
+    marker.addTo(map);
+    markerGroup.push(marker);
+  }
+  var group = L.featureGroup(markerGroup);
+  map.fitBounds(group.getBounds());
+  
+  //map.dragging.disable();
+  //map.touchZoom.disable();
+  //map.doubleClickZoom.disable();
+  //map.scrollWheelZoom.disable();
+  //map.boxZoom.disable();
+  //map.keyboard.disable();
   if (map.tap) map.tap.disable();
 }

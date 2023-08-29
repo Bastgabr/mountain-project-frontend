@@ -859,7 +859,6 @@ div.brackets-animation :hover:after {
 }
 .section.presentation-section .presentation-left {
   width: 35%;
-  background-color: blue;
 }
 .section.presentation-section .presentation-right {
   height: 300px;
@@ -870,7 +869,7 @@ div.brackets-animation :hover:after {
   display: flex;
   width: 100vw;
   height: 1500px;
-  background-color: wheat;
+  background-color: #1A1E23;
 }
 
 a {

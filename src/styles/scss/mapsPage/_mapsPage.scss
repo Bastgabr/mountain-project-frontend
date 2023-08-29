@@ -42,7 +42,7 @@
   .presentation-left{
     //height: 100%;
     width: 35%;
-    background-color: blue;
+    // background-color: blue;
   }
 
   .presentation-right{
@@ -56,5 +56,5 @@
   display: flex;
   width: 100vw;
   height: 1500px;
-  background-color: wheat;
+  background-color: $navbar-color;
 }
