@@ -1,3 +1,5 @@
+import * as Common from './common.js';
+
 // RETURN BUTTON Click
 $("#navbar-menu").on("click","#return-button", function () {
     //Scroll up
