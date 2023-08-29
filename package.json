@@ -1,4 +1,9 @@
 {
+  "name":"mountain",
+  "version": "1.0..0",
+  "main" : "src/html/index.js",
+  "author":"bgabriel",
+  "license": "MIT",
   "devDependencies": {
     "@types/google.maps": "^3.53.6",
     "@types/jquery": "^3.5.16",
