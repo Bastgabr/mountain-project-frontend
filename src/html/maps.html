@@ -29,19 +29,36 @@
       </div>
       <div class="loading-screen-text">Loading page...</div>
     </div>
-    <div id="introduction-section maps-introduction" class="section maps-introduction">
-      <div id="introduction-section__content" class="introduction-section__content">
-        <div id="introduction-image-container" class="image-container">
-          <img src="../images/arpette-2.jpg">
-        </div>
-        <h1 class="maps-title">Maps</h1>
-      </div>
-    </div>
     <div id="presentation-section" class="section presentation-section">
       <div class="presentation-left"></div>
       <div id="presentation-map" class="presentation-right"></div>
     </div>
-    <div class="test"></div>
+    <div id="search-results-container" class="search-results-container"></div>
+    <div class="map-bottom-nav-bar">
+      <div id="nav-mode-button" class="nav-mode-button disable">
+        <i class="fa-solid fa-lock"></i>
+      </div>
+      <div class="nav-search-container">
+        <div class="icon">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <input id="search-bar-input" type="text" class="input">
+      </div>
+      <div class="nav-summits-container">
+        <div id="left-arrow" class="nav-arrow left">
+          <div class="left-arrow"></div>
+        </div>
+        <div id="summit-area" class="summits-area">
+        </div>
+        <div id="right-arrow" class="nav-arrow">
+          <div class="right-arrow"></div>
+        </div>
+      </div>
+
+
+    </div>
+    <div id="selected-summit-info-card" class="selected-summit-info-card summit-card">
+    </div>
   </div>
   <script src="https://kit.fontawesome.com/e5c2287582.js" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
