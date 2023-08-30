@@ -10,7 +10,6 @@
     height: 100%;
     width: 100%;
     img{
-
       position: relative;
       height: 100%;
       width: 100%;
@@ -18,8 +17,8 @@
       opacity: 0.5;
       object-position:  60% 60%;
     }
-
   }
+  
   h1.maps-title{
     display: flex;
     position: absolute;
@@ -36,18 +35,18 @@
 .section.presentation-section{
   display: flex;
   flex-direction: row;
-
-  height: 300px;
+  padding: 0px;
+  height: calc(100vh - 500px - $navbar-height);
 
   .presentation-left{
     //height: 100%;
-    width: 35%;
+    width: 0%;
     // background-color: blue;
   }
 
   .presentation-right{
-    height: 300px;
-    width: 65%;
+    height: 100%;
+    width: 100%;
   }
 }
 
@@ -57,4 +56,8 @@
   width: 100vw;
   height: 1500px;
   background-color: $navbar-color;
+}
+
+.leaflet-tooltip {
+  font-family: Raleway;
 }

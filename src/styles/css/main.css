@@ -855,14 +855,15 @@ div.brackets-animation :hover:after {
 .section.presentation-section {
   display: flex;
   flex-direction: row;
-  height: 300px;
+  padding: 0px;
+  height: calc(100vh - 500px - 65px);
 }
 .section.presentation-section .presentation-left {
-  width: 35%;
+  width: 0%;
 }
 .section.presentation-section .presentation-right {
-  height: 300px;
-  width: 65%;
+  height: 100%;
+  width: 100%;
 }
 
 .test {
@@ -870,6 +871,10 @@ div.brackets-animation :hover:after {
   width: 100vw;
   height: 1500px;
   background-color: #1A1E23;
+}
+
+.leaflet-tooltip {
+  font-family: Raleway;
 }
 
 a {
