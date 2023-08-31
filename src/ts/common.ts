@@ -1,13 +1,10 @@
-namespace Common{
+namespace Common {
   /**
-   * Hides the loading screen. 
+   * Hides the loading screen.
    * Info: This method should be called after the complete page has been loaded
    */
   export function HideLoadingScreen() {
-    $('#loading-screen').css(
-      {"opacity":"0",
-      "visibility":"hidden",
-      });
+    $("#loading-screen").css({ opacity: "0", visibility: "hidden" });
   }
 
   /**
@@ -15,10 +12,10 @@ namespace Common{
    * @param json json file containing the summit information
    * @returns an array of summitInfo objects
    */
-  export function ExtractSummitInfos(json) : SummitInfo[] {
+  export function ExtractSummitInfos(json): SummitInfo[] {
     var summitInfoArray: SummitInfo[];
     // Deserialize the JSON data into an array of SummitInfo objects
-    if(summitInfoArray == undefined || summitInfoArray.length != 82)
+    if (summitInfoArray == undefined || summitInfoArray.length != 82)
       summitInfoArray = json.map((item) => {
         const summitInfo = new SummitInfo();
         summitInfo.ranking = item.ranking;
@@ -39,15 +36,15 @@ namespace Common{
   /**
    * Converts the given country code into the full country name
    * @param countryCode country code (containing only one code)
-   * @returns the full name of the country. If the country name 
+   * @returns the full name of the country. If the country name
    * is not supported, returns Undef
    */
-  export function CountryCodeToCountryName(countryCode:string): string {
+  export function CountryCodeToCountryName(countryCode: string): string {
     let trimmedCode = countryCode.trim().toLowerCase();
-    if(trimmedCode === 'ch') return 'Switzerland'
-    if(trimmedCode === 'fr') return 'France'
-    if(trimmedCode === 'it') return 'Italy'
-    return 'Undef.'
+    if (trimmedCode === "ch") return "Switzerland";
+    if (trimmedCode === "fr") return "France";
+    if (trimmedCode === "it") return "Italy";
+    return "Undef.";
   }
 
   /**
@@ -55,7 +52,9 @@ namespace Common{
    * @param summits input array of summits
    * @returns ordered array of summits
    */
-  export function OrderSummitsByHeightDesc(summits : SummitInfo[]) : SummitInfo[]{
+  export function OrderSummitsByHeightDesc(
+    summits: SummitInfo[]
+  ): SummitInfo[] {
     return summits.sort((a, b) => {
       if (a.elevation > b.elevation) {
         return -1;
@@ -72,7 +71,7 @@ namespace Common{
    * @param summits input array of summits
    * @returns ordered array of summits
    */
-  export function OrderSummitsByHeightAsc(summits : SummitInfo[]) : SummitInfo[]{
+  export function OrderSummitsByHeightAsc(summits: SummitInfo[]): SummitInfo[] {
     return summits.sort((a, b) => {
       if (a.elevation < b.elevation) {
         return -1;
@@ -89,9 +88,9 @@ namespace Common{
    * @param summits input array of summits
    * @returns ordered array of summits
    */
-  export function OrderSummitsByDateDesc(summits : SummitInfo[]) : SummitInfo[]{
+  export function OrderSummitsByDateDesc(summits: SummitInfo[]): SummitInfo[] {
     return summits.sort((a, b) => {
-      if(a.summitted && !b.summitted){
+      if (a.summitted && !b.summitted) {
         return -1;
       }
       if (a.summitDate > b.summitDate) {
@@ -109,10 +108,9 @@ namespace Common{
    * @param summits input array of summits
    * @returns ordered array of summits
    */
-  export function OrderSummitsByDateAsc(summits : SummitInfo[]) : SummitInfo[]{
+  export function OrderSummitsByDateAsc(summits: SummitInfo[]): SummitInfo[] {
     return summits.sort((a, b) => {
-      
-      if(a.summitted && !b.summitted){
+      if (a.summitted && !b.summitted) {
         return -1;
       }
       if (a.summitDate < b.summitDate) {
@@ -128,56 +126,76 @@ namespace Common{
   /**
    * Class containing all summit informations
    */
-  export class SummitInfo{
-    public ranking:number = null;
-    public name:string = null;
-    public elevation:string = null;
-    public lat:string = null;
-    public long:string = null;
-    public location:string = null;
-    public countryCode:string = null;
-    public summitted:boolean = false;
-    public summitDate:Date = null;
-    public attempts:number = 0;
+  export class SummitInfo {
+    public ranking: number = null;
+    public name: string = null;
+    public elevation: string = null;
+    public lat: string = null;
+    public long: string = null;
+    public location: string = null;
+    public countryCode: string = null;
+    public summitted: boolean = false;
+    public summitDate: Date = null;
+    public attempts: number = 0;
 
     /**
      * Return date in format dd/mm/yyyy
      * @returns date as string
      */
-    public GetSummitDate() : string {
-      return  this.summitDate.getDate() +
-      "/" +
-      (this.summitDate.getMonth() + 1) +
-      "/" +
-      +this.summitDate.getFullYear();
-    } 
+    public GetSummitDate(): string {
+      return (
+        this.summitDate.getDate() +
+        "/" +
+        (this.summitDate.getMonth() + 1) +
+        "/" +
+        +this.summitDate.getFullYear()
+      );
+    }
 
     /**
      * Returns the Latitude in float format
      * @returns Latitude in float format
      */
-    public GetFormattedLatitude() : number{
+    public GetFormattedLatitude(): number {
       return this.ConvertToLat(this.lat);
     }
 
     /**
-     * Returns the Longitude in float format 
+     * Returns the Longitude in float format
      * @returns Longitude in float format
      */
-    public GetFormattedLongitude() : number{
+    public GetFormattedLongitude(): number {
       return this.ConvertToLong(this.long);
     }
 
     /**
-    * Converts the given DMS coordinates into floating coordinates
-    * @param degrees number of degrees
-    * @param minutes number of minutes
-    * @param seconds number of seconds
-    * @param direction direction letter N S E W
-    * @returns converted coordinate (float)
-    */
-    private DmsToDecimal(degrees: number, minutes: number, seconds: number, direction: string): number {
-      let decimalDegrees = degrees + (minutes / 60) + (seconds / 3600);
+     * Returns a string containing the css classes to use to qualify the country
+     * @returns the css classes coressponding to the country code (space separated)
+     */
+    public GetCssFlagClasses(): string {
+      var spl = this.countryCode.split(",");
+      var retString = "";
+      for (var i = 0; i < spl.length; i++) {
+        retString += spl[i].toLowerCase() + " ";
+      }
+      return retString;
+    }
+
+    /**
+     * Converts the given DMS coordinates into floating coordinates
+     * @param degrees number of degrees
+     * @param minutes number of minutes
+     * @param seconds number of seconds
+     * @param direction direction letter N S E W
+     * @returns converted coordinate (float)
+     */
+    private DmsToDecimal(
+      degrees: number,
+      minutes: number,
+      seconds: number,
+      direction: string
+    ): number {
+      let decimalDegrees = degrees + minutes / 60 + seconds / 3600;
 
       if (direction === "S" || direction === "W") {
         decimalDegrees = -decimalDegrees;
@@ -200,7 +218,7 @@ namespace Common{
         const minutes = parseInt(matches[2], 10);
         const seconds = parseInt(matches[3], 10);
         const direction = matches[4];
-        
+
         return this.DmsToDecimal(degrees, minutes, seconds, direction);
       } else {
         throw new Error("Invalid latitude DMS format");
@@ -221,14 +239,11 @@ namespace Common{
         const minutes = parseInt(matches[2], 10);
         const seconds = parseInt(matches[3], 10);
         const direction = matches[4];
-        
+
         return this.DmsToDecimal(degrees, minutes, seconds, direction);
       } else {
         throw new Error("Invalid longitude DMS format");
       }
     }
-
   }
-
-    
 }
