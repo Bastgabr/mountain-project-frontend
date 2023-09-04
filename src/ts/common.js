@@ -1,13 +1,16 @@
 var Common;
 (function (Common) {
     /**
+     * Array containing all summit information
+     * This array is initialized at startup an then used
+     */
+    var SummitInfoArray;
+    /**
      * Hides the loading screen.
      * Info: This method should be called after the complete page has been loaded
      */
     function HideLoadingScreen() {
-        $('#loading-screen').css({ "opacity": "0",
-            "visibility": "hidden",
-        });
+        $("#loading-screen").css({ opacity: "0", visibility: "hidden" });
     }
     Common.HideLoadingScreen = HideLoadingScreen;
     /**
@@ -44,13 +47,13 @@ var Common;
      */
     function CountryCodeToCountryName(countryCode) {
         let trimmedCode = countryCode.trim().toLowerCase();
-        if (trimmedCode === 'ch')
-            return 'Switzerland';
-        if (trimmedCode === 'fr')
-            return 'France';
-        if (trimmedCode === 'it')
-            return 'Italy';
-        return 'Undef.';
+        if (trimmedCode === "ch")
+            return "Switzerland";
+        if (trimmedCode === "fr")
+            return "France";
+        if (trimmedCode === "it")
+            return "Italy";
+        return "Undef.";
     }
     Common.CountryCodeToCountryName = CountryCodeToCountryName;
     /**
@@ -156,11 +159,11 @@ var Common;
          * @returns date as string
          */
         GetSummitDate() {
-            return this.summitDate.getDate() +
+            return (this.summitDate.getDate() +
                 "/" +
                 (this.summitDate.getMonth() + 1) +
                 "/" +
-                +this.summitDate.getFullYear();
+                +this.summitDate.getFullYear());
         }
         /**
          * Returns the Latitude in float format
@@ -177,15 +180,27 @@ var Common;
             return this.ConvertToLong(this.long);
         }
         /**
-        * Converts the given DMS coordinates into floating coordinates
-        * @param degrees number of degrees
-        * @param minutes number of minutes
-        * @param seconds number of seconds
-        * @param direction direction letter N S E W
-        * @returns converted coordinate (float)
-        */
+         * Returns a string containing the css classes to use to qualify the country
+         * @returns the css classes coressponding to the country code (space separated)
+         */
+        GetCssFlagClasses() {
+            var spl = this.countryCode.split(",");
+            var retString = "";
+            for (var i = 0; i < spl.length; i++) {
+                retString += spl[i].toLowerCase() + " ";
+            }
+            return retString;
+        }
+        /**
+         * Converts the given DMS coordinates into floating coordinates
+         * @param degrees number of degrees
+         * @param minutes number of minutes
+         * @param seconds number of seconds
+         * @param direction direction letter N S E W
+         * @returns converted coordinate (float)
+         */
         DmsToDecimal(degrees, minutes, seconds, direction) {
-            let decimalDegrees = degrees + (minutes / 60) + (seconds / 3600);
+            let decimalDegrees = degrees + minutes / 60 + seconds / 3600;
             if (direction === "S" || direction === "W") {
                 decimalDegrees = -decimalDegrees;
             }
@@ -231,5 +246,68 @@ var Common;
         }
     }
     Common.SummitInfo = SummitInfo;
+    /**
+     * Orders the summits in the given list
+     * @param summitInfoArray array containing the summits
+     * @param order sort order
+     * @returns ordered list of summits
+     */
+    function OrderSummits(summitInfoArray, order) {
+        switch (order) {
+            case PeakOrdering.HeightDesc: {
+                return Common.OrderSummitsByHeightDesc(summitInfoArray);
+            }
+            case PeakOrdering.HeightAsc: {
+                return Common.OrderSummitsByHeightAsc(summitInfoArray);
+            }
+            case PeakOrdering.DateDesc: {
+                return Common.OrderSummitsByDateDesc(summitInfoArray);
+            }
+            case PeakOrdering.DateAsc: {
+                return Common.OrderSummitsByDateAsc(summitInfoArray);
+            }
+        }
+    }
+    Common.OrderSummits = OrderSummits;
+    /**
+     * Filters the content of the summit lists
+     * @param summitInfoArray array containing the summits
+     * @param filter peak selection. Determines the filter criteria to use
+     * @returns filtered summit lists
+     */
+    function FilterSummits(summitInfoArray, filter) {
+        switch (filter) {
+            case PeakSelection.All: {
+                return summitInfoArray;
+            }
+            case PeakSelection.NonSummitted: {
+                return summitInfoArray.filter((item) => !item.summitted);
+            }
+            case PeakSelection.Summitted: {
+                return summitInfoArray.filter((item) => item.summitted);
+            }
+        }
+    }
+    Common.FilterSummits = FilterSummits;
+    /**
+     * Filter criteria to filter out
+     * some peaks in the list
+     */
+    let PeakSelection;
+    (function (PeakSelection) {
+        PeakSelection[PeakSelection["All"] = 0] = "All";
+        PeakSelection[PeakSelection["NonSummitted"] = 1] = "NonSummitted";
+        PeakSelection[PeakSelection["Summitted"] = 2] = "Summitted";
+    })(PeakSelection || (PeakSelection = {}));
+    /**
+     * D
+     */
+    let PeakOrdering;
+    (function (PeakOrdering) {
+        PeakOrdering[PeakOrdering["HeightDesc"] = 0] = "HeightDesc";
+        PeakOrdering[PeakOrdering["HeightAsc"] = 1] = "HeightAsc";
+        PeakOrdering[PeakOrdering["DateDesc"] = 2] = "DateDesc";
+        PeakOrdering[PeakOrdering["DateAsc"] = 3] = "DateAsc";
+    })(PeakOrdering || (PeakOrdering = {}));
 })(Common || (Common = {}));
 //# sourceMappingURL=common.js.map

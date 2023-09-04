@@ -68,6 +68,11 @@ $("#search-bar-input").on("blur", function () {
     //let searchResultContainer = $('#search-results-container');
     //searchResultContainer.css({'display':'none'});
 });
+/**
+ * Search summits corresponding to the substring
+ * provided in the input bar
+ * @returns
+ */
 function SearchSummits() {
     var _a, _b;
     const searchInput = (_a = $("#search-bar-input").val()) === null || _a === void 0 ? void 0 : _a.toString().toLowerCase().trim();
@@ -277,7 +282,7 @@ function CreateCard1(index, summitInfo, parentDivId) {
       </div>
     </div>
     <div id="summmit-card-` + index + `-flag-container" class="card-flag-container">
-      <div id="summmit-card-` + index + `-flag" class="card-flag ` + ToCSSFlagClass1(summitInfo.countryCode) + `">
+      <div id="summmit-card-` + index + `-flag" class="card-flag ` + summitInfo.GetCssFlagClasses() + `">
         <img>
       </div>
     </div>
@@ -293,17 +298,6 @@ function CreateCard1(index, summitInfo, parentDivId) {
     }
 }
 /**
- * Converts the given csv string into css country code classes
- */
-function ToCSSFlagClass1(countryCode) {
-    var spl = countryCode.split(",");
-    var retString = "";
-    for (var i = 0; i < spl.length; i++) {
-        retString += spl[i].toLowerCase() + " ";
-    }
-    return retString;
-}
-/**
  * adds the country to the given parentDiv
  * @param countyCode list of country codes csv (,)
  * @param parentDiv Jquery name of the parent div
@@ -312,17 +306,23 @@ function AddCountryToCard1(countyCode, parentDiv) {
     let codes = countyCode.split(',');
     if (codes.length == 1) {
         $(parentDiv).append(`
-    <p class="tag">Coutry</p>
+    <p class="tag">Country</p>
     <p class="value">` + Common.CountryCodeToCountryName(codes[0]) + `</p>
     `);
     }
     else {
         $(parentDiv).append(`
-    <p class="tag">Coutries</p>
+    <p class="tag">Countries</p>
     <p class="value">` + Common.CountryCodeToCountryName(codes[0]) + ` & `
             + Common.CountryCodeToCountryName(codes[1]) + `</p>`);
     }
 }
+/**
+ * Selects the given summit:
+ * - Shows the summit card
+ * - Fly to the summit marker on the map
+ * @param summit summit to select
+ */
 function SelectSummitAndFlyTo(summit) {
     let infoCard = $('#selected-summit-info-card');
     infoCard.css({ 'display': 'flex' });

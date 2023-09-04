@@ -928,10 +928,10 @@
     "long": "8°00′11″E",
     "name": "Lagginhorn",
     "countryCode": "ch",
-    "summitted": false,
-    "summitDate": "",
+    "summitted": true,
+    "summitDate": "09/02/2023",
     "ranking": 78,
-    "attempts": 0,
+    "attempts": 1,
     "location": "Alpes pennines",
     "elevation": 4010
   },

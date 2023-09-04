@@ -1,5 +1,10 @@
 namespace Common {
   /**
+   * Array containing all summit information
+   * This array is initialized at startup an then used
+   */
+  var SummitInfoArray: Common.SummitInfo[];
+  /**
    * Hides the loading screen.
    * Info: This method should be called after the complete page has been loaded
    */
@@ -245,5 +250,74 @@ namespace Common {
         throw new Error("Invalid longitude DMS format");
       }
     }
+  }
+
+  /**
+   * Orders the summits in the given list
+   * @param summitInfoArray array containing the summits
+   * @param order sort order
+   * @returns ordered list of summits
+   */
+  export function OrderSummits(
+    summitInfoArray: Common.SummitInfo[],
+    order: PeakOrdering
+  ): Common.SummitInfo[] {
+    switch (<PeakOrdering>order) {
+      case PeakOrdering.HeightDesc: {
+        return Common.OrderSummitsByHeightDesc(summitInfoArray);
+      }
+      case PeakOrdering.HeightAsc: {
+        return Common.OrderSummitsByHeightAsc(summitInfoArray);
+      }
+      case PeakOrdering.DateDesc: {
+        return Common.OrderSummitsByDateDesc(summitInfoArray);
+      }
+      case PeakOrdering.DateAsc: {
+        return Common.OrderSummitsByDateAsc(summitInfoArray);
+      }
+    }
+  }
+
+  /**
+   * Filters the content of the summit lists
+   * @param summitInfoArray array containing the summits
+   * @param filter peak selection. Determines the filter criteria to use
+   * @returns filtered summit lists
+   */
+  export function FilterSummits(
+    summitInfoArray: Common.SummitInfo[],
+    filter: PeakSelection
+  ): Common.SummitInfo[] {
+    switch (<PeakSelection>filter) {
+      case PeakSelection.All: {
+        return summitInfoArray;
+      }
+      case PeakSelection.NonSummitted: {
+        return summitInfoArray.filter((item) => !item.summitted);
+      }
+      case PeakSelection.Summitted: {
+        return summitInfoArray.filter((item) => item.summitted);
+      }
+    }
+  }
+
+  /**
+   * Filter criteria to filter out 
+   * some peaks in the list
+   */
+  enum PeakSelection {
+    All = 0,
+    NonSummitted = 1,
+    Summitted = 2,
+  }
+
+  /**
+   * D
+   */
+  enum PeakOrdering {
+    HeightDesc = 0,
+    HeightAsc = 1,
+    DateDesc = 2,
+    DateAsc = 3,
   }
 }

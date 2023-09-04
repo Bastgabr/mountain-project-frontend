@@ -1,7 +1,7 @@
 var summitInfoArray;
 window.onload = function () {
     //Retrieve the JSON file containing all summits info
-    fetch('../json/summits.json')
+    fetch("../json/summits.json")
         .then((response) => response.json())
         .then((json) => {
         Create82PeaksCards(json);
@@ -10,70 +10,41 @@ window.onload = function () {
         Common.HideLoadingScreen();
     });
 };
-$('#latest-section__select').on('change', function () {
+$("#latest-section__select").on("change", function () {
     var selectedIndex = $(this).find(":selected").val();
     ShowLatestSummits(selectedIndex);
 });
-$('#peaks-section__selector select').on('change', function () {
+$("#peaks-section__selector select").on("change", function () {
     passive: false;
     //Retrieve selector values
-    var selectorValue = Number($('#peaks-section__show-select').find(":selected").val());
-    var orderValue = Number($('#peaks-section__order-select').find(":selected").val());
+    var selectorValue = Number($("#peaks-section__show-select").find(":selected").val());
+    var orderValue = Number($("#peaks-section__order-select").find(":selected").val());
     HandleResetFilterVisibility(selectorValue, orderValue);
-    var summitsToDisplay;
-    switch (selectorValue) {
-        case PeakSelection.All: {
-            summitsToDisplay = summitInfoArray;
-            break;
-        }
-        case PeakSelection.NonSummitted: {
-            summitsToDisplay = summitInfoArray.filter(item => !item.summitted);
-            break;
-        }
-        case PeakSelection.Summitted: {
-            summitsToDisplay = summitInfoArray.filter(item => item.summitted);
-            break;
-        }
-    }
-    switch (orderValue) {
-        case PeakOrdering.HeightDesc: {
-            summitsToDisplay = Common.OrderSummitsByHeightDesc(summitsToDisplay);
-            break;
-        }
-        case PeakOrdering.HeightAsc: {
-            summitsToDisplay = Common.OrderSummitsByHeightAsc(summitsToDisplay);
-            break;
-        }
-        case PeakOrdering.DateDesc: {
-            summitsToDisplay = Common.OrderSummitsByDateDesc(summitsToDisplay);
-            break;
-        }
-        case PeakOrdering.DateAsc: {
-            summitsToDisplay = Common.OrderSummitsByDateAsc(summitsToDisplay);
-            break;
-        }
-    }
-    $('#peaks-section__content').html('');
+    //Filter out the desired summits
+    var summitsToDisplay = Common.FilterSummits(summitInfoArray, selectorValue);
+    //Order the summits
+    summitsToDisplay = Common.OrderSummits(summitsToDisplay, orderValue);
+    $("#peaks-section__content").html("");
     for (var i = 0; i < summitsToDisplay.length; i++) {
-        CreateCard(summitsToDisplay[i].ranking, summitsToDisplay[i], '#peaks-section__content');
+        CreateCard(summitsToDisplay[i].ranking, summitsToDisplay[i], "#peaks-section__content");
     }
 });
 function HandleResetFilterVisibility(selectorValue, orderValue) {
     if (selectorValue != 0 || orderValue != 0) {
-        $('#button-reset-filter').css({ "display": "flex" });
+        $("#button-reset-filter").css({ display: "flex" });
     }
     else {
-        $('#button-reset-filter').css({ "display": "none" });
+        $("#button-reset-filter").css({ display: "none" });
     }
 }
-$('#button-reset-filter').on('click', function () {
+$("#button-reset-filter").on("click", function () {
     // Reset the selected index programmatically
-    $('#peaks-section__show-select').prop('selectedIndex', 0);
-    $('#peaks-section__order-select').prop('selectedIndex', 0);
-    $('#button-reset-filter').css({ "display": "none" });
-    $('#peaks-section__content').html('');
+    $("#peaks-section__show-select").prop("selectedIndex", 0);
+    $("#peaks-section__order-select").prop("selectedIndex", 0);
+    $("#button-reset-filter").css({ display: "none" });
+    $("#peaks-section__content").html("");
     for (var i = 0; i < summitInfoArray.length; i++) {
-        CreateCard(summitInfoArray[i].ranking, summitInfoArray[i], '#peaks-section__content');
+        CreateCard(summitInfoArray[i].ranking, summitInfoArray[i], "#peaks-section__content");
     }
 });
 /**
@@ -82,13 +53,13 @@ $('#button-reset-filter').on('click', function () {
  * @param summitsCount
  */
 function ShowLatestSummits(summitsCount) {
-    var achievedSummit = summitInfoArray.filter(item => item.summitted);
+    var achievedSummit = summitInfoArray.filter((item) => item.summitted);
     //Sort by latest date
     achievedSummit = Common.OrderSummitsByDateDesc(achievedSummit);
     var selectedSummits;
-    $('#latest-section__content').html('');
+    $("#latest-section__content").html("");
     for (var i = 0; i < summitsCount; i++) {
-        CreateCard(achievedSummit[i].ranking + 100, achievedSummit[i], '#latest-section__content');
+        CreateCard(achievedSummit[i].ranking + 100, achievedSummit[i], "#latest-section__content");
     }
 }
 /**
@@ -99,7 +70,7 @@ function Create82PeaksCards(json) {
     // Deserialize the JSON data into an array of SummitInfo objects
     summitInfoArray = Common.ExtractSummitInfos(json);
     for (var i = 0; i < summitInfoArray.length; i++) {
-        CreateCard(summitInfoArray[i].ranking, summitInfoArray[i], '#peaks-section__content');
+        CreateCard(summitInfoArray[i].ranking, summitInfoArray[i], "#peaks-section__content");
     }
 }
 /**
@@ -108,46 +79,90 @@ function Create82PeaksCards(json) {
  */
 function CreateCard(index, summitInfo, parentDivId) {
     $(parentDivId).append(`          
-  <div id="summit-card-` + index + `" class="summit-card">
-  <div id="summit-card-` + index + `-map" class="map"></div>
-  <div id="summit-card-` + index + `-date" class="date-tag">
-  ` + ToHtmlFormattedDate(summitInfo.summitDate) + `
+  <div id="summit-card-` +
+        index +
+        `" class="summit-card">
+  <div id="summit-card-` +
+        index +
+        `-map" class="map"></div>
+  <div id="summit-card-` +
+        index +
+        `-date" class="date-tag">
+  ` +
+        ToHtmlFormattedDate(summitInfo.summitDate) +
+        `
     </div>
-    <div id="summit-card-` + index + `-content" class="card-content">
-      <h1 id="summit-card-` + index + `-title" class="card-title">` + summitInfo.name + `</h1>
-      <div id="summit-card-` + index + `-info" class="card-info">
-        <div id="summit-card-` + index + `-rank" class="card-infoline">
+    <div id="summit-card-` +
+        index +
+        `-content" class="card-content">
+      <h1 id="summit-card-` +
+        index +
+        `-title" class="card-title">` +
+        summitInfo.name +
+        `</h1>
+      <div id="summit-card-` +
+        index +
+        `-info" class="card-info">
+        <div id="summit-card-` +
+        index +
+        `-rank" class="card-infoline">
           <p class="tag">Rank</p>
-          <p class="value">` + summitInfo.ranking + `/82</p>
+          <p class="value">` +
+        summitInfo.ranking +
+        `/82</p>
         </div>
-        <div id="summit-card-` + index + `-elevation" class="card-infoline">
+        <div id="summit-card-` +
+        index +
+        `-elevation" class="card-infoline">
           <p class="tag">Elevation</p>
-          <p class="value">` + summitInfo.elevation + ` m</p>
+          <p class="value">` +
+        summitInfo.elevation +
+        ` m</p>
         </div>
-        <div id="summit-card-` + index + `-dateline" class="card-infoline">
+        <div id="summit-card-` +
+        index +
+        `-dateline" class="card-infoline">
           <p class="tag">Date</p>
-          <p class="value">` + summitInfo.GetSummitDate() + `</p>
+          <p class="value">` +
+        summitInfo.GetSummitDate() +
+        `</p>
         </div>
-        <div id="summit-card-` + index + `-attemps" class="card-infoline">
+        <div id="summit-card-` +
+        index +
+        `-attemps" class="card-infoline">
           <p class="tag">Number of attempts</p>
-          <p class="value">` + summitInfo.attempts + `</p>
+          <p class="value">` +
+        summitInfo.attempts +
+        `</p>
         </div>
-        <div id="summit-card-` + index + `-location" class="card-infoline">
+        <div id="summit-card-` +
+        index +
+        `-location" class="card-infoline">
           <p class="tag">Location</p>
-          <p class="value">` + summitInfo.location + `</p>
+          <p class="value">` +
+        summitInfo.location +
+        `</p>
         </div>
-        <div id="summit-card-` + index + `-country" class="card-infoline">
+        <div id="summit-card-` +
+        index +
+        `-country" class="card-infoline">
         </div>
       </div>
     </div>
-    <div id="summmit-card-` + index + `-flag-container" class="card-flag-container">
-      <div id="summmit-card-` + index + `-flag" class="card-flag ` + ToCSSFlagClass(summitInfo.countryCode) + `">
+    <div id="summmit-card-` +
+        index +
+        `-flag-container" class="card-flag-container">
+      <div id="summmit-card-` +
+        index +
+        `-flag" class="card-flag ` +
+        summitInfo.GetCssFlagClasses() +
+        `">
         <img>
       </div>
     </div>
   </div>
   `);
-    AddCountryToCard(summitInfo.countryCode, '#summit-card-' + index + '-country');
+    AddCountryToCard(summitInfo.countryCode, "#summit-card-" + index + "-country");
     //Hide the date label if not summitted
     if (!summitInfo.summitted) {
         $("#summit-card-" + index + "-date").hide();
@@ -164,18 +179,23 @@ function CreateCard(index, summitInfo, parentDivId) {
  * @param parentDiv Jquery name of the parent div
  */
 function AddCountryToCard(countyCode, parentDiv) {
-    let codes = countyCode.split(',');
+    let codes = countyCode.split(",");
     if (codes.length == 1) {
         $(parentDiv).append(`
-    <p class="tag">Coutry</p>
-    <p class="value">` + Common.CountryCodeToCountryName(codes[0]) + `</p>
+    <p class="tag">Country</p>
+    <p class="value">` +
+            Common.CountryCodeToCountryName(codes[0]) +
+            `</p>
     `);
     }
     else {
         $(parentDiv).append(`
-    <p class="tag">Coutries</p>
-    <p class="value">` + Common.CountryCodeToCountryName(codes[0]) + ` & `
-            + Common.CountryCodeToCountryName(codes[1]) + `</p>`);
+    <p class="tag">Countries</p>
+    <p class="value">` +
+            Common.CountryCodeToCountryName(codes[0]) +
+            ` & ` +
+            Common.CountryCodeToCountryName(codes[1]) +
+            `</p>`);
     }
 }
 /**
@@ -189,11 +209,12 @@ function LoadCardMap(mapKey, lat, long) {
     // Create Leaflet map on map element.
     var map = L.map(mapKey, { zoomControl: false });
     // Add OSM tile layer to the Leaflet map.
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
+    L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png").addTo(map);
     // Target's GPS coordinates.
     var target = L.latLng(lat, long);
     map.setView(target, 9);
-    var markerIcon = L.icon({ iconUrl: "../../src/images/yellow-pin.png",
+    var markerIcon = L.icon({
+        iconUrl: "../../src/images/yellow-pin.png",
         iconSize: [30, 30],
         iconAnchor: [15, 30],
     });
@@ -215,34 +236,23 @@ function LoadCardMap(mapKey, lat, long) {
  */
 function ToHtmlFormattedDate(date) {
     const day = date.getDate();
-    const monthNames = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.", "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."];
+    const monthNames = [
+        "Jan.",
+        "Feb.",
+        "Mar.",
+        "Apr.",
+        "May",
+        "Jun.",
+        "Jul.",
+        "Aug.",
+        "Sep.",
+        "Oct.",
+        "Nov.",
+        "Dec.",
+    ];
     const month = monthNames[date.getMonth()];
     const year = date.getFullYear();
     const formattedDate = `<p>${day}<br>${month}<br>${year}</p>`;
     return formattedDate;
 }
-/**
- * Converts the given csv string into css country code classes
- */
-function ToCSSFlagClass(countryCode) {
-    var spl = countryCode.split(",");
-    var retString = "";
-    for (var i = 0; i < spl.length; i++) {
-        retString += spl[i].toLowerCase() + " ";
-    }
-    return retString;
-}
-var PeakSelection;
-(function (PeakSelection) {
-    PeakSelection[PeakSelection["All"] = 0] = "All";
-    PeakSelection[PeakSelection["NonSummitted"] = 1] = "NonSummitted";
-    PeakSelection[PeakSelection["Summitted"] = 2] = "Summitted";
-})(PeakSelection || (PeakSelection = {}));
-var PeakOrdering;
-(function (PeakOrdering) {
-    PeakOrdering[PeakOrdering["HeightDesc"] = 0] = "HeightDesc";
-    PeakOrdering[PeakOrdering["HeightAsc"] = 1] = "HeightAsc";
-    PeakOrdering[PeakOrdering["DateDesc"] = 2] = "DateDesc";
-    PeakOrdering[PeakOrdering["DateAsc"] = 3] = "DateAsc";
-})(PeakOrdering || (PeakOrdering = {}));
 //# sourceMappingURL=summits.js.map

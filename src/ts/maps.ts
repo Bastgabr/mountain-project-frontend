@@ -82,6 +82,11 @@ $("#search-bar-input").on("blur", function(){
   //searchResultContainer.css({'display':'none'});
 });
 
+/**
+ * Search summits corresponding to the substring 
+ * provided in the input bar
+ * @returns 
+ */
 function SearchSummits(){
   const searchInput =  $("#search-bar-input").val()?.toString().toLowerCase().trim();
   let searchResultContainer = $('#search-results-container');
@@ -301,7 +306,7 @@ function CreateCard1(index: number, summitInfo: Common.SummitInfo, parentDivId: 
       </div>
     </div>
     <div id="summmit-card-`+ index +`-flag-container" class="card-flag-container">
-      <div id="summmit-card-`+ index +`-flag" class="card-flag `+ ToCSSFlagClass1(summitInfo.countryCode) +`">
+      <div id="summmit-card-`+ index +`-flag" class="card-flag `+ summitInfo.GetCssFlagClasses() +`">
         <img>
       </div>
     </div>
@@ -319,19 +324,6 @@ function CreateCard1(index: number, summitInfo: Common.SummitInfo, parentDivId: 
 }
 
 
-/**
- * Converts the given csv string into css country code classes
- */
-function ToCSSFlagClass1(countryCode : string){
-
-  var spl = countryCode.split(",");
-  var retString = "";
-  for(var i =0; i < spl.length;i++)
-  {
-    retString += spl[i].toLowerCase() + " ";
-  }
-  return retString;
-}
 
 /**
  * adds the country to the given parentDiv
@@ -342,19 +334,25 @@ function AddCountryToCard1(countyCode:string, parentDiv: string){
   let codes = countyCode.split(',');
   if(codes.length == 1){
     $(parentDiv).append(`
-    <p class="tag">Coutry</p>
+    <p class="tag">Country</p>
     <p class="value">` + Common.CountryCodeToCountryName(codes[0]) +`</p>
     `);
   }
   else{
     $(parentDiv).append(`
-    <p class="tag">Coutries</p>
+    <p class="tag">Countries</p>
     <p class="value">` + Common.CountryCodeToCountryName(codes[0]) + ` & ` 
     + Common.CountryCodeToCountryName(codes[1]) +`</p>`);
   }
 }
 
 
+/**
+ * Selects the given summit:
+ * - Shows the summit card
+ * - Fly to the summit marker on the map
+ * @param summit summit to select
+ */
 function SelectSummitAndFlyTo(summit: Common.SummitInfo){
   let infoCard = $('#selected-summit-info-card');
   infoCard.css({'display':'flex'});

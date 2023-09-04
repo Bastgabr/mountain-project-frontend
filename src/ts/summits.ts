@@ -29,40 +29,12 @@ $("#peaks-section__selector select").on("change", function () {
 
   HandleResetFilterVisibility(selectorValue, orderValue);
 
-  var summitsToDisplay: Common.SummitInfo[];
-  switch (<PeakSelection>selectorValue) {
-    case PeakSelection.All: {
-      summitsToDisplay = summitInfoArray;
-      break;
-    }
-    case PeakSelection.NonSummitted: {
-      summitsToDisplay = summitInfoArray.filter((item) => !item.summitted);
-      break;
-    }
-    case PeakSelection.Summitted: {
-      summitsToDisplay = summitInfoArray.filter((item) => item.summitted);
-      break;
-    }
-  }
+  //Filter out the desired summits
+  var summitsToDisplay = Common.FilterSummits(summitInfoArray, selectorValue);
 
-  switch (<PeakOrdering>orderValue) {
-    case PeakOrdering.HeightDesc: {
-      summitsToDisplay = Common.OrderSummitsByHeightDesc(summitsToDisplay);
-      break;
-    }
-    case PeakOrdering.HeightAsc: {
-      summitsToDisplay = Common.OrderSummitsByHeightAsc(summitsToDisplay);
-      break;
-    }
-    case PeakOrdering.DateDesc: {
-      summitsToDisplay = Common.OrderSummitsByDateDesc(summitsToDisplay);
-      break;
-    }
-    case PeakOrdering.DateAsc: {
-      summitsToDisplay = Common.OrderSummitsByDateAsc(summitsToDisplay);
-      break;
-    }
-  }
+  //Order the summits
+  summitsToDisplay = Common.OrderSummits(summitsToDisplay, orderValue);
+  
   $("#peaks-section__content").html("");
   for (var i = 0; i < summitsToDisplay.length; i++) {
     CreateCard(
@@ -262,7 +234,7 @@ function AddCountryToCard(countyCode: string, parentDiv: string) {
   if (codes.length == 1) {
     $(parentDiv).append(
       `
-    <p class="tag">Coutry</p>
+    <p class="tag">Country</p>
     <p class="value">` +
         Common.CountryCodeToCountryName(codes[0]) +
         `</p>
@@ -271,7 +243,7 @@ function AddCountryToCard(countyCode: string, parentDiv: string) {
   } else {
     $(parentDiv).append(
       `
-    <p class="tag">Coutries</p>
+    <p class="tag">Countries</p>
     <p class="value">` +
         Common.CountryCodeToCountryName(codes[0]) +
         ` & ` +
@@ -345,15 +317,5 @@ function ToHtmlFormattedDate(date: Date) {
   return formattedDate;
 }
 
-enum PeakSelection {
-  All = 0,
-  NonSummitted = 1,
-  Summitted = 2,
-}
 
-enum PeakOrdering {
-  HeightDesc = 0,
-  HeightAsc = 1,
-  DateDesc = 2,
-  DateAsc = 3,
-}
+
