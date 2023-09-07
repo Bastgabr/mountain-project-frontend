@@ -67,6 +67,10 @@ $('#reset-view-button').on('click', function(){
   HideCard(); // Hide summit card
 });
 
+$('#selected-summit-info-card').on('click','#close-card-icon' , function(){
+  HideCard(); // Hide summit card
+});
+
 /**
  * Search summits corresponding to the substring 
  * provided in the input bar
@@ -227,7 +231,10 @@ function SelectDotColor(summitInfo: Common.SummitInfo) : string {
 
 
 function CreateCard1(index: number, summitInfo: Common.SummitInfo, parentDivId: string){
-  $(parentDivId).html(`          
+  $(parentDivId).html(`
+    <div id="close-card-icon" class="close-card-icon">
+      <i class="fa-solid fa-xmark"></i>
+    </div>          
     <div id="summit-card-`+ index +`-content" class="card-content">
       <h1 id="summit-card-`+ index +`-title" class="card-title">`+ summitInfo.name +`</h1>
       <div id="summit-card-`+ index +`-info" class="card-info">

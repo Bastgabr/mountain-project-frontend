@@ -270,7 +270,7 @@
   }
 }
 
-.selected-summit-info-card{
+.maps-page-content .selected-summit-info-card{
   display: flex;
   position: absolute;
   background-color: $navbar-color;
@@ -280,6 +280,27 @@
   z-index: 401;
   border-radius: 4px;
   border-bottom: solid 3px $highlight-color;
+
+  .close-card-icon{
+    display: flex;
+    position: absolute;
+    right: 0px;
+    margin: 10px;
+    i{
+      color: $highlight-color;
+    }
+
+    &:hover{
+      
+      i{
+      color: $highlight-color-shadow;
+      }
+    }
+  }
+  &:hover{
+    //Clears default translate 
+    transform: translate(0px);
+  }
 }
 
 .selected-summit-info-card.summit-card{
