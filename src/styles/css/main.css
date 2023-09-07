@@ -828,10 +828,7 @@ div.brackets-animation :hover:after {
   display: flex;
   flex-direction: row;
   padding: 0px;
-  height: calc(100vh - 65px - 65px);
-}
-.section.presentation-section .presentation-left {
-  width: 0%;
+  height: calc(100dvh - 65px - 65px);
 }
 .section.presentation-section .presentation-right {
   height: 100%;
@@ -1105,13 +1102,24 @@ div.brackets-animation :hover:after {
 }
 
 @media screen and (max-width: 900px) {
-  .section.presentation-section {
+  .maps-page-content .section.presentation-section {
     height: calc(100vh - 45px - 65px);
+  }
+  .maps-page-content .summit-card {
+    width: auto;
+  }
+}
+@media screen and (max-width: 600px) {
+  .maps-page-content .selected-summit-info-card.summit-card {
+    min-width: 400px;
   }
 }
 @media screen and (max-width: 500px) {
-  .section.presentation-section {
+  .maps-page-content .section.presentation-section {
     height: calc(100vh - 35px - 65px);
+  }
+  .maps-page-content .selected-summit-info-card.summit-card {
+    min-width: 200px;
   }
 }
 a {
@@ -1200,7 +1208,7 @@ body {
 .content {
   overflow-y: auto;
   overflow-x: hidden;
-  height: calc(100vh - 65px);
+  height: calc(100dvh - 65px);
   background: #1A1E23;
 }
 

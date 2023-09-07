@@ -6,13 +6,7 @@
   display: flex;
   flex-direction: row;
   padding: 0px;
-  height: calc(100vh - $navbar-height - $map-bottom-nav-bar-height);
-
-  .presentation-left {
-    //height: 100%;
-    width: 0%;
-    // background-color: blue;
-  }
+  height: calc(100dvh - $navbar-height - $map-bottom-nav-bar-height);
 
   .presentation-right {
     height: 100%;
@@ -314,14 +308,33 @@
 
 
 @media screen and (max-width:900px) {
-  .section.presentation-section{
-    height: calc(100vh - $navbar-height__900px - $map-bottom-nav-bar-height__900px);
+  .maps-page-content{
+    .section.presentation-section{
+      height: calc(100vh - $navbar-height__900px - $map-bottom-nav-bar-height__900px);
+    }
+    .summit-card{
+      width: auto;
+    }
+  }
+}
+
+@media screen and (max-width:600px) {
+  .maps-page-content{
+    .selected-summit-info-card.summit-card{
+      min-width: 400px;
+    }
   }
 }
 
 
 @media screen and (max-width:500px) {
-  .section.presentation-section{
-    height: calc(100vh - $navbar-height__500px - $map-bottom-nav-bar-height__500px);
+  .maps-page-content{
+    .section.presentation-section{
+      height: calc(100vh - $navbar-height__500px - $map-bottom-nav-bar-height__500px);
+    }
+  
+    .selected-summit-info-card.summit-card{
+      min-width: 200px;
+    }
   }
 }

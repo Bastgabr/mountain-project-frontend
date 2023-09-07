@@ -18,7 +18,7 @@ body{
 .content{
   overflow-y: auto;
   overflow-x: hidden;
-  height: calc(100vh - $navbar-height);
+  height: calc(100dvh - $navbar-height);
   background: $navbar-color;
 }
 
