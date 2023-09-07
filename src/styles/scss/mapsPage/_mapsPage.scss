@@ -1,0 +1,411 @@
+.section.maps-introduction {
+  padding-top: 0; // Reset
+}
+
+.section.presentation-section {
+  display: flex;
+  flex-direction: row;
+  padding: 0px;
+  height: calc(100dvh - $navbar-height - $map-bottom-nav-bar-height);
+
+  .presentation-right {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.leaflet-tooltip {
+  font-family: Raleway;
+}
+
+.map-bottom-nav-bar {
+  display: flex;
+  flex-direction: row;
+  padding: 0px 5px;
+  height: $map-bottom-nav-bar-height;
+  align-items: center;
+  width: 100%;
+}
+
+.reset-view-button {
+  height: 30px;
+  min-width: 30px;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 2px $highlight-color;
+  &:hover {
+    background-color: $highlight-color;
+    i {
+      color: $navbar-color;
+    }
+  }
+  &:active{
+    background-color: $highlight-color-shadow;
+    i {
+      color: $highlight-color;
+    }
+  }
+
+  i {
+    color: $highlight-color;
+  }
+}
+
+.nav-search-container {
+  margin: 0 20px;
+  height: 30px;
+  min-width: 30px;
+  border-radius: 25px;
+  border: solid 2px $highlight-color;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    i {
+      color: $highlight-color;
+    }
+  }
+
+  &:hover{
+    background-color: $highlight-color;
+    .icon i{
+      color: $navbar-color;
+    }
+  }
+
+  &:active{
+    background-color: $highlight-color-shadow;
+    .icon i{
+      color: $highlight-color;
+    }
+  }
+
+  .input {
+    text-overflow:ellipsis;
+    display: none;
+    padding: 0;
+    padding-bottom: 2px;
+    margin: 3px 10px;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    text-transform: uppercase;
+    font-family: Raleway;
+    font-weight: bold;
+  }
+}
+
+.nav-search-container.enabled{
+
+  min-width: 150px;
+
+  .icon {
+    margin-left: 7px;
+  }
+  
+  &:hover{
+    background-color: $navbar-color;
+    .icon i{
+      color: $highlight-color;
+    }
+  }
+
+  .input {
+    display: block;
+  }
+}
+
+.nav-summits-container {
+  width: 100%;
+  height: 100%;
+  min-width: 75px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+}
+
+.nav-arrow {
+  height: 30px;
+  min-width: 30px;
+  border-radius: 25px;
+  background-color: transparent;
+  border: solid 2px $highlight-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: $highlight-color;
+    .left-arrow {
+      border-bottom: solid 2px $navbar-color;
+      border-left: solid 2px $navbar-color;
+    }
+
+    .right-arrow {
+      border-top: solid 2px $navbar-color;
+      border-right: solid 2px $navbar-color;
+    }
+  }
+
+  &:active {
+    background-color: $highlight-color-shadow;
+    .left-arrow {
+      border-bottom: solid 2px $highlight-color;
+      border-left: solid 2px $highlight-color;
+    }
+
+    .right-arrow {
+      border-top: solid 2px $highlight-color;
+      border-right: solid 2px $highlight-color;
+    }
+  }
+
+  .left-arrow {
+    height: 8px;
+    width: 8px;
+    margin-left: 3px;
+    border-bottom: solid 2px $highlight-color;
+    border-left: solid 2px $highlight-color;
+    transform: rotate(45deg);
+  }
+
+  .right-arrow {
+    height: 8px;
+    width: 8px;
+    margin-right: 3px;
+    border-top: solid 2px $highlight-color;
+    border-right: solid 2px $highlight-color;
+    transform: rotate(45deg);
+  }
+}
+
+.more-summits {
+  display: flex;
+  flex-direction: row;
+  margin: 0 10px;
+
+  .dot {
+    height: 3px;
+    width: 3px;
+    margin: 0 2px;
+    border-radius: 50%;
+    background-color: $highlight-color;
+  }
+}
+
+
+.summits-area {
+  width: 100%;
+  height: 100%;
+  padding: 0 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  overflow: hidden;
+  .summit {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .summit-dot {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .summit-dot__text{
+        position: absolute;
+        font-size: small;
+      }
+
+      .summit-dot__text.top-text{
+        top: -18px
+      }
+
+      .summit-dot__text.bottom-text{
+        top: 22px
+      }
+
+    }
+
+    .summit-dot-link {
+      width: 100px;
+      height: 2px;
+      background-color: white;
+    }
+  }
+  .summit.last{
+    .summit-dot-link{
+      display: none;
+    }
+  }
+}
+
+
+.summit-dot__icon {
+  height: 20px;
+  width: 20px;
+  min-width: 20px;
+  border-radius: 50%;
+  background-color: $navbar-color;
+  border: solid 2px white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+
+  &:hover {
+    .inner-dot {
+      opacity: 0.7;
+    }
+  }
+  .inner-dot {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    background-color: white;
+  }
+}
+
+
+.search-results-container{
+  position: absolute;
+  padding: 5px;
+  width: 170px;
+  max-width: 170px;
+  left: 50px;
+  bottom: $map-bottom-nav-bar-height;
+  z-index: 99999;
+  background-color: $navbar-color;
+  display: none;
+  flex-direction: column;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  box-shadow: 5px -10px 20px 0px rgba(0,0,0,0.75);
+
+  .search-result{
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    &:hover{
+      .text{
+        color: $highlight-color;
+      }
+    }
+    
+    .text{
+      color: white;
+      margin: 5px 10px;
+      text-transform: uppercase;
+      font-size: small;
+      font-weight: bold;
+      overflow-wrap: anywhere;
+
+      .highlighted{
+        color: $highlight-color;
+      }
+    }
+  }
+}
+
+.maps-page-content .selected-summit-info-card{
+  display: flex;
+  position: absolute;
+  background-color: $navbar-color;
+  margin: 20px;
+  top: $navbar-height;
+  right: 0px;
+  z-index: 401;
+  border-radius: 4px;
+  border-bottom: solid 3px $highlight-color;
+
+  .close-card-icon{
+    display: flex;
+    position: absolute;
+    right: 0px;
+    margin: 10px;
+    i{
+      color: $highlight-color;
+    }
+
+    &:hover{
+      
+      i{
+      color: $highlight-color-shadow;
+      }
+    }
+  }
+  &:hover{
+    //Clears default translate 
+    transform: translate(0px);
+  }
+}
+
+.selected-summit-info-card.summit-card{
+  min-width: 500px;
+  display: none;
+
+  .card-content .card-info .card-infoline .tag
+  {
+    width: 35%;
+  }
+}
+
+
+@media screen and (max-width:900px) {
+  .maps-page-content{
+    .section.presentation-section{
+      height: calc(100vh - $navbar-height__900px - $map-bottom-nav-bar-height__900px);
+    }
+    .summit-card{
+      width: auto;
+    }
+  }
+
+  .summits-area .summit .summit-dot-link{
+    width: 90px;
+  } 
+}
+
+@media screen and (max-width:600px) {
+  .maps-page-content{
+    .selected-summit-info-card.summit-card{
+      min-width: 400px;
+    }
+    .summits-area .summit .summit-dot-link{
+      width: 60px;
+    } 
+  }
+}
+
+
+@media screen and (max-width:500px) {
+  .maps-page-content{
+    .section.presentation-section{
+      height: calc(100vh - $navbar-height__500px - $map-bottom-nav-bar-height__500px);
+    }
+  
+    .selected-summit-info-card.summit-card{
+      min-width: 200px;
+    }
+
+    
+    .summits-area .summit{
+      .summit-dot-link{
+        width: 40px;
+      } 
+      .summit-dot__text{
+        font-size: x-small;
+      }
+    } 
+  }
+}

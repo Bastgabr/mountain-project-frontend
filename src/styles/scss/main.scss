@@ -18,7 +18,7 @@ body{
 .content{
   overflow-y: auto;
   overflow-x: hidden;
-  height: calc(100vh - $navbar-height);
+  height: calc(100dvh - $navbar-height);
   background: $navbar-color;
 }
 
@@ -58,7 +58,7 @@ body{
 .first-page-image-container{
   height: calc(100vh - $navbar-height);
   position: relative;
-  background: linear-gradient(to left, rgba(255, 255, 255, 0), white 80%)
+  background: linear-gradient(to left, rgba(255, 255, 255, 0), white 80%);
 }
 
 .first-page-image{
