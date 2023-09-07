@@ -37,11 +37,17 @@
   border: solid 2px $highlight-color;
   &:hover {
     background-color: $highlight-color;
-
     i {
       color: $navbar-color;
     }
   }
+  &:active{
+    background-color: $highlight-color-shadow;
+    i {
+      color: $highlight-color;
+    }
+  }
+
   i {
     color: $highlight-color;
   }
@@ -50,14 +56,15 @@
 .nav-search-container {
   margin: 0 20px;
   height: 30px;
-  min-width: 150px;
+  min-width: 30px;
   border-radius: 25px;
   border: solid 2px $highlight-color;
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
 
   .icon {
-    margin-left: 7px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,7 +73,23 @@
     }
   }
 
+  &:hover{
+    background-color: $highlight-color;
+    .icon i{
+      color: $navbar-color;
+    }
+  }
+
+  &:active{
+    background-color: $highlight-color-shadow;
+    .icon i{
+      color: $highlight-color;
+    }
+  }
+
   .input {
+    text-overflow:ellipsis;
+    display: none;
     padding: 0;
     padding-bottom: 2px;
     margin: 3px 10px;
@@ -78,6 +101,26 @@
     text-transform: uppercase;
     font-family: Raleway;
     font-weight: bold;
+  }
+}
+
+.nav-search-container.enabled{
+
+  min-width: 150px;
+
+  .icon {
+    margin-left: 7px;
+  }
+  
+  &:hover{
+    background-color: $navbar-color;
+    .icon i{
+      color: $highlight-color;
+    }
+  }
+
+  .input {
+    display: block;
   }
 }
 
@@ -323,6 +366,10 @@
       width: auto;
     }
   }
+
+  .summits-area .summit .summit-dot-link{
+    width: 90px;
+  } 
 }
 
 @media screen and (max-width:600px) {
@@ -330,6 +377,9 @@
     .selected-summit-info-card.summit-card{
       min-width: 400px;
     }
+    .summits-area .summit .summit-dot-link{
+      width: 60px;
+    } 
   }
 }
 
@@ -343,5 +393,15 @@
     .selected-summit-info-card.summit-card{
       min-width: 200px;
     }
+
+    
+    .summits-area .summit{
+      .summit-dot-link{
+        width: 40px;
+      } 
+      .summit-dot__text{
+        font-size: x-small;
+      }
+    } 
   }
 }

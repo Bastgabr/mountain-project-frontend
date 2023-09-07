@@ -863,6 +863,12 @@ div.brackets-animation :hover:after {
 .reset-view-button:hover i {
   color: #1A1E23;
 }
+.reset-view-button:active {
+  background-color: rgba(199, 169, 0, 0.623);
+}
+.reset-view-button:active i {
+  color: rgb(255, 217, 0);
+}
 .reset-view-button i {
   color: rgb(255, 217, 0);
 }
@@ -870,14 +876,15 @@ div.brackets-animation :hover:after {
 .nav-search-container {
   margin: 0 20px;
   height: 30px;
-  min-width: 150px;
+  min-width: 30px;
   border-radius: 25px;
   border: solid 2px rgb(255, 217, 0);
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 .nav-search-container .icon {
-  margin-left: 7px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -885,7 +892,21 @@ div.brackets-animation :hover:after {
 .nav-search-container .icon i {
   color: rgb(255, 217, 0);
 }
+.nav-search-container:hover {
+  background-color: rgb(255, 217, 0);
+}
+.nav-search-container:hover .icon i {
+  color: #1A1E23;
+}
+.nav-search-container:active {
+  background-color: rgba(199, 169, 0, 0.623);
+}
+.nav-search-container:active .icon i {
+  color: rgb(255, 217, 0);
+}
 .nav-search-container .input {
+  text-overflow: ellipsis;
+  display: none;
   padding: 0;
   padding-bottom: 2px;
   margin: 3px 10px;
@@ -897,6 +918,22 @@ div.brackets-animation :hover:after {
   text-transform: uppercase;
   font-family: Raleway;
   font-weight: bold;
+}
+
+.nav-search-container.enabled {
+  min-width: 150px;
+}
+.nav-search-container.enabled .icon {
+  margin-left: 7px;
+}
+.nav-search-container.enabled:hover {
+  background-color: #1A1E23;
+}
+.nav-search-container.enabled:hover .icon i {
+  color: rgb(255, 217, 0);
+}
+.nav-search-container.enabled .input {
+  display: block;
 }
 
 .nav-summits-container {
@@ -1107,10 +1144,16 @@ div.brackets-animation :hover:after {
   .maps-page-content .summit-card {
     width: auto;
   }
+  .summits-area .summit .summit-dot-link {
+    width: 90px;
+  }
 }
 @media screen and (max-width: 600px) {
   .maps-page-content .selected-summit-info-card.summit-card {
     min-width: 400px;
+  }
+  .maps-page-content .summits-area .summit .summit-dot-link {
+    width: 60px;
   }
 }
 @media screen and (max-width: 500px) {
@@ -1119,6 +1162,12 @@ div.brackets-animation :hover:after {
   }
   .maps-page-content .selected-summit-info-card.summit-card {
     min-width: 200px;
+  }
+  .maps-page-content .summits-area .summit .summit-dot-link {
+    width: 40px;
+  }
+  .maps-page-content .summits-area .summit .summit-dot__text {
+    font-size: x-small;
   }
 }
 a {

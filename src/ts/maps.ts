@@ -71,6 +71,16 @@ $('#selected-summit-info-card').on('click','#close-card-icon' , function(){
   HideCard(); // Hide summit card
 });
 
+$('#nav-search-container .icon').on('click', function(){
+  let searchBarContainer = $('#nav-search-container');
+  searchBarContainer.toggleClass('enabled')
+  if(!searchBarContainer.hasClass('enabled')){
+    //Clear search
+    $('#search-results-container').css({'display':'none'});
+    $('#nav-search-container .input').val(''); 
+  }
+});
+
 /**
  * Search summits corresponding to the substring 
  * provided in the input bar
