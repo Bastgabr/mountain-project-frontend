@@ -1101,6 +1101,9 @@ div.brackets-animation :hover:after {
   font-weight: bold;
   overflow-wrap: anywhere;
 }
+.search-results-container .search-result .text .highlighted {
+  color: rgb(255, 217, 0);
+}
 
 .maps-page-content .selected-summit-info-card {
   display: flex;

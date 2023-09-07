@@ -309,6 +309,10 @@
       font-size: small;
       font-weight: bold;
       overflow-wrap: anywhere;
+
+      .highlighted{
+        color: $highlight-color;
+      }
     }
   }
 }

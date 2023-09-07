@@ -84,12 +84,14 @@ function SearchSummits() {
         if ((_b = summit.name) === null || _b === void 0 ? void 0 : _b.toLowerCase().includes(searchInput || '')) {
             if (count > 5)
                 break;
+            // Highlight the matching part of the summit name
+            const highlightedName = highlightMatch(summit.name, searchInput);
             searchResultsHtml += `
       <div id='search-result-` + summit.ranking + `' class="search-result">
       <div class="summit-dot__icon">
       <div class="inner-dot" style="background-color:` + SelectDotColor(summit) + `"></div>
       </div>
-        <p id='result-` + summit.ranking + `' class='text'>` + summit.name + `</p>
+        <p id='result-` + summit.ranking + `' class='text'>` + highlightedName + `</p>
       </div>`;
             count++;
         }
@@ -100,6 +102,23 @@ function SearchSummits() {
     }
     searchResultContainer.css({ 'display': 'flex' });
     searchResultContainer.html(searchResultsHtml);
+}
+/**
+ * Highlights the part of the search result that
+ * corresponds to the search input
+ * @param inputString search result
+ * @param searchInput input
+ * @returns HTML string containing the highlighted result
+ */
+function highlightMatch(inputString, searchInput) {
+    const startIndex = inputString.toLowerCase().indexOf(searchInput);
+    if (startIndex !== -1) {
+        const beforeMatch = inputString.substring(0, startIndex);
+        const match = inputString.substring(startIndex, startIndex + searchInput.length);
+        const afterMatch = inputString.substring(startIndex + searchInput.length);
+        return `${beforeMatch}<span class="highlighted">${match}</span>${afterMatch}`;
+    }
+    return inputString;
 }
 $('#search-results-container').on('click', '.search-result', function () {
     //Retrieve the id (ranking) of the selected result 
