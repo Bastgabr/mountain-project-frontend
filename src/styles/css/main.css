@@ -848,39 +848,23 @@ div.brackets-animation :hover:after {
   width: 100%;
 }
 
-.nav-mode-button {
+.reset-view-button {
   height: 30px;
   min-width: 30px;
   border-radius: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
+  border: solid 2px rgb(255, 217, 0);
 }
-
-.nav-mode-button.enable {
-  border: solid 2px #5af542;
+.reset-view-button:hover {
+  background-color: rgb(255, 217, 0);
 }
-.nav-mode-button.enable:hover {
-  background-color: #d4ffcc;
-}
-.nav-mode-button.enable:hover i {
+.reset-view-button:hover i {
   color: #1A1E23;
 }
-.nav-mode-button.enable i {
-  color: #5af542;
-}
-
-.nav-mode-button.disable {
-  border: solid 2px #db2525;
-}
-.nav-mode-button.disable:hover {
-  background-color: #f2d8d8;
-}
-.nav-mode-button.disable:hover i {
-  color: #1A1E23;
-}
-.nav-mode-button.disable i {
-  color: #db2525;
+.reset-view-button i {
+  color: rgb(255, 217, 0);
 }
 
 .nav-search-container {
@@ -918,7 +902,7 @@ div.brackets-animation :hover:after {
 .nav-summits-container {
   width: 100%;
   height: 100%;
-  min-width: 250px;
+  min-width: 75px;
   display: flex;
   flex-direction: row;
   align-items: center;

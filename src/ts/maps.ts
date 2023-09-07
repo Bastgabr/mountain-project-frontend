@@ -1,4 +1,7 @@
 var summitInfoArray: Common.SummitInfo[];
+var mapBounds: L.LatLngBounds;
+const mapBoundsPadding = 15;
+
 var map;
 window.onload = function() {
 
@@ -34,25 +37,6 @@ $('.nav-arrow').on('mouseup touchend', function() {
 });
 
 
-$('#nav-mode-button').on('mouseup', function() {
-  let navMode = $('#nav-mode-button');
-  if(navMode.hasClass('disable')){
-    $('#nav-mode-button').removeClass('disable');
-    $('#nav-mode-button').addClass('enable');
-    $('#nav-mode-button i').addClass('fa-lock-open');
-    $('#nav-mode-button i').removeClass('fa-lock');
-    ToggleMapNavigation(true);
-    
-  }
-  else{
-    $('#nav-mode-button').removeClass('enable');
-    $('#nav-mode-button').addClass('disable');
-    $('#nav-mode-button i').addClass('fa-lock');
-    $('#nav-mode-button i').removeClass('fa-lock-open');
-    ToggleMapNavigation(false);
-    //TODO : recenter map when disabled
-  }
-});
 
 $('#presentation-map').on('click','.leaflet-marker-icon', function(){
   var summit = summitInfoArray.find(x=> x.ranking == this.title);
@@ -77,9 +61,10 @@ $('#summit-area').on('wheel mousewheel', function(event)  {
 
 $('#search-bar-input').on('click input', SearchSummits);
 
-$("#search-bar-input").on("blur", function(){
-  //let searchResultContainer = $('#search-results-container');
-  //searchResultContainer.css({'display':'none'});
+
+$('#reset-view-button').on('click', function(){
+  map.fitBounds(mapBounds, {padding: [0, mapBoundsPadding]});
+  HideCard(); // Hide summit card
 });
 
 /**
@@ -183,16 +168,8 @@ function LoadGeneralMap(mapKey:string, summitInfo: Common.SummitInfo[]){
   }
   //Compute the bounding box
   var group = L.featureGroup(markerGroup);
-  var paddingValue = 25;
-  map.fitBounds(group.getBounds(), {padding: [0, paddingValue]});
-  
-  map.dragging.disable();
-  map.touchZoom.disable();
-  map.doubleClickZoom.disable();
-  map.scrollWheelZoom.disable();
-  map.boxZoom.disable();
-  map.keyboard.disable();
-  if (map.tap) map.tap.disable();
+  mapBounds = group.getBounds();
+  map.fitBounds(mapBounds, {padding: [0, mapBoundsPadding]});
 }
 
 /**
@@ -248,35 +225,8 @@ function SelectDotColor(summitInfo: Common.SummitInfo) : string {
   }
 }
 
-/**
- * Enables or disables the navigation (touch and mouse)
- * on the map surface
- * @param enable true if the navigation should be enabled
- */
-function ToggleMapNavigation(enable: boolean){
-  if(enable){
-    map.dragging.enable();
-    map.touchZoom.enable();
-    map.doubleClickZoom.enable();
-    map.scrollWheelZoom.enable();
-    map.boxZoom.enable();
-    map.keyboard.enable();
-    if (map.tap) map.tap.enable();
-  }
-  else{
-    map.dragging.disable();
-    map.touchZoom.disable();
-    map.doubleClickZoom.disable();
-    map.scrollWheelZoom.disable();
-    map.boxZoom.disable();
-    map.keyboard.disable();
-    if (map.tap) map.tap.disable();
-  }
-}
-
 
 function CreateCard1(index: number, summitInfo: Common.SummitInfo, parentDivId: string){
-  
   $(parentDivId).html(`          
     <div id="summit-card-`+ index +`-content" class="card-content">
       <h1 id="summit-card-`+ index +`-title" class="card-title">`+ summitInfo.name +`</h1>
@@ -323,7 +273,12 @@ function CreateCard1(index: number, summitInfo: Common.SummitInfo, parentDivId: 
   }
 }
 
-
+/**
+ * Hides the summit card displayed on top of the screen
+ */
+function HideCard(){
+  $('#selected-summit-info-card').hide();
+}
 
 /**
  * adds the country to the given parentDiv
