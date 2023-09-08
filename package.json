@@ -10,7 +10,9 @@
     "jqueryui": "^1.11.1"
   },
   "dependencies": {
+    "@types/greensock": "^1.15.32",
     "@types/jqueryui": "^1.12.17",
+    "gsap": "^3.12.2",
     "leaflet": "^1.9.4",
     "typescript": "^5.1.6"
   }
