@@ -1,109 +1,23 @@
-// RETURN BUTTON Click
-$("#navbar-menu").on("click","#return-button", function () {
-    //Scroll up
-  $("#content").animate({ scrollTop: 0 }, "smooth");
-  $('#content').css({ "overflow": "auto" });
-  
-    ToggleExploreMapText();
-    $(".iframe").css({ "pointer-events": "none" });
-    RestoreMapHeight();
-    ChangeNavBarMenuItems(`
-    <a id="home-button">Home</a>
-    <a id="maps-button">Maps</a>
-    <a id="82x400-button">82x4000</a>
-    <a id="about-button">About</a>
-  `);
-});
-
-
 window.onload = function() {
   Common.HideLoadingScreen();
 };
 
 
 
+$('.caroussel-item').on('click', function(){
+  let carrouselItem = jQuery(this).children();
 
-$("#explore-map-section").on("click", function () {
+  let imageUrl = carrouselItem.attr('src');
+  let imageUrlOld =  $('#displayed-picture').children().attr('src');
+  $('#displayed-picture').children().animate({opacity:0}, 100, function(){
+    $('#displayed-picture').children().attr('src', imageUrl);
+    $('#displayed-picture').children().animate({opacity:1},300, function(){
+      carrouselItem.animate({opacity:1}, 100, function(){
+        carrouselItem.attr('src', imageUrlOld);
 
-      //Scroll to focus element
-      ScrollContentToElement("explore-map-section");
-      ShowMapFullScreen();
-      //Hide scrollbar 
-      $('#content').css({ "overflow": "hidden" });
-
-      NavBarMenuMapMode();
-
-      //Toggle
-      ToggleExploreMapText();
-      $(".iframe").css({ "pointer-events": "auto" });
+      });
+    });
+  })
 });
 
-export function ToggleExploreMapText() {
-  let width = $('#explore-map-text').width();
-  let left = $('#explore-map-text').position().left;
-  let total = width + left;
-  $('#explore-map-text').css({
-      "transform": "translate(-" + total + "px)",
-      "transition": "transform 1000ms ease-in-out"
-  });
-}
 
-export function ScrollContentToElement(elementName) {
-  $("#" + elementName).get(0).scrollIntoView({ behavior: 'smooth' });
-}
-export function ShowMapFullScreen() {
-  let mapFrame = $("iframe");
-  mapFrame.height($("#content").height());
-}
-export function RestoreMapHeight() {
-  let mapFrame = $("iframe");
-  mapFrame.height("");
-}
-
-export function NavBarMenuMapMode() {
-  ChangeNavBarMenuItems(`
-    <a id="return-button">Return</a>
-    <a id="find-4000-button">Find a 4000</a>
-  `);
-}
-
-
-export function ChangeNavBarMenuItems(htmlMenuItems: string){
-  //Hide the navbar menu
-  let navbarMenu = $('#navbar-menu');
-  let width = navbarMenu.width();
-  let left = navbarMenu.position().left;
-  let total = width + left;
-
-  //Hide the old content of the menu
-  navbarMenu.css({
-      "transform": "translate(-" + total + "px)",
-  });
-
-  let count = 0;
-  //When the hiding animation is over, show the new menu
-  navbarMenu.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',   
-  function(e) {
-    console.log("Triggered " + count);
-    if(count == 0){
-      navbarMenu.html(htmlMenuItems);
-      navbarMenu.css({
-        "transform":"translate(0)",
-        });
-    }
-    count++;
-
-  });
-}
-
-
-
-export function ResetNavBarMenu() {
-  $("#nav-menu").html(`
-  <a id="home-button">Home</a>
-  <a id="maps-button">Maps</a>
-  <a id="82x400-button">82x4000</a>
-  <a id="about-button">About</a>
-`);
-}
-//# sourceMappingURL=main.js.map
