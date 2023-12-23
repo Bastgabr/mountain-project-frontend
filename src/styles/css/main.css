@@ -1379,10 +1379,9 @@ body {
 .picture-caroussel .displayed-picture .text-container {
   -webkit-backdrop-filter: blur(3px);
           backdrop-filter: blur(3px);
-  scale: 1.3;
   position: absolute;
   z-index: 4;
-  width: 550px;
+  width: 850px;
   padding: 30px;
   margin-left: 40px;
   top: 200px;
@@ -1390,9 +1389,33 @@ body {
 }
 .picture-caroussel .displayed-picture .text-container h1 {
   text-transform: uppercase;
-  margin-bottom: 30px;
+  margin-bottom: 17px;
+  font-size: 3rem;
 }
 .picture-caroussel .displayed-picture .text-container h1 span {
+  color: rgb(255, 217, 0);
+}
+.picture-caroussel .displayed-picture .text-container p {
+  font-size: 1.6em;
+}
+.picture-caroussel .displayed-picture .text-container .insta-icon a {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.picture-caroussel .displayed-picture .text-container .insta-icon a i {
+  font-size: 15px;
+  display: block;
+}
+.picture-caroussel .displayed-picture .text-container .insta-icon a p {
+  font-size: smaller;
+  margin-left: 5px;
+}
+.picture-caroussel .displayed-picture .text-container .insta-icon a:hover {
+  color: rgb(255, 217, 0);
+}
+.picture-caroussel .displayed-picture .text-container .insta-icon a:hover p {
   color: rgb(255, 217, 0);
 }
 .picture-caroussel .caroussel-container {
@@ -1430,6 +1453,50 @@ body {
   transform: scale(1.03);
 }
 
+.map-presentation-section {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  height: calc(50vh - 65px);
+}
+.map-presentation-section h1 {
+  text-transform: uppercase;
+  margin-bottom: 17px;
+  font-size: 3rem;
+}
+.map-presentation-section h1 span {
+  color: rgb(255, 217, 0);
+}
+.map-presentation-section p {
+  font-size: 1.6em;
+}
+.map-presentation-section .backround-svg {
+  height: 100%;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-image: url(../../svg/lines.svg);
+  -webkit-mask-image: linear-gradient(to right, rgb(0, 0, 0), rgba(0, 0, 0, 0));
+          mask-image: linear-gradient(to right, rgb(0, 0, 0), rgba(0, 0, 0, 0));
+  -webkit-mask-size: 100% 100%;
+          mask-size: 100% 100%;
+}
+.map-presentation-section .map-presentation-left {
+  width: 100%;
+  height: 100%;
+}
+.map-presentation-section .map-presentation-right {
+  width: 100%;
+  height: 100%;
+  text-align: right;
+}
+.map-presentation-section .map-presentation-right .map-text-container {
+  margin-right: 60px;
+  margin-top: 80px;
+  max-width: 600px;
+}
+
 @keyframes fade {
   25% {
     opacity: 0.25;
@@ -1441,7 +1508,8 @@ body {
     opacity: 1;
   }
 }
-html, body {
+html,
+body {
   min-height: 100%;
   height: 100%;
   font-family: Raleway;
@@ -1452,7 +1520,7 @@ html, body {
   background-color: rgb(255, 217, 0);
   padding: 0.5rem 2.4rem;
   border-radius: 25px;
-  color: #1A1E23;
+  color: #1a1e23;
   text-align: center;
   float: right;
 }
